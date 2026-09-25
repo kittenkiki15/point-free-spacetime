@@ -75,3 +75,15 @@ def test_demotes_headings_outside_code(tmp_path):
     out = convert_lines(tmp_path, [assistant("# 見出し\n```\n# コード\n```")])
     assert "### 見出し" in out
     assert "\n# コード\n" in out
+
+
+def test_since_skips_earlier_records(tmp_path):
+    out = convert_lines(tmp_path, [
+        {**user("前の回の発言"), "timestamp": "2026-09-25T10:00:00.000Z"},
+        {**user("今回の発言"), "timestamp": "2026-09-25T11:02:28.903Z"},
+    ])
+    assert "前の回の発言" in out
+    f = tmp_path / "s.jsonl"
+    out = export_log.convert(f, "t", [], since="2026-09-25T11:02:28.903Z")
+    assert "前の回の発言" not in out
+    assert "今回の発言" in out
