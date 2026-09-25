@@ -20,7 +20,7 @@
 | $`¬a`$ | a の否定（擬補元） | $`a → 0`$。開集合では補集合の内部 | `aᶜ` | [調査 02](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | $`↑a`$ | a の上集合 | $`\{x : a ≤ x\}`$。a で生成される主フィルター | `Set.Ici a` | [調査 02](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | $`↓a`$ | a の下集合 | $`\{x : x ≤ a\}`$。a で生成される主イデアル | `Set.Iic a` | [調査 02](surveys/2026-09-25_02_pointfree-topology-basics.md) |
-| $`2`$ | 二元束 | $`\{0, 1\}`$。ロケールの点は $`L → 2`$ | `Prop` または `Bool` | [調査 02](surveys/2026-09-25_02_pointfree-topology-basics.md) |
+| $`2`$ | 二元束 | $`\{0, 1\}`$。ロケール $`L`$ の点は、フレーム準同型 $`L → 2`$（ロケールとしては逆向きの射） | `Prop` または `Bool` | [調査 02](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 
 ## 位相とロケール
 
