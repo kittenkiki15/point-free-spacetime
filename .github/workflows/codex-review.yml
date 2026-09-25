@@ -66,7 +66,10 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           {
-            cat .github/codex/review-prompt.md
+            # レビュー指示は、PR 自身が書き換えられないようベースブランチの版を使う
+            # （ベースブランチにまだない場合だけ、PR の版を使う）
+            git show "$BASE_SHA:.github/codex/review-prompt.md" 2>/dev/null \
+              || cat .github/codex/review-prompt.md
             echo
             echo "## 対象の PR"
             echo
@@ -79,7 +82,7 @@ jobs:
             echo
             echo "$PR_BODY"
             echo "----"
-            # Codex のサンドボックスは GitHub のランナーでファイルを読めないため、
+            # モデルにはファイルを読ませないため、
             # レビューに必要な資料と差分をプロンプトに含める（logs/ は対象外）。
             for f in CLAUDE.md docs/math-guide.md; do
               echo
@@ -103,40 +106,28 @@ jobs:
             fi
           } > "$RUNNER_TEMP/codex-prompt.md"
 
-      # 公式の openai/codex-action はレビュー完了後もステップが終了しないことがあったため、
-      # Codex CLI を直接実行し、timeout で上限を設ける。
-      - name: Run Codex
+      # モデルにはツールを与えず、Responses API で直接レビューを生成する。
+      # API キーはスクリプトだけが使い、モデルからは参照できない。
+      # スクリプトもベースブランチの版を使う（ない場合だけ PR の版）。
+      - name: Run review
         id: run_codex
         if: steps.key.outputs.present == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          CODEX_MODEL: ${{ vars.CODEX_REVIEW_MODEL || 'gpt-6-sol' }}
-          CODEX_HOME: ${{ runner.temp }}/codex-home
+          REVIEW_MODEL: ${{ vars.CODEX_REVIEW_MODEL || 'gpt-6-sol' }}
+          REVIEW_EFFORT: high
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          mkdir -p "$CODEX_HOME"
-          npm install -g @openai/codex
-          # API キーは認証情報として保存し、Codex が実行するコマンドの環境変数には渡さない
-          printenv OPENAI_API_KEY | codex login --with-api-key
-          unset OPENAI_API_KEY
-          timeout 15m codex exec \
-            --model "$CODEX_MODEL" \
-            -c model_reasoning_effort=high \
-            --sandbox read-only \
-            --ephemeral \
-            --output-last-message "$RUNNER_TEMP/codex-output.md" \
-            - < "$RUNNER_TEMP/codex-prompt.md" 2>&1 | tail -n 200 || true
-          rm -rf "$CODEX_HOME"
-          if [ -s "$RUNNER_TEMP/codex-output.md" ]; then
-            delim="EOF_$(openssl rand -hex 8)"
-            {
-              echo "final-message<<$delim"
-              cat "$RUNNER_TEMP/codex-output.md"
-              echo
-              echo "$delim"
-            } >> "$GITHUB_OUTPUT"
-          else
-            echo "::warning::Codex の出力がありませんでした。"
-          fi
+          git show "$BASE_SHA:.github/codex/review.py" > "$RUNNER_TEMP/review.py" 2>/dev/null \
+            || cp .github/codex/review.py "$RUNNER_TEMP/review.py"
+          python3 "$RUNNER_TEMP/review.py" "$RUNNER_TEMP/codex-prompt.md" "$RUNNER_TEMP/codex-output.md"
+          delim="EOF_$(openssl rand -hex 8)"
+          {
+            echo "final-message<<$delim"
+            cat "$RUNNER_TEMP/codex-output.md"
+            echo
+            echo "$delim"
+          } >> "$GITHUB_OUTPUT"
 
   post_feedback:
     runs-on: ubuntu-latest
@@ -158,5 +149,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
-              body: `## Codex レビュー（${process.env.CODEX_MODEL}）\n\n${process.env.CODEX_FINAL_MESSAGE}`,
+              body: `## クロスモデルレビュー（${process.env.CODEX_MODEL}）\n\n${process.env.CODEX_FINAL_MESSAGE}`,
             });

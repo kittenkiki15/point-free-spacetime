@@ -6,6 +6,8 @@
 
 - ユーザーの発言と Claude の返答を本文として出力する。
 - ツールの呼び出しと結果は、折りたたみ（<details>）にして要点だけ残す。
+  入力はシェルのコマンドだけを残し、ファイルへの書き込み内容などの本文は省く。
+  結果は先頭の一部だけを残す。
 - システムが付加した情報（環境情報、システムプロンプトなど）は出力しない。
 - メールアドレス、組織 ID、API キーらしき文字列などは伏せ字にする。
 - --redact-file で指定したファイル（1 行 1 語句）の語句も伏せ字にする。
@@ -125,12 +127,16 @@ def tool_summary(block: dict) -> str:
 
 
 def tool_detail(block: dict) -> str:
+    """ツール入力のうち、公開してよい要点だけを返す。
+
+    シェルのコマンドは再現のために残す（長いものは切り詰める）。
+    ファイルへの書き込み内容など、それ以外の入力の本文は出力しない。
+    """
     inp = block.get("input", {}) or {}
     if "command" in inp:
-        return inp["command"]
-    if "content" in inp and isinstance(inp["content"], str):
-        return f"（{inp.get('file_path', '')} に書き込み）\n" + inp["content"]
-    return json.dumps(inp, ensure_ascii=False, indent=2)
+        return truncate(inp["command"])
+    keys = ", ".join(sorted(inp))
+    return f"（入力の本文は省略。項目: {keys}）"
 
 
 def convert(jsonl_path: Path, title: str, terms: list[str] = ()) -> str:
