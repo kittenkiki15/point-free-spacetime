@@ -142,7 +142,7 @@ I^+(U) ⊆ V \iff U ⊆ G(V), \qquad G(V) = ⋃ \{ U ∈ 𝒪(M) : I^+(U) ⊆ V 
 ## 7. 本プロジェクトへの示唆（予想の候補）
 
 まだ `conjectures/` には登録していない。確度・重要度・検証費用・優先度は、対話の中で評価する。
-Heunen–van der Schaaf の 2 本で既に扱われているかどうかは、[heunen2026 の論文メモ](2026-09-25_03_heunen2026.md#調査メモ-7-節の予想の候補は既に扱われているか)で確かめた（要約：1 は一部、2 は別の形で一部が扱われており、3 は扱われていない）。
+Heunen–van der Schaaf の 2 本で既に扱われているかどうかは、[heunen2026 の論文メモ](2026-09-25_03_heunen2026.md#調査メモ-7-節の予想の候補は既に扱われているか)で確かめた（要約：1 は一部、2 は別の形で一部が扱われており、3 はこの 2 本では扱われていない。他の先行研究は未調査）。
 
 1. **点なしの時制論理**：5 節の随伴 $`P ⊣ G`$・$`F ⊣ H`$ に、時空の時間的関係に由来するどの追加条件を課せば、Goldblatt の結果（S4.2）を点なしで再現できるか。また、Heunen–van der Schaaf の順序付きロケールの枠組みとどう関係するか。
 2. **点がないと表せない因果構造**：点に基づく意味論では区別できないが、点なしでは区別できる因果構造（あるいはその逆）があるか。
@@ -153,4 +153,4 @@ Heunen–van der Schaaf の 2 本で既に扱われているかどうかは、[h
 - 1 節の正則開集合の例の典拠。3 節の全射の例の候補の、正確な定式化と典拠。
 - 4 節・6 節の未登録の文献（Esakia、Abramsky、Banaschewski–Mulvey、Coquand–Spitters、Döring–Isham、Mulvey、Abramsky–Vickers）の書誌情報。
 - Heunen–van der Schaaf の 2 本の内容は、第 03 回に論文メモを作った（[heunen2024](2026-09-25_03_heunen2024.md)、[heunen2026](2026-09-25_03_heunen2026.md)）。heunen2026 は arXiv 版 v1 で読んだので、出版社版との違いは未確認。
-- 論文メモで挙がった追加の調査候補：van der Schaaf の博士論文（[`vanderschaaf2024`](../references.bib)。平行性・凸領域・部分ロケールの上の因果順序などの詳細）、Arntzenius（[`arntzenius2003`](../references.bib)。測度代数にアトムがないこと）、Jónsson–Tarski（[`jonsson1951`](../references.bib)。演算子付きブール代数と共役）。
+- 論文メモで挙がった追加の調査候補：van der Schaaf の博士論文（[`vanderschaaf2024`](../references.bib)。平行性・凸領域・部分ロケールの上の因果順序などの詳細）、Arntzenius（[`arntzenius2003`](../references.bib)。非原子的な測度の測度代数にアトムがないこと）、Jónsson–Tarski（[`jonsson1951`](../references.bib)。演算子付きブール代数と共役）。
