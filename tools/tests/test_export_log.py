@@ -75,3 +75,41 @@ def test_demotes_headings_outside_code(tmp_path):
     out = convert_lines(tmp_path, [assistant("# 見出し\n```\n# コード\n```")])
     assert "### 見出し" in out
     assert "\n# コード\n" in out
+
+
+def test_since_skips_earlier_records(tmp_path):
+    out = convert_lines(tmp_path, [
+        {**user("前の回の発言"), "timestamp": "2026-09-25T10:00:00.000Z"},
+        {**user("今回の発言"), "timestamp": "2026-09-25T11:02:28.903Z"},
+    ])
+    assert "前の回の発言" in out
+    f = tmp_path / "s.jsonl"
+    out = export_log.convert(f, "t", [], since="2026-09-25T11:02:28.903Z")
+    assert "前の回の発言" not in out
+    assert "今回の発言" in out
+
+
+def test_since_compares_times_not_strings(tmp_path):
+    convert_lines(tmp_path, [
+        {**user("前の秒の発言"), "timestamp": "2026-09-25T11:02:27.999Z"},
+        {**user("同じ秒の発言"), "timestamp": "2026-09-25T11:02:28.903Z"},
+    ])
+    f = tmp_path / "s.jsonl"
+    # 秒精度の指定でも、同じ秒の小数秒付きの記録は「以降」に含まれる
+    for since in ("2026-09-25T11:02:28Z", "2026-09-25T11:02:28+00:00", "2026-09-25T20:02:28+09:00"):
+        out = export_log.convert(f, "t", [], since=since)
+        assert "前の秒の発言" not in out
+        assert "同じ秒の発言" in out
+
+
+def test_since_and_until_select_one_session(tmp_path):
+    convert_lines(tmp_path, [
+        {**user("第 01 回の発言"), "timestamp": "2026-09-25T09:00:00Z"},
+        {**user("第 02 回の発言"), "timestamp": "2026-09-25T11:02:28.903Z"},
+        {**user("第 03 回の発言"), "timestamp": "2026-09-26T09:00:00.000Z"},
+    ])
+    f = tmp_path / "s.jsonl"
+    out = export_log.convert(f, "t", [], since="2026-09-25T11:02:28.903Z", until="2026-09-26T09:00:00Z")
+    assert "第 01 回の発言" not in out
+    assert "第 02 回の発言" in out
+    assert "第 03 回の発言" not in out
