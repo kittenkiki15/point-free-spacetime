@@ -12,6 +12,7 @@
 | 対話のまとめ | [`summaries/`](summaries/) |
 | 参考文献の調査メモ | [`surveys/`](surveys/) |
 | 用語一覧 | [`glossary.md`](glossary.md) |
+| 記号一覧 | [`symbols.md`](symbols.md) |
 | 参考文献一覧 | [`references.bib`](references.bib) |
 | 予想（未検証の主張）の一覧 | [`conjectures/`](conjectures/) |
 | Lean 4 による形式証明 | [`lean/`](lean/) |
