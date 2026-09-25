@@ -116,5 +116,5 @@ Claude はこのファイルのルールに従って作業します。
 - PR を作ると、次の GitHub Actions が動く。
   - `lean.yml`：Lean のビルドと `sorry` の検査
   - `python.yml`：Python のテスト
-  - `codex-review.yml`：OpenAI のモデル（`gpt-6-sol`）によるクロスモデルレビュー（リポジトリの Secret `OPENAI_API_KEY` が必要）
+  - `codex-review.yml`：OpenAI のモデル（`gpt-6-sol`）によるクロスモデルレビュー（リポジトリの Secret `OPENAI_API_KEY` が必要）。対話の生ログ（`logs/`）は修正しないので、レビューの対象外とする
 - レビューの指摘には、対応するか、対応しない理由を返信する。
