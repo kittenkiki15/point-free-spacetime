@@ -113,3 +113,26 @@ def test_since_and_until_select_one_session(tmp_path):
     assert "第 01 回の発言" not in out
     assert "第 02 回の発言" in out
     assert "第 03 回の発言" not in out
+
+
+def test_untimed_records_are_excluded_with_warning(tmp_path, capsys):
+    convert_lines(tmp_path, [
+        {**user("時刻のある発言"), "timestamp": "2026-09-25T11:00:00Z"},
+        user("時刻のない発言"),
+        {"type": "summary", "summary": "発言でない記録"},  # 発言でない記録は警告の対象外
+    ])
+    f = tmp_path / "s.jsonl"
+    # since だけ・until だけ・両方のいずれでも、時刻のない発言は出力せず警告する
+    for kw in ({"since": "2026-09-25T10:00:00Z"}, {"until": "2026-09-25T12:00:00Z"},
+               {"since": "2026-09-25T10:00:00Z", "until": "2026-09-25T12:00:00Z"}):
+        out = export_log.convert(f, "t", [], **kw)
+        assert "時刻のある発言" in out
+        assert "時刻のない発言" not in out
+        err = capsys.readouterr().err
+        assert "警告" in err and "1 件" in err and "2 行目" in err
+
+
+def test_untimed_records_are_kept_without_period(tmp_path, capsys):
+    out = convert_lines(tmp_path, [user("時刻のない発言")])
+    assert "時刻のない発言" in out
+    assert capsys.readouterr().err == ""
