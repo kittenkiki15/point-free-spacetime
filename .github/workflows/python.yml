@@ -1,0 +1,27 @@
+name: Python
+
+on:
+  push:
+    branches: [main]
+    paths: ["sim/**", "tools/**", ".github/workflows/python.yml"]
+  pull_request:
+    paths: ["sim/**", "tools/**", ".github/workflows/python.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sim
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - run: pip install -e '.[dev]'
+      - run: python -m pytest
+      # tools/（対話ログの変換・伏せ字）のテスト
+      - run: python -m pytest ../tools/tests
