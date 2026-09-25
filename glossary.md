@@ -18,7 +18,7 @@
 | intuitionistic logic | 直観主義論理 | 排中律を仮定しない論理。位相空間の開集合で解釈でき、否定は補集合の内部になる。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | Kochen–Specker theorem | コッヘン–シュペッカーの定理 | 次元 3 以上のヒルベルト空間で記述される量子系では、すべての観測量に、関数関係を保って矛盾なく値を割り当てることはできない、という定理（2 次元では成り立たない）。トポス的アプローチでは、スペクトル前層に大域切断がないことと同値になる。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | locale | ロケール | フレームの圏の反対圏の対象。点を基本データとしない「空間」として扱う（点を持たないとは限らない）。 | [第 01 回](summaries/2026-09-25_01_repo-rules.md) |
-| localic cones | 局所的な錐 | 順序付きロケールで、U ⊴ V となる V 全体の結び ↟U（未来錐）と、W ⊴ U となる W 全体の結び ↡U（過去錐）。時空では ↟U = I⁺(U) = J⁺(U) となる。 | [heunen2024 のメモ](surveys/2026-09-25_03_heunen2024.md) |
+| localic cones | 局所的な錐 | 順序付きロケールで、U ⊴ V となる V 全体の結び ↟U（未来錐）と、W ⊴ U となる W 全体の結び ↡U（過去錐）。滑らかな時空の開集合 U では ↟U = I⁺(U) = J⁺(U) となる（押し上げ原理が成り立たない低い正則性の時空では、成り立たないことがある）。 | [heunen2024 のメモ](surveys/2026-09-25_03_heunen2024.md) |
 | modal logic S4 | 様相論理 S4 | □p → p と □p → □□p などを公理とする様相論理。□ を内部をとる操作と読むと、位相空間の論理になる（McKinsey–Tarski）。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | nucleus | 核 | フレーム上の写像 j で、a ≤ j(a)、j(j(a)) ≤ j(a)、j(a ∧ b) = j(a) ∧ j(b) を満たすもの。部分ロケールと一対一に対応し、様相演算子の一種とみなせる。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | open cone condition | 開錐条件 | 前順序付き空間で、開集合の未来錐 ↑U と過去錐 ↓U が開集合になること。相対論の押し上げ原理の抽象化で、滑らかな時空は満たす。 | [heunen2024 のメモ](surveys/2026-09-25_03_heunen2024.md) |
