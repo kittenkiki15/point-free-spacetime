@@ -10,13 +10,13 @@
 
 ## ユーザーにお願いしていること
 
-- [ ] 公開リポジトリの Secret に `OPENAI_API_KEY` を登録する（Codex レビューに必要）。
-- [ ] 公開リポジトリのラベルを作る（`priority:high`・`priority:medium`・`priority:low`・`conjecture`・`method:lean`・`method:simulation`・`method:literature`）。
+- [x] 公開リポジトリの Secret に `OPENAI_API_KEY` を登録する（Codex レビューに必要）。
+- [x] 公開リポジトリのラベルを作る（`priority:high`・`priority:medium`・`priority:low`・`conjecture`・`method:lean`・`method:simulation`・`method:literature`）。
 - [ ] （任意）`main` ブランチの保護ルールで、PR と CI の成功を必須にする。
 
 ## 次のタスク
 
-1. 最初の PR（運用ルールの整備）で、Lean・Python・Codex レビューの CI が動くことを確認する。
+1. 最初の PR（運用ルールの整備）で、Codex レビューが動くことを確認する（Lean と Python の CI は GitHub 上で成功済み）。
 2. 考察の出発点を決める。候補:
    - 点なし位相の基礎（フレーム、ロケール、ソバー空間、空間とロケールの双対性）の整理
    - 時空を点なしで扱う既存の研究（トポス理論による量子論の定式化、因果集合、非可換幾何など）の調査
