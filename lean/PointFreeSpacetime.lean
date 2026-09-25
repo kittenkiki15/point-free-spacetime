@@ -1,1 +1,2 @@
 import PointFreeSpacetime.Basic
+import PointFreeSpacetime.BooleanPoints
