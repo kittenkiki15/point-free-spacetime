@@ -26,8 +26,19 @@ MAX_RESULT_CHARS = 1500
 REDACTIONS = [
     # メールアドレス
     (re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"), "[メールアドレス]"),
+    # 秘密鍵
+    (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----.*?-----END [A-Z ]*PRIVATE KEY-----", re.S), "[秘密情報]"),
     # API キー・トークンらしき文字列
-    (re.compile(r"\b(sk-[A-Za-z0-9_-]{16,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})"), "[秘密情報]"),
+    # （OpenAI・Anthropic、GitHub、AWS のアクセスキー ID、Google、Slack）
+    (re.compile(
+        r"\b(sk-[A-Za-z0-9_-]{16,}"
+        r"|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}"
+        r"|(?:AKIA|ASIA)[0-9A-Z]{16}"
+        r"|AIza[0-9A-Za-z_-]{35}"
+        r"|xox[abprs]-[A-Za-z0-9-]{10,})"
+    ), "[秘密情報]"),
+    # AWS のシークレットアクセスキー（キー名に続く 40 文字）
+    (re.compile(r"(?i)(aws_secret_access_key\s*[=:]\s*)[\"']?[A-Za-z0-9/+=]{40}[\"']?"), r"\1[秘密情報]"),
     # UUID（組織 ID やセッション ID など）
     (re.compile(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b"), "[ID]"),
     # セッション URL
@@ -62,6 +73,22 @@ def fence(text: str) -> str:
     longest = max((len(m) for m in re.findall(r"`+", text)), default=0)
     ticks = "`" * max(3, longest + 1)
     return f"{ticks}text\n{text}\n{ticks}"
+
+
+# Claude Code がユーザーの発言として記録する、システム由来の文字列
+SYSTEM_MESSAGE = re.compile(
+    r"^<(command-name|command-message|command-args|local-command-stdout|local-command-stderr"
+    r"|local-command-caveat|system-reminder|task-notification|bash-input|bash-stdout|bash-stderr)>"
+)
+SYSTEM_REMINDER = re.compile(r"<system-reminder>.*?</system-reminder>", re.S)
+
+
+def user_text(text: str) -> str | None:
+    """ユーザーの発言を返す。システム由来の文字列なら None を返す。"""
+    text = SYSTEM_REMINDER.sub("", text).strip()
+    if not text or SYSTEM_MESSAGE.match(text):
+        return None
+    return text
 
 
 def demote_headings(text: str) -> str:
@@ -115,22 +142,22 @@ def convert(jsonl_path: Path, title: str, terms: list[str] = ()) -> str:
         d = json.loads(line)
         kind = d.get("type")
         msg = d.get("message")
-        if kind not in ("user", "assistant") or not isinstance(msg, dict) or d.get("isSidechain"):
+        if kind not in ("user", "assistant") or not isinstance(msg, dict) or d.get("isSidechain") or d.get("isMeta"):
             continue
         content = msg.get("content")
 
         if kind == "user":
             if isinstance(content, str):
-                if content.startswith("<"):  # コマンド出力などのシステム由来の文字列
-                    continue
-                out += ["## ユーザー", "", demote_headings(content.strip()), ""]
+                text = user_text(content)
+                if text:
+                    out += ["## ユーザー", "", demote_headings(text), ""]
                 continue
             for c in content:
                 if c.get("type") == "text":
-                    text = c.get("text", "").strip()
-                    if text.startswith("[Request interrupted"):
+                    text = user_text(c.get("text", ""))
+                    if text and text.startswith("[Request interrupted"):
                         out += ["*（ユーザーがツールの実行を中断）*", ""]
-                    elif text and not text.startswith("<"):
+                    elif text:
                         out += ["## ユーザー", "", demote_headings(text), ""]
                 elif c.get("type") == "tool_result":
                     head = pending.pop(c.get("tool_use_id"), "ツール")

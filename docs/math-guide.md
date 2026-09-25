@@ -60,12 +60,12 @@
 
 ````markdown
 ```math
-\left| x \right| = \sqrt{x^2}
+\left| x \right| = \sqrt{x^2} \quad (x ∈ ℝ)
 ```
 ````
 
 ```math
-\left| x \right| = \sqrt{x^2}
+\left| x \right| = \sqrt{x^2} \quad (x ∈ ℝ)
 ```
 
 ### 特殊な文字は Unicode 文字を直接書く
