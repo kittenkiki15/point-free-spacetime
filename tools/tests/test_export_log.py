@@ -87,3 +87,16 @@ def test_since_skips_earlier_records(tmp_path):
     out = export_log.convert(f, "t", [], since="2026-09-25T11:02:28.903Z")
     assert "前の回の発言" not in out
     assert "今回の発言" in out
+
+
+def test_since_compares_times_not_strings(tmp_path):
+    convert_lines(tmp_path, [
+        {**user("前の秒の発言"), "timestamp": "2026-09-25T11:02:27.999Z"},
+        {**user("同じ秒の発言"), "timestamp": "2026-09-25T11:02:28.903Z"},
+    ])
+    f = tmp_path / "s.jsonl"
+    # 秒精度の指定でも、同じ秒の小数秒付きの記録は「以降」に含まれる
+    for since in ("2026-09-25T11:02:28Z", "2026-09-25T11:02:28+00:00", "2026-09-25T20:02:28+09:00"):
+        out = export_log.convert(f, "t", [], since=since)
+        assert "前の秒の発言" not in out
+        assert "同じ秒の発言" in out

@@ -20,6 +20,7 @@ import argparse
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 # ツール結果として残す最大文字数
@@ -139,16 +140,28 @@ def tool_detail(block: dict) -> str:
     return f"（入力の本文は省略。項目: {keys}）"
 
 
+def parse_time(text: str | None) -> datetime:
+    """ISO 8601 の時刻を、タイムゾーン付きの日時として解析する。
+
+    小数秒の有無や末尾の Z・+00:00 の違いによらず比較できるようにする。
+    タイムゾーンのない時刻は UTC とみなす。時刻がない記録は最も古いものとして扱う。
+    """
+    if not text:
+        return datetime.min.replace(tzinfo=timezone.utc)
+    dt = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+
+
 def convert(jsonl_path: Path, title: str, terms: list[str] = (), since: str | None = None) -> str:
     """since（ISO 8601 の UTC 時刻、例: 2026-09-25T11:02:28Z）を指定すると、それ以降の記録だけを出力する。"""
     out = [f"# {title}", "", "> この記録は Claude Code のセッション記録から `tools/export_log.py` で自動変換したものです。",
            "> ツールの呼び出しは折りたたんで表示し、個人情報などは伏せ字にしています。", ""]
     pending = {}  # tool_use_id -> 見出し
+    since_dt = parse_time(since) if since else None
 
     for line in jsonl_path.read_text(encoding="utf-8").splitlines():
         d = json.loads(line)
-        # 時刻は同じ形式（UTC、末尾 Z）なので、文字列の比較で前後を判定できる
-        if since and d.get("timestamp", "") < since:
+        if since_dt and parse_time(d.get("timestamp")) < since_dt:
             continue
         kind = d.get("type")
         msg = d.get("message")
