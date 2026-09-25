@@ -100,3 +100,16 @@ def test_since_compares_times_not_strings(tmp_path):
         out = export_log.convert(f, "t", [], since=since)
         assert "前の秒の発言" not in out
         assert "同じ秒の発言" in out
+
+
+def test_since_and_until_select_one_session(tmp_path):
+    convert_lines(tmp_path, [
+        {**user("第 01 回の発言"), "timestamp": "2026-09-25T09:00:00Z"},
+        {**user("第 02 回の発言"), "timestamp": "2026-09-25T11:02:28.903Z"},
+        {**user("第 03 回の発言"), "timestamp": "2026-09-26T09:00:00.000Z"},
+    ])
+    f = tmp_path / "s.jsonl"
+    out = export_log.convert(f, "t", [], since="2026-09-25T11:02:28.903Z", until="2026-09-26T09:00:00Z")
+    assert "第 01 回の発言" not in out
+    assert "第 02 回の発言" in out
+    assert "第 03 回の発言" not in out

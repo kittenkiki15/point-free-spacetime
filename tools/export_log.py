@@ -2,7 +2,7 @@
 """Claude Code のセッション記録（JSONL）を、公開用の Markdown に変換する。
 
 使い方:
-    python3 tools/export_log.py <セッション.jsonl> <出力.md> [--title タイトル] [--redact-file ファイル] [--since 時刻]
+    python3 tools/export_log.py <セッション.jsonl> <出力.md> [--title タイトル] [--redact-file ファイル] [--since 時刻] [--until 時刻]
 
 - ユーザーの発言と Claude の返答を本文として出力する。
 - ツールの呼び出しと結果は、折りたたみ（<details>）にして要点だけ残す。
@@ -152,16 +152,20 @@ def parse_time(text: str | None) -> datetime:
     return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
 
 
-def convert(jsonl_path: Path, title: str, terms: list[str] = (), since: str | None = None) -> str:
+def convert(jsonl_path: Path, title: str, terms: list[str] = (), since: str | None = None,
+            until: str | None = None) -> str:
     """since（ISO 8601 の UTC 時刻、例: 2026-09-25T11:02:28Z）を指定すると、それ以降の記録だけを出力する。"""
     out = [f"# {title}", "", "> この記録は Claude Code のセッション記録から `tools/export_log.py` で自動変換したものです。",
            "> ツールの呼び出しは折りたたんで表示し、個人情報などは伏せ字にしています。", ""]
     pending = {}  # tool_use_id -> 見出し
     since_dt = parse_time(since) if since else None
+    until_dt = parse_time(until) if until else None
 
     for line in jsonl_path.read_text(encoding="utf-8").splitlines():
         d = json.loads(line)
-        if since_dt and parse_time(d.get("timestamp")) < since_dt:
+        ts = parse_time(d.get("timestamp"))
+        # since 以上、until 未満の記録だけを出力する
+        if (since_dt and ts < since_dt) or (until_dt and ts >= until_dt):
             continue
         kind = d.get("type")
         msg = d.get("message")
@@ -205,10 +209,11 @@ def main() -> int:
     p.add_argument("output", type=Path)
     p.add_argument("--title", default="対話ログ")
     p.add_argument("--redact-file", type=Path, help="伏せ字にする語句のファイル（1 行 1 語句）")
-    p.add_argument("--since", help="この時刻（ISO 8601、UTC）以降の記録だけを出力する。同じセッション記録を複数回に分けて書き出すときに使う")
+    p.add_argument("--since", help="この時刻（ISO 8601）以降の記録だけを出力する。同じセッション記録を複数回に分けて書き出すときに使う")
+    p.add_argument("--until", help="この時刻（ISO 8601）より前の記録だけを出力する。次の回の最初の発言の時刻を指定する")
     a = p.parse_args()
     a.output.parent.mkdir(parents=True, exist_ok=True)
-    a.output.write_text(convert(a.jsonl, a.title, load_terms(a.redact_file), a.since), encoding="utf-8")
+    a.output.write_text(convert(a.jsonl, a.title, load_terms(a.redact_file), a.since, a.until), encoding="utf-8")
     print(f"wrote {a.output}", file=sys.stderr)
     return 0
 

@@ -38,7 +38,7 @@
 
 | 記号 | 読み方 | 意味 | Lean | 初出 |
 | --- | --- | --- | --- | --- |
-| $`F ⊣ G`$ | F は G の左随伴 | $`F(a) ≤ b ⟺ a ≤ G(b)`$（順序集合の場合） | `GaloisConnection F G`、`F ⊣ G` | [調査 02](surveys/2026-09-25_02_pointfree-topology-basics.md) |
+| $`F ⊣ G`$ | F は G の左随伴 | 順序集合の間の単調写像では $`F(a) ≤ b ⟺ a ≤ G(b)`$（ガロア接続）。圏の間の関手では、射の集合の自然な全単射 $`\mathrm{Hom}(F(a), b) ≅ \mathrm{Hom}(a, G(b))`$ | 順序集合の写像: `GaloisConnection F G`。関手: `F ⊣ G`（`CategoryTheory.Adjunction`） | [調査 02](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | $`𝒞^{\mathrm{op}}`$ | 𝒞 の反対圏 | 射の向きを逆にした圏 | `𝒞ᵒᵖ` | [調査 02](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 
 ## 様相論理・時制論理

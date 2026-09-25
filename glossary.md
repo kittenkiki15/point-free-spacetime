@@ -14,7 +14,7 @@
 | locale | ロケール | フレームの圏の反対圏の対象。点を基本データとしない「空間」として扱う（点を持たないとは限らない）。 | [第 01 回](summaries/2026-09-25_01_repo-rules.md) |
 | modal logic S4 | 様相論理 S4 | □p → p と □p → □□p などを公理とする様相論理。□ を内部をとる操作と読むと、位相空間の論理になる（McKinsey–Tarski）。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | nucleus | 核 | フレーム上の写像 j で、a ≤ j(a)、j(j(a)) ≤ j(a)、j(a ∧ b) = j(a) ∧ j(b) を満たすもの。部分ロケールと一対一に対応し、様相演算子の一種とみなせる。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
-| ordered locale | 順序付きロケール | ロケールに因果的な順序の構造を加えたもの（Heunen–van der Schaaf）。相対論の因果構造を点なしで扱うための枠組み。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
+| ordered locale | 順序付きロケール | ロケールに順序（前順序）の構造を加えたもの（Heunen–van der Schaaf）。前順序付き位相空間の点なし版であり、応用として相対論の因果順序を点なしで扱える。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | orthomodular lattice | オーソモジュラー束 | 直交補を持つ束で、分配律より弱いオーソモジュラー律を満たすもの。ヒルベルト空間の閉部分空間全体がなし、伝統的な量子論理の代数である。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | point (of a locale) | （ロケールの）点 | ロケールの圏で、終対象（一点空間に対応するロケール）からロケール L への射。フレームの言葉では、逆向きのフレーム準同型 L → {0, 1} にあたる。完全素フィルターや素元と一対一に対応する。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | point-free topology | 点なし位相 | 点ではなく開集合の束（フレーム）を基本として位相を扱う理論。pointless topology とも呼ぶ。 | [第 01 回](summaries/2026-09-25_01_repo-rules.md) |
