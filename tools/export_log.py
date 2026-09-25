@@ -140,37 +140,46 @@ def tool_detail(block: dict) -> str:
     return f"（入力の本文は省略。項目: {keys}）"
 
 
-def parse_time(text: str | None) -> datetime:
+def parse_time(text: str) -> datetime:
     """ISO 8601 の時刻を、タイムゾーン付きの日時として解析する。
 
     小数秒の有無や末尾の Z・+00:00 の違いによらず比較できるようにする。
-    タイムゾーンのない時刻は UTC とみなす。時刻がない記録は最も古いものとして扱う。
+    タイムゾーンのない時刻は UTC とみなす。
     """
-    if not text:
-        return datetime.min.replace(tzinfo=timezone.utc)
     dt = datetime.fromisoformat(text.replace("Z", "+00:00"))
     return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
 
 
 def convert(jsonl_path: Path, title: str, terms: list[str] = (), since: str | None = None,
             until: str | None = None) -> str:
-    """since（ISO 8601 の UTC 時刻、例: 2026-09-25T11:02:28Z）を指定すると、それ以降の記録だけを出力する。"""
+    """since・until（ISO 8601 の時刻、例: 2026-09-25T11:02:28Z）で出力する期間を絞る。
+
+    since 以上、until 未満の記録だけを出力する。期間を指定したときは、時刻のない発言は
+    どの回のものか判定できないので出力せず、標準エラーに警告を出す。
+    """
     out = [f"# {title}", "", "> この記録は Claude Code のセッション記録から `tools/export_log.py` で自動変換したものです。",
            "> ツールの呼び出しは折りたたんで表示し、個人情報などは伏せ字にしています。", ""]
     pending = {}  # tool_use_id -> 見出し
     since_dt = parse_time(since) if since else None
     until_dt = parse_time(until) if until else None
 
-    for line in jsonl_path.read_text(encoding="utf-8").splitlines():
+    untimed = []  # 期間を指定したのに時刻がなく、除外した記録の行番号
+
+    for lineno, line in enumerate(jsonl_path.read_text(encoding="utf-8").splitlines(), 1):
         d = json.loads(line)
-        ts = parse_time(d.get("timestamp"))
-        # since 以上、until 未満の記録だけを出力する
-        if (since_dt and ts < since_dt) or (until_dt and ts >= until_dt):
-            continue
         kind = d.get("type")
         msg = d.get("message")
         if kind not in ("user", "assistant") or not isinstance(msg, dict) or d.get("isSidechain") or d.get("isMeta"):
             continue
+        if since_dt or until_dt:
+            # 時刻がない記録は、どの回のものか判定できないので出力しない（警告する）
+            if not d.get("timestamp"):
+                untimed.append(lineno)
+                continue
+            ts = parse_time(d["timestamp"])
+            # since 以上、until 未満の記録だけを出力する
+            if (since_dt and ts < since_dt) or (until_dt and ts >= until_dt):
+                continue
         content = msg.get("content")
 
         if kind == "user":
@@ -200,6 +209,10 @@ def convert(jsonl_path: Path, title: str, terms: list[str] = (), since: str | No
                     head = tool_summary(c)
                     pending[c.get("id")] = head
                     out += [f"<details><summary>ツール: {head}</summary>", "", fence(tool_detail(c)), "", "</details>", ""]
+    if untimed:
+        print(f"警告: 時刻（timestamp）のない発言が {len(untimed)} 件あり、--since・--until で期間を判定できないため"
+              f"出力しませんでした（{jsonl_path} の {', '.join(map(str, untimed))} 行目）。"
+              "必要なら内容を確認してください。", file=sys.stderr)
     return redact("\n".join(out).rstrip() + "\n", terms)
 
 
