@@ -19,6 +19,8 @@ jobs:
   codex:
     if: ${{ !github.event.pull_request.draft }}
     runs-on: ubuntu-latest
+    # レビューが止まらなくなった場合に備えて、実行時間に上限を設ける
+    timeout-minutes: 20
     permissions:
       contents: read
     outputs:
