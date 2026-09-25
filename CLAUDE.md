@@ -116,6 +116,6 @@ Claude はこのファイルのルールに従って作業します。
 - コミットメッセージは日本語で書く。
 - PR を作ると、次の GitHub Actions が動く。
   - `lean.yml`：Lean のビルドと `sorry` の検査
-  - `python.yml`：Python のテスト
-  - `codex-review.yml`：OpenAI のモデル（`gpt-6-sol`）によるクロスモデルレビュー（リポジトリの Secret `OPENAI_API_KEY` が必要）。対話の生ログ（`logs/`）は修正しないので、レビューの対象外とする
+  - `python.yml`：Python のテスト（`sim/` と、対話ログ変換の `tools/tests/`）
+  - `codex-review.yml`：OpenAI のモデル（`gpt-6-sol`）によるクロスモデルレビュー（リポジトリの Secret `OPENAI_API_KEY` が必要）。対話の生ログ（`logs/`）は修正しないので、レビューの対象外とする。安全のため、レビューのワークフロー・指示（`.github/codex/`）は `main` の版で動く。これらの変更は、`main` にマージされた後の PR から反映される
 - レビューの指摘には、対応するか、対応しない理由を返信する。

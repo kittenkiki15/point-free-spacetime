@@ -42,7 +42,7 @@ REDACTIONS = [
     # AWS のシークレットアクセスキー（キー名に続く 40 文字）
     (re.compile(r"(?i)(aws_secret_access_key\s*[=:]\s*)[\"']?[A-Za-z0-9/+=]{40}[\"']?"), r"\1[秘密情報]"),
     # UUID（組織 ID やセッション ID など）
-    (re.compile(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b"), "[ID]"),
+    (re.compile(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b", re.IGNORECASE), "[ID]"),
     # セッション URL
     (re.compile(r"https://claude\.ai/code/session_[A-Za-z0-9]+"), "[セッション URL]"),
 ]

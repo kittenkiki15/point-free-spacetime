@@ -23,3 +23,5 @@ jobs:
           python-version: "3.11"
       - run: pip install -e '.[dev]'
       - run: python -m pytest
+      # tools/（対話ログの変換・伏せ字）のテスト
+      - run: python -m pytest ../tools/tests
