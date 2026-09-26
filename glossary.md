@@ -27,7 +27,7 @@
 | modal logic S4 | 様相論理 S4 | □p → p と □p → □□p などを公理とする様相論理。□ を内部をとる操作と読むと、位相空間の論理になる（McKinsey–Tarski）。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | nucleus | 核 | フレーム上の写像 j で、a ≤ j(a)、j(j(a)) ≤ j(a)、j(a ∧ b) = j(a) ∧ j(b) を満たすもの。部分ロケールと一対一に対応し、様相演算子の一種とみなせる。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | open cone condition | 開錐条件 | 前順序付き空間で、開集合の未来錐 ↑U と過去錐 ↓U が開集合になること。相対論の押し上げ原理の抽象化で、滑らかな時空は満たす。 | [heunen2024 のメモ](surveys/2026-09-25_03_heunen2024.md) |
-| opening | オープニング | 膨張と収縮の合成 N ∘ E。小さすぎる部分を削る操作で、不動点は膨張の像になる。数理形態学の用語。 | [第 05 回の調査メモ](surveys/2026-09-26_05_subordination.md) |
+| opening | オープニング | 膨張と収縮の合成 N ∘ E。不動点は膨張の像になる。ℓ 近傍による膨張のように尺度を指定したモデルでは、小さすぎる部分を削る操作にあたる（一般の随伴には尺度がない）。数理形態学の用語。 | [第 05 回の調査メモ](surveys/2026-09-26_05_subordination.md) |
 | operator system | 作用素系 | 単位元を含み、共役で閉じた作用素の線形空間。Connes–van Suijlekom は、許容関係や分解能の有限な空間を非可換幾何で扱うために、C* 代数の代わりに用いた。 | [第 05 回の調査メモ](surveys/2026-09-26_05_subordination.md) |
 | ordered locale | 順序付きロケール | ロケールの開集合フレームに、任意の結びと両立する前順序 ⊴ を加えたもの（Heunen–van der Schaaf）。前順序付き位相空間の点なし版であり、相対論の因果順序を点なしで扱える。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | orthomodular lattice | オーソモジュラー束 | 直交補を持つ束で、分配律より弱いオーソモジュラー律を満たすもの。ヒルベルト空間の閉部分空間全体がなし、伝統的な量子論理の代数である。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |

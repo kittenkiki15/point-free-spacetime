@@ -69,9 +69,10 @@ theorem margin_interpolates_iff {α : Type*} [Preorder α] (N : α → α) (hN :
     exact ⟨N a, le_rfl, (h a).trans hab⟩
 
 /-- **結果 R-0008**（既知の結果の形式化。随伴の一般的な性質 `N ∘ E ∘ N = N`、数理形態学では
-Heijmans–Ronse 1990 の枠組み）：膨張 `N` が右随伴（収縮 `E`）を持つとき、オープニング `N ∘ E`（型 I の「小さすぎる
-部分を削る」操作）の不動点は、ちょうど `N` の像である。型 I と型 II は、同じ随伴 `N ⊣ E`
-の二つの面になっている。 -/
+Heijmans–Ronse 1990 の枠組み）：膨張 `N` が右随伴（収縮 `E`）を持つとき、オープニング `N ∘ E` の不動点は、ちょうど `N` の像
+である。この定理が述べるのは不動点の性質だけで、一般の随伴には尺度がない（恒等写像も仮定を
+満たす）。「小さすぎる部分を削る」という型 I の解釈は、`ℓ` 近傍による膨張のように尺度を
+指定したモデルに限る。そのようなモデルでは、型 I と型 II は同じ随伴 `N ⊣ E` の二つの面になる。 -/
 theorem opening_fixed_iff_mem_range {α : Type*} [PartialOrder α] {N E : α → α}
     (gc : GaloisConnection N E) (b : α) : N (E b) = b ↔ b ∈ Set.range N := by
   constructor
