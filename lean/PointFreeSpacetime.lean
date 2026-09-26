@@ -1,3 +1,4 @@
 import PointFreeSpacetime.Basic
 import PointFreeSpacetime.BooleanPoints
 import PointFreeSpacetime.Conjugate
+import PointFreeSpacetime.Tolerance
