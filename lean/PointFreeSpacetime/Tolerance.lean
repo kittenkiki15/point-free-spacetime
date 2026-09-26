@@ -45,7 +45,8 @@ theorem marginSub_interpolates_iff (T : X → X → Prop) :
 ところまで広げる）から、余白付きの包含を `N a ≤ b` と定める。上の点の場合は、
 `N a` が `a` の `T` 近傍にあたる（`marginSub_iff_image_subset`）。 -/
 
-/-- 点の場合の余白付きの包含は、`T` 近傍（`T` による像）の包含と同じである。 -/
+/-- 点の場合の余白付きの包含は、`T` 近傍（`T` による像）の包含と同じである。
+結果 R-0006（点の場合）と結果 R-0007（点なし版）をつなぐ補題で、予想 C-0001 の定式化に使う。 -/
 theorem marginSub_iff_image_subset (T : X → X → Prop) (a b : Set X) :
     MarginSub T a b ↔ {y | ∃ x ∈ a, T x y} ⊆ b := by
   constructor
