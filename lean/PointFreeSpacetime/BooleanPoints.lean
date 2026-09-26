@@ -11,10 +11,10 @@ Mathlib では、フレーム `L` の点を、フレーム準同型 `L → Prop`
 
 ## 主な結果
 
-* `PointFreeSpacetime.ptEquivPrime`：フレームの点と素元の一対一対応（1 段目）。
+* `PointFreeSpacetime.ptEquivPrime`：フレームの点と素元の一対一対応（1 段目、結果 R-0001）。
 * `PointFreeSpacetime.IsPrimeElement.isCoatom`：完備ブール代数の素元は余アトム（2 段目）。
-* `PointFreeSpacetime.ptEquivAtom`：完備ブール代数の点とアトムの一対一対応（3・4 段目）。
-* `PointFreeSpacetime.isEmpty_pt_of_forall_not_isAtom`：アトムを持たない完備ブール代数は点を持たない。
+* `PointFreeSpacetime.ptEquivAtom`：完備ブール代数の点とアトムの一対一対応（3・4 段目、結果 R-0002）。
+* `PointFreeSpacetime.isEmpty_pt_of_forall_not_isAtom`：アトムを持たない完備ブール代数は点を持たない（結果 R-0003）。
 -/
 
 open Locale
@@ -92,7 +92,7 @@ theorem primePt_apply (p : L) (hp : IsPrimeElement p) (b : L) :
     primePt p hp b ↔ ¬ b ≤ p :=
   Iff.rfl
 
-/-- **1 段目**：フレームの点（完全素フィルター）と素元は一対一に対応する。 -/
+/-- **1 段目**（結果 R-0001）：フレームの点（完全素フィルター）と素元は一対一に対応する。 -/
 def ptEquivPrime : PT L ≃ {p : L // IsPrimeElement p} where
   toFun x := ⟨ptPrime x, isPrimeElement_ptPrime x⟩
   invFun p := primePt p.1 p.2
@@ -154,7 +154,7 @@ theorem ptPrime_atomPt (a : L) (ha : IsAtom a) : ptPrime (atomPt a ha) = aᶜ :=
     simp [ha.not_le_iff_disjoint, le_compl_iff_disjoint_right, disjoint_comm]
   rw [ptPrime, this, csSup_Iic]
 
-/-- **3・4 段目**：完備ブール代数の点とアトムは一対一に対応する。
+/-- **3・4 段目**（結果 R-0002）：完備ブール代数の点とアトムは一対一に対応する。
 点 `x` には、対応する素元（余アトム）の否定 `¬p` を対応させ、このとき完全素フィルターは `↑(¬p)` になる。
 逆に、アトム `a` には点 `↑a` を対応させる。 -/
 def ptEquivAtom : PT L ≃ {a : L // IsAtom a} where
@@ -175,7 +175,7 @@ theorem apply_iff_ptEquivAtom_le (x : PT L) (b : L) : x b ↔ (ptEquivAtom x : L
   conv_lhs => rw [← ptEquivAtom.symm_apply_apply x]
   rfl
 
-/-- 系：アトムを持たない完備ブール代数は点を持たない。
+/-- 系（結果 R-0003）：アトムを持たない完備ブール代数は点を持たない。
 非自明（`⊥ ≠ ⊤`）なら、自明でないのに点を持たないロケールを与える。 -/
 theorem isEmpty_pt_of_forall_not_isAtom (h : ∀ a : L, ¬ IsAtom a) : IsEmpty (PT L) :=
   ⟨fun x => h _ (ptEquivAtom x).2⟩

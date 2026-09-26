@@ -15,6 +15,7 @@
 | 記号一覧 | [`symbols.md`](symbols.md) |
 | 参考文献一覧 | [`references.bib`](references.bib) |
 | 予想（未検証の主張）の一覧 | [`conjectures/`](conjectures/) |
+| 検証済みの結果の一覧 | [`results/`](results/) |
 | Lean 4 による形式証明 | [`lean/`](lean/) |
 | Python による数値実験 | [`sim/`](sim/) |
 
