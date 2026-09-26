@@ -9,6 +9,9 @@ import Mathlib.Data.Set.Basic
 `T` が推移的であることと、`◁` が補間的（`a ◁ b` なら `a ◁ c ◁ b` となる `c` がある）で
 あることは同値である。距離 `ℓ` 以内の関係のように推移的でない関係では、余白を二つに
 分けられない。第 05 回の案 D（余白の下限）の出発点。
+
+ここの数学的な主張はいずれも既知である（結果 R-0006〜R-0008、
+[調査メモ](../../surveys/2026-09-26_05_subordination.md)）。物理学的な解釈は予想 C-0001 で扱う。
 -/
 
 namespace PointFreeSpacetime
@@ -19,8 +22,9 @@ variable {X : Type*}
 def MarginSub (T : X → X → Prop) (a b : Set X) : Prop :=
   ∀ x y, x ∈ a → T x y → y ∈ b
 
-/-- 余白付きの包含が補間的であることと、`T` が推移的であることは同値である。
-反射性などの仮定は要らない。 -/
+/-- **結果 R-0006**（既知の結果の形式化。劣位代数の補間性 (S8) と到達関係の推移性の対応、
+De Rudder–Hansoul–Stetenfeld 2020 の 4 節を参照）：余白付きの包含が補間的であることと、
+`T` が推移的であることは同値である。反射性などの仮定は要らない。 -/
 theorem marginSub_interpolates_iff (T : X → X → Prop) :
     (∀ a b, MarginSub T a b → ∃ c, MarginSub T a c ∧ MarginSub T c b) ↔
       ∀ x y z, T x y → T y z → T x z := by
@@ -50,9 +54,9 @@ theorem marginSub_iff_image_subset (T : X → X → Prop) (a b : Set X) :
   · intro h x y hx hxy
     exact h ⟨x, hx, hxy⟩
 
-/-- 単調な `N` について、余白付きの包含 `N a ≤ b` が補間的であることと、
-`N (N a) ≤ N a`（膨張を重ねても広がらない）は同値である。
-点の場合の `marginSub_interpolates_iff` の点なし版にあたる。 -/
+/-- **結果 R-0007**（既知の事実の言い直し）：単調な `N` について、余白付きの包含 `N a ≤ b` が
+補間的であることと、`N (N a) ≤ N a`（膨張を重ねても広がらない）は同値である。
+点の場合の `marginSub_interpolates_iff`（結果 R-0006）の点なし版にあたる。 -/
 theorem margin_interpolates_iff {α : Type*} [Preorder α] (N : α → α) (hN : Monotone N) :
     (∀ a b, N a ≤ b → ∃ c, N a ≤ c ∧ N c ≤ b) ↔ ∀ a, N (N a) ≤ N a := by
   constructor
@@ -62,7 +66,8 @@ theorem margin_interpolates_iff {α : Type*} [Preorder α] (N : α → α) (hN :
   · intro h a b hab
     exact ⟨N a, le_rfl, (h a).trans hab⟩
 
-/-- 膨張 `N` が右随伴（収縮 `E`）を持つとき、オープニング `N ∘ E`（型 I の「小さすぎる
+/-- **結果 R-0008**（既知の結果の形式化。随伴の一般的な性質 `N ∘ E ∘ N = N`、数理形態学では
+Heijmans–Ronse 1990 の枠組み）：膨張 `N` が右随伴（収縮 `E`）を持つとき、オープニング `N ∘ E`（型 I の「小さすぎる
 部分を削る」操作）の不動点は、ちょうど `N` の像である。型 I と型 II は、同じ随伴 `N ⊣ E`
 の二つの面になっている。 -/
 theorem opening_fixed_iff_mem_range {α : Type*} [PartialOrder α] {N E : α → α}
