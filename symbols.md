@@ -84,3 +84,14 @@
 | $`a ◁ b`$ | a は b の中に余白を持って入っている | $`N\,a ≤ b`$。点の場合は $`T[a] ⊆ b`$ | `MarginSub T a b`、`N a ≤ b` | [調査 05](surveys/2026-09-26_05_subordination.md) |
 | $`a ≺ b`$ | 劣位関係 | 劣位代数の関係（余白付きの包含の抽象化） | | [調査 05](surveys/2026-09-26_05_subordination.md) |
 | $`λ_P`$ | プランク長 | $`\sqrt{G ℏ / c^3}`$ | | [調査 05](surveys/2026-09-26_05_subordination.md) |
+
+## 測定と観測者の族
+
+| 記号 | 読み方 | 意味 | Lean | 初出 |
+| --- | --- | --- | --- | --- |
+| $`K`$ | 結合領域 | 系とプローブを相互作用させるコンパクトな時空の領域（Fewster–Verch） | | [調査 06](surveys/2026-09-26_06_minimal-length-covariance.md) |
+| $`ε_σ(B)`$ | 誘導される観測量 | プローブの初期状態 $`σ`$ とプローブの観測量 $`B`$ から誘導される系の観測量 | | [調査 06](surveys/2026-09-26_06_minimal-length-covariance.md) |
+| $`O`$ | 観測者側のデータ | 区別を行う側のデータ（結合領域、プローブの理論と結合、初期状態、観測量、使える資源など）。ポアンカレ変換 $`g`$ で $`g\,O`$ に移る | | [NEXT.md](NEXT.md)（第 05 回の後）、[調査 06](surveys/2026-09-26_06_minimal-length-covariance.md) |
+| $`T_O`$、$`N_O`$ | 観測者ごとの関係・膨張 | 観測者側のデータ $`O`$ を添字にした族。族の共変性は $`N_{gO}(g\,a) = g\,N_O\,a`$ | | [調査 06](surveys/2026-09-26_06_minimal-length-covariance.md) |
+| $`η`$ | ラピディティ | ブーストの大きさを表すパラメータ（ローレンツ因子は $`\cosh\,η`$） | | [調査 06](surveys/2026-09-26_06_minimal-length-covariance.md) |
+| $`ℓ`$、$`R_O`$ | 紫外の下限、赤外の上限 | 実現できる領域の最小の大きさと、観測者 $`O`$ が到達できる範囲の大きさ | | [調査 06](surveys/2026-09-26_06_minimal-length-covariance.md) |
