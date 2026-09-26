@@ -85,19 +85,33 @@ def test_cited_test_functions_exist_in_linked_files_and_carry_id():
 
 
 def test_readme_rows_match_linked_files():
+    # 列：ID、結果、種類、検証、成果物、初出。検証の欄に応じて、成果物の欄を検査する
     readme = RESULTS / "README.md"
     for row in readme.read_text(encoding="utf-8").splitlines():
         m = re.match(r"^\| \[(R-\d{4})\]", row)
         if not m:
             continue
-        paths = linked_files(readme, row)
+        rid = m.group(1)
+        cells = [c.strip() for c in row.strip().strip("|").split("|")]
+        verification, artifacts = cells[3], cells[4]
+        paths = linked_files(readme, artifacts)
+        assert paths, (rid, "成果物の欄にリンクがない")
+        names = re.findall(r"\)：`(\w+)`", artifacts)
         lean = read_linked(paths, lambda p: p.suffix == ".lean")
         tests = read_linked(paths, lambda p: p.name.startswith("test_"))
-        names = re.findall(r"\)：`(\w+)`", row)
-        assert names, row
-        for name in names:
-            doc = docstring_of_test(tests, name) if name.startswith("test_") else lean_doc(lean, name)
-            assert doc is not None and m.group(1) in doc, (m.group(1), name)
+        if "Lean" in verification:
+            lean_names = [n for n in names if not n.startswith("test_")]
+            assert lean_names, (rid, "Lean の宣言名がない")
+            for name in lean_names:
+                doc = lean_doc(lean, name)
+                assert doc is not None and rid in doc, (rid, name)
+        if "テスト" in verification:
+            test_names = [n for n in names if n.startswith("test_")]
+            assert test_names, (rid, "テスト関数名がない")
+            for name in test_names:
+                doc = docstring_of_test(tests, name)
+                assert doc is not None and rid in doc, (rid, name)
+        # 自然言語の証明・数値実験のスクリプトなどは、リンク先の存在（test_links_exist）だけを確かめる
 
 
 def test_ids_in_sources_have_files():

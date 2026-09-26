@@ -37,7 +37,30 @@ def downsets(n: int, less: Iterable[tuple[int, int]]) -> list[Elem]:
 
 
 def join_preserving_closures(lattice: list[Elem]) -> list[Map]:
-    """有限結び（空の結びを含む）を保つ閉包作用素（増大的で冪等な写像）をすべて返す。"""
+    """有限結び（空の結びを含む）を保つ閉包作用素（増大的で冪等な写像）をすべて返す。
+
+    lattice は downsets で作った下集合束とする。結び（合併）を保つ写像は、結び既約元
+    （各点 p を含む最小の下集合 ↓p）での値で決まり、f(D) = ⋃_{p ∈ D} f(↓p) となる。
+    そこで ↓p での値だけを総当たりし（|L|^|P| 通り）、全写像（|L|^|L| 通り）の列挙を避ける。
+    """
+    top = max(lattice, key=len)
+    points = sorted(top)
+    principal = [min((d for d in lattice if p in d), key=len) for p in points]
+    maps = []
+    for values in itertools.product(lattice, repeat=len(points)):
+        f = {d: frozenset().union(*(values[i] for i, p in enumerate(points) if p in d)) for d in lattice}
+        if not all(f[x | y] == f[x] | f[y] for x in lattice for y in lattice):
+            continue
+        # ↓p での値が指定どおりになること（p ≤ q なら値も単調であること）
+        if any(f[principal[i]] != values[i] for i in range(len(points))):
+            continue
+        if all(x <= f[x] and f[f[x]] == f[x] for x in lattice):
+            maps.append(f)
+    return maps
+
+
+def join_preserving_closures_naive(lattice: list[Elem]) -> list[Map]:
+    """join_preserving_closures と同じものを、全写像の総当たりで求める（小さい束での照合用）。"""
     bottom = frozenset()
     maps = []
     for values in itertools.product(lattice, repeat=len(lattice)):

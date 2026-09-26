@@ -3,9 +3,25 @@ from pfs_sim.conjugate import (
     compare,
     downsets,
     join_preserving_closures,
+    join_preserving_closures_naive,
     is_conjugate,
     satisfies_f_pm,
 )
+
+
+def _key(f):
+    return tuple(sorted((tuple(sorted(k)), tuple(sorted(v))) for k, v in f.items()))
+
+
+def test_enumeration_matches_naive():
+    # 結び既約元での値による列挙が、全写像の総当たりと一致する（元が 6 個以下の束）
+    for n, less in POSETS.values():
+        lattice = downsets(n, less)
+        if len(lattice) > 6:
+            continue
+        fast = sorted(map(_key, join_preserving_closures(lattice)))
+        naive = sorted(map(_key, join_preserving_closures_naive(lattice)))
+        assert fast == naive
 
 
 def test_f_pm_implies_conjugate_on_small_lattices():
