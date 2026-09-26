@@ -54,8 +54,9 @@ theorem marginSub_iff_image_subset (T : X → X → Prop) (a b : Set X) :
   · intro h x y hx hxy
     exact h ⟨x, hx, hxy⟩
 
-/-- **結果 R-0007**（既知の事実の言い直し）：単調な `N` について、余白付きの包含 `N a ≤ b` が
-補間的であることと、`N (N a) ≤ N a`（膨張を重ねても広がらない）は同値である。
+/-- **結果 R-0007**（既知の事実の言い直し）：単調な写像 `N` について（膨張、すなわち結びを保つ
+写像はその特例）、余白付きの包含 `N a ≤ b` が補間的であることと、`N (N a) ≤ N a`
+（`N` を重ねても広がらない）は同値である。
 点の場合の `marginSub_interpolates_iff`（結果 R-0006）の点なし版にあたる。 -/
 theorem margin_interpolates_iff {α : Type*} [Preorder α] (N : α → α) (hN : Monotone N) :
     (∀ a b, N a ≤ b → ∃ c, N a ≤ c ∧ N c ≤ b) ↔ ∀ a, N (N a) ≤ N a := by
