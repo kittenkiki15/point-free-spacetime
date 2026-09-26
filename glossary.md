@@ -6,7 +6,7 @@
 | --- | --- | --- | --- |
 | atom | アトム | 束で、0 のすぐ上にある元（0 と自分の間に他の元がない元）。完備ブール代数の点は、アトムと一対一に対応する。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | causal coverage | 因果被覆 | 順序付きロケールで、開集合 A が U を「下から覆う」関係。U に着く任意の経路（開集合の列）を細分して A を通るようにできること。U に流れ込む情報がすべて A を通る、という直観を点なしで表す（Heunen–van der Schaaf）。 | [heunen2026 のメモ](surveys/2026-09-25_03_heunen2026.md) |
-| causal hull | 因果的な包 | 集合 S の因果的な未来と因果的な過去の共通部分 J⁺(S) ∩ J⁻(S)。S の 2 点を結ぶ因果的な曲線上の点全体で、S を含む因果的に凸な集合すべての共通部分に等しい。Fewster–Verch の枠組みでは、誘導される観測量は結合領域の因果的な包を含む領域に局在する。 | [第 06 回の調査メモ](surveys/2026-09-26_06_minimal-length-covariance.md) |
+| causal hull | 因果的な包 | 集合 S の因果的な未来と因果的な過去の共通部分 J⁺(S) ∩ J⁻(S)。S の 2 点を結ぶ因果的な曲線上の点全体で、S を含む因果的に凸な集合すべての共通部分に等しい。Fewster–Verch の枠組みでは、系の理論が Haag の性質を満たすとき、誘導される観測量は、結合領域を含む連結で開いた因果的に凸な任意の集合（結合領域の因果的な包を含む）に局在できる。 | [第 06 回の調査メモ](surveys/2026-09-26_06_minimal-length-covariance.md) |
 | causal site | 因果サイト | Christensen–Crane が提案した、点の代わりに領域と領域間の因果関係から出発する構造。Heunen–van der Schaaf は、因果被覆を公理化したロケールを同じ名前（別の意味）でよんでいる。 | [heunen2026 のメモ](surveys/2026-09-25_03_heunen2026.md) |
 | completely prime filter | 完全素フィルター | 任意の結び ⋁S が属するなら、S のある元が属するフィルター。ロケールの点と一対一に対応する。 | [基礎の調査メモ](surveys/2026-09-25_02_pointfree-topology-basics.md) |
 | conjugate operators | 共役な演算子 | ブール代数上の演算子 f、g で、f(a) ∧ b = 0 と a ∧ g(b) = 0 が同値になるもの（Jónsson–Tarski）。時制論理の過去の ◇ と未来の ◇ は共役である。フレームでは、平行性の不等式 (f±) から共役が出るが、逆は一般に成り立たない（第 04 回）。 | [heunen2026 のメモ](surveys/2026-09-25_03_heunen2026.md) |
