@@ -27,6 +27,17 @@ def test_each_file_has_matching_title():
         assert first.startswith(f"# {f.stem}: "), f
 
 
+def linked_files(md: Path, text: str | None = None) -> list[Path]:
+    """Markdown のリンクのうち、リポジトリ内のファイルを指すものを解決して返す。"""
+    text = md.read_text(encoding="utf-8") if text is None else text
+    paths = []
+    for target in re.findall(r"\]\(([^)\s]+)\)", text):
+        if re.match(r"[a-z]+:", target) or target.startswith("#"):
+            continue
+        paths.append((md.parent / target.split("#")[0]).resolve())
+    return paths
+
+
 def lean_doc(lean: str, name: str):
     """宣言 name（名前空間の接頭辞を除いた最後の部分でもよい）の直前の文書コメントを返す。なければ None。"""
     last = name.split(".")[-1]
@@ -45,22 +56,48 @@ def docstring_of_test(tests: str, name: str):
     return m.group(1) if m else None
 
 
-def test_cited_lean_names_exist_and_carry_id():
-    lean = "\n".join(p.read_text(encoding="utf-8") for p in SOURCES if p.suffix == ".lean")
+def read_linked(paths: list[Path], pred) -> str:
+    return "\n".join(p.read_text(encoding="utf-8") for p in paths if pred(p))
+
+
+def test_links_exist():
+    for md in [RESULTS / "README.md", *result_files()]:
+        for path in linked_files(md):
+            assert path.exists(), (md, path)
+
+
+def test_cited_lean_names_exist_in_linked_files_and_carry_id():
     for f in result_files():
+        lean = read_linked(linked_files(f), lambda p: p.suffix == ".lean")
         for name in re.findall(r"`PointFreeSpacetime\.([\w.]+)`", f.read_text(encoding="utf-8")):
             doc = lean_doc(lean, name)
-            assert doc is not None, (f, name, "宣言か文書コメントがない")
+            assert doc is not None, (f, name, "リンク先の Lean ファイルに宣言か文書コメントがない")
             assert f.stem in doc, (f, name, "文書コメントに R-ID がない")
 
 
-def test_cited_test_functions_exist_and_carry_id():
-    tests = "\n".join(p.read_text(encoding="utf-8") for p in SOURCES if p.name.startswith("test_"))
+def test_cited_test_functions_exist_in_linked_files_and_carry_id():
     for f in result_files():
+        tests = read_linked(linked_files(f), lambda p: p.name.startswith("test_"))
         for name in re.findall(r"`(test_\w+)`", f.read_text(encoding="utf-8")):
             doc = docstring_of_test(tests, name)
-            assert doc is not None, (f, name, "テスト関数か docstring がない")
+            assert doc is not None, (f, name, "リンク先のテストファイルに関数か docstring がない")
             assert f.stem in doc, (f, name, "docstring に R-ID がない")
+
+
+def test_readme_rows_match_linked_files():
+    readme = RESULTS / "README.md"
+    for row in readme.read_text(encoding="utf-8").splitlines():
+        m = re.match(r"^\| \[(R-\d{4})\]", row)
+        if not m:
+            continue
+        paths = linked_files(readme, row)
+        lean = read_linked(paths, lambda p: p.suffix == ".lean")
+        tests = read_linked(paths, lambda p: p.name.startswith("test_"))
+        names = re.findall(r"\)：`(\w+)`", row)
+        assert names, row
+        for name in names:
+            doc = docstring_of_test(tests, name) if name.startswith("test_") else lean_doc(lean, name)
+            assert doc is not None and m.group(1) in doc, (m.group(1), name)
 
 
 def test_ids_in_sources_have_files():
