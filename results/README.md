@@ -38,3 +38,5 @@
 | [R-0006](R-0006.md) | 余白付きの包含の補間性と、識別の関係の推移性（点の場合。既知の結果の形式化） | 命題 | Lean | [`Tolerance.lean`](../lean/PointFreeSpacetime/Tolerance.lean)：`marginSub_interpolates_iff` | 第 05 回 |
 | [R-0007](R-0007.md) | 膨張による余白付きの包含の補間性（点なし版。既知の事実の言い直し） | 命題 | Lean | [`Tolerance.lean`](../lean/PointFreeSpacetime/Tolerance.lean)：`margin_interpolates_iff` | 第 05 回 |
 | [R-0008](R-0008.md) | オープニングの不動点は膨張の像（既知の結果の形式化） | 命題 | Lean | [`Tolerance.lean`](../lean/PointFreeSpacetime/Tolerance.lean)：`opening_fixed_iff_mem_range` | 第 05 回 |
+| [R-0009](R-0009.md) | 確からしくなる開集合の全体はフィルターで、確定的な族では素フィルターになる | 命題 | 自然言語の証明 | [C-0002](../conjectures/C-0002.md) の主張 1 | 第 09 回 |
+| [R-0010](R-0010.md) | 確定的な事後分布の族でも、極限が点を定めない例がある（ハウスドルフでない空間） | 反例 | 自然言語の証明 | [C-0002](../conjectures/C-0002.md) の主張 2 | 第 09 回 |
