@@ -127,7 +127,7 @@ a ∧ ⋁_{i ∈ I} b_i = ⋁_{i ∈ I} (a ∧ b_i)
 ### 定義済みでない関数名は `\mathrm` で書く
 
 GitHub では `\operatorname` が許可されておらず、`The following macros are not allowed: operatorname` というエラーが表示されました（第 08 回にユーザーが確認）。
-`\sin` のように定義済みでない関数名は、`\mathrm{diag}` のように書きます。
+`\sin` のような定義済みのコマンドがない関数名は、`\mathrm{diag}` のように書きます。
 
 ```markdown
 対角作用素 $`\mathrm{diag}(1/n)`$
