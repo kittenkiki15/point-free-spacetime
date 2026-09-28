@@ -28,3 +28,4 @@
 | ID | 予想 | 確度 | 重要度 | 検証費用 | 優先度 | 状態 | Issue |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [C-0001](C-0001.md) | 最小の尺度は、余白付きの包含の補間性の破れとして点なしに表せる | 中 | 高 | 高 | 高 | 未着手 | [#8](https://github.com/kittenkiki15/point-free-spacetime/issues/8) |
+| [C-0002](C-0002.md) | 観測の極限が点にならない場合がある | 中 | 中 | 中 | 中 | 未着手 | [#14](https://github.com/kittenkiki15/point-free-spacetime/issues/14) |
