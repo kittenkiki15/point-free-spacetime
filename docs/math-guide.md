@@ -13,6 +13,7 @@
 | 絶対値 | `\left\| x \right\|` | `\|x\|`、`\lvert x \rvert` |
 | 特殊な文字（ℝ、𝐄 など） | Unicode 文字を直接書く（`ℝ`、`𝐄`） | `\mathbb{R}`、`\mathbf{E}` などのコマンド |
 | 関数名と変数 | `\sin\,x` または `\sin(x)` | `\sin x` |
+| 定義済みでない関数名（diag など） | `\mathrm{diag}` | `\operatorname{diag}` |
 | 数式ではないドル記号 | `\$100` | `$100` |
 
 表の中の `\|` は、Markdown の表の列区切りと区別するためのエスケープです。
@@ -121,6 +122,15 @@ a ∧ ⋁_{i ∈ I} b_i = ⋁_{i ∈ I} (a ∧ b_i)
 
 ```math
 \lim_{x \to 0} \frac{\sin\,x}{x} = 1
+```
+
+### 定義済みでない関数名は `\mathrm` で書く
+
+GitHub では `\operatorname` が許可されておらず、`The following macros are not allowed: operatorname` というエラーが表示されました（第 08 回にユーザーが確認）。
+`\sin` のような定義済みのコマンドがない関数名は、`\mathrm{diag}` のように書きます。
+
+```markdown
+対角作用素 $`\mathrm{diag}(1/n)`$
 ```
 
 ### 数式ではないドル記号はエスケープする
