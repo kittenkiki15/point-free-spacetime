@@ -80,6 +80,8 @@
 | --- | --- | --- | --- | --- |
 | $`T`$、$`T[a]`$ | 識別の関係、a の T 近傍 | 点の間の「区別できないほど近い」という関係（許容関係など）と、a の点と T で結ばれる点全体 | `T : X → X → Prop`、`{y \| ∃ x ∈ a, T x y}` | [調査 05](surveys/2026-09-26_05_subordination.md) |
 | $`N`$、$`N_ℓ`$ | 膨張 | 領域を、操作的に区別できないところまで広げる写像。膨張は結びを保つ（右随伴 $`E`$ を持つ）写像を指すが、R-0006・R-0007 は単調性だけで成り立つ。$`ℓ`$ は尺度 | `N : α → α` | [調査 05](surveys/2026-09-26_05_subordination.md) |
+| $`\mathrm{occ}(x)`$、$`N_{\mathrm{occ}}`$ | 装置の占める領域、それによる膨張 | 設定値が $`x`$ の実験の装置が占めうる点の全体と、$`N_{\mathrm{occ}}\,R = ⋃_{x ∈ R} \mathrm{occ}(x)`$（[D-0011](definitions/D-0011.md)） | — | [第 12 回](summaries/2026-09-29_12_c0001-revision.md) |
+| $`𝒪_{\mathrm{set}}(R)`$、$`𝒪_{\mathrm{occ}}(R)`$ | 設定の読み・占有の読みでの局在 | 実験が $`R`$ に収まることを、設定値で判定したものと、装置の占める領域で判定したもの（[D-0011](definitions/D-0011.md)） | — | [第 12 回](summaries/2026-09-29_12_c0001-revision.md) |
 | $`E`$ | 収縮 | 膨張 $`N`$ の右随伴（$`N\,a ≤ b \iff a ≤ E\,b`$） | `GaloisConnection N E` | [調査 05](surveys/2026-09-26_05_subordination.md) |
 | $`a ◁ b`$ | a は b の中に余白を持って入っている | $`N\,a ≤ b`$。点の場合は $`T[a] ⊆ b`$ | `MarginSub T a b`、`N a ≤ b` | [調査 05](surveys/2026-09-26_05_subordination.md) |
 | $`a ≺ b`$ | 劣位関係 | 劣位代数の関係（余白付きの包含の抽象化） | | [調査 05](surveys/2026-09-26_05_subordination.md) |

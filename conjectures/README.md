@@ -27,7 +27,9 @@
 
 | ID | 予想 | 確度 | 重要度 | 検証費用 | 優先度 | 状態 | Issue |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [C-0001](C-0001.md) | 最小の尺度は、余白付きの包含の補間性の破れとして点なしに表せる | 中 | 高 | 高 | 高 | 未着手 | [#8](https://github.com/kittenkiki15/point-free-spacetime/issues/8) |
+| [C-0007](C-0007.md) | 局在の限界から、装置の占める領域の上下限が導かれる | 中 | 高 | 高 | 高 | 未着手 | [#25](https://github.com/kittenkiki15/point-free-spacetime/issues/25) |
+| [C-0001](C-0001.md) | 長さ空間の尺度 ℓ の膨張の余白付きの包含は補間的でなく、離散化と区別できる | 高 | 中 | 中 | 中 | 未着手 | [#8](https://github.com/kittenkiki15/point-free-spacetime/issues/8) |
+| [C-0008](C-0008.md) | ポアンカレ共変な装置の占める領域は有界にできない | 高 | 中 | 中 | 中 | 未着手 | [#26](https://github.com/kittenkiki15/point-free-spacetime/issues/26) |
 | [C-0002](C-0002.md) | 可能な実験は、再構成した観測量の時空の中でモデル化できる | 中 | 高 | 高 | 低 | 未着手 | [#16](https://github.com/kittenkiki15/point-free-spacetime/issues/16) |
 | [C-0003](C-0003.md) | 情報的に完全なプロトコルの族の下では、統計の関数の推定と状態の推定の極限が一致する | 中 | 中 | 中 | 低 | 未着手 | [#17](https://github.com/kittenkiki15/point-free-spacetime/issues/17) |
 | [C-0004](C-0004.md) | 実験プロトコルを計算可能な手続きとして形式化すると、連続性の意味での等価原理が従う | 中 | 中 | 高 | 低 | 未着手 | [#18](https://github.com/kittenkiki15/point-free-spacetime/issues/18) |
