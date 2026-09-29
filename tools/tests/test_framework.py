@@ -53,15 +53,18 @@ def test_referenced_ids_exist():
 def test_id_links_point_to_matching_files():
     for i, f in deps_graph.item_files().items():
         for key in ["依存する ID", "関係する予想・結果"]:
-            assert deps_graph.link_mismatches(deps_graph.table_row(f, key)) == [], (i, key)
+            assert deps_graph.link_mismatches(deps_graph.table_row(f, key), f.parent) == [], (i, key)
 
 
 def test_link_mismatch_is_detected():
+    conj = deps_graph.KINDS["C"]
     value = "[D-0001](../definitions/D-0002.md)、[A-0001](../assumptions/A-0001.md)"
     assert deps_graph.ids_in(value) == ["D-0001", "A-0001"]
-    assert deps_graph.link_mismatches(value) == [("D-0001", "../definitions/D-0002.md")]
-    assert deps_graph.link_mismatches("[D-0001](D-0001.md)") == []
-    assert deps_graph.link_mismatches("[D-0001](../assumptions/D-0001.md)") != []
+    assert deps_graph.link_mismatches(value, conj) == [("D-0001", "../definitions/D-0002.md")]
+    # 予想のファイルから同じディレクトリのつもりで書くと、存在しないファイルを指す
+    assert deps_graph.link_mismatches("[D-0001](D-0001.md)", conj) != []
+    assert deps_graph.link_mismatches("[D-0001](D-0001.md)", deps_graph.KINDS["D"]) == []
+    assert deps_graph.link_mismatches("[D-0001](../assumptions/D-0001.md)", conj) != []
 
 
 def test_no_self_dependency():
@@ -101,7 +104,7 @@ def test_graph_is_up_to_date():
 
 
 def test_links_exist():
-    targets = [deps_graph.FRAMEWORK, *da_files().values()]
+    targets = [deps_graph.FRAMEWORK, *deps_graph.item_files().values()]
     targets += [ROOT / d / "README.md" for d in ["definitions", "assumptions"]]
     for md in targets:
         for target in re.findall(r"\]\(([^)\s]+)\)", md.read_text(encoding="utf-8")):

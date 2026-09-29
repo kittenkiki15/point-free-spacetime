@@ -65,13 +65,15 @@ def ids_in(value, exclude: str = "") -> list[str]:
     return [i for i in dict.fromkeys(ID_RE.findall(text)) if i != exclude]
 
 
-def link_mismatches(value) -> list[tuple[str, str]]:
-    """表示文字が ID のリンクのうち、リンク先がその ID のファイルでないものを返す。"""
+def link_mismatches(value, base: Path) -> list[tuple[str, str]]:
+    """表示文字が ID のリンクのうち、base（リンクを書いたファイルのディレクトリ）から
+    解決したリンク先が、その ID のファイルでないものを返す。"""
     bad = []
     for text, target in LINK_RE.findall(value or ""):
         if ID_RE.fullmatch(text):
-            path = Path(target.split("#")[0])
-            if path.stem != text or path.parent.name not in ("", DIRS[text[0]]):
+            resolved = (base / target.split("#")[0]).resolve()
+            expected = (ROOT / DIRS[text[0]] / f"{text}.md").resolve()
+            if resolved != expected:
                 bad.append((text, target))
     return bad
 
