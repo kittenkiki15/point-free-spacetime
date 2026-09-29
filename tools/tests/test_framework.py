@@ -70,7 +70,7 @@ def test_link_mismatch_is_detected():
     assert deps_graph.link_mismatches("[D-0001](../assumptions/D-0001.md)", conj) != []
 
 
-def test_targets_are_definitions_or_assumptions_not_dependencies():
+def test_targets_are_assumptions_not_dependencies():
     # 目標の ID は前提に限り（定義は命題ではない）、依存をたどって（間接的にも）仮定しない（結論を仮定しない）
     deps = deps_graph.dependencies()
 
