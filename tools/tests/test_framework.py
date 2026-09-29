@@ -89,9 +89,13 @@ def test_targets_are_definitions_or_assumptions_not_dependencies():
 
 
 def test_only_conjectures_have_targets():
+    # 目標の ID は予想の欄で、すべての予想に置く（目標がなければ「なし」）
     for i, f in deps_graph.item_files().items():
-        if i[0] != "C":
-            assert deps_graph.table_row(f, "目標の ID") is None, (i, "目標の ID は予想の欄")
+        row = deps_graph.table_row(f, "目標の ID")
+        if i[0] == "C":
+            assert row is not None, (i, "目標の ID の行がない")
+        else:
+            assert row is None, (i, "目標の ID は予想の欄")
 
 
 def test_roadmap_task_states_are_valid():
