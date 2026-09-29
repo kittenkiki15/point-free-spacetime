@@ -28,3 +28,8 @@
 | ID | 予想 | 確度 | 重要度 | 検証費用 | 優先度 | 状態 | Issue |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [C-0001](C-0001.md) | 最小の尺度は、余白付きの包含の補間性の破れとして点なしに表せる | 中 | 高 | 高 | 高 | 未着手 | [#8](https://github.com/kittenkiki15/point-free-spacetime/issues/8) |
+| [C-0002](C-0002.md) | 可能な実験は、再構成した観測量の時空の中でモデル化できる | 中 | 高 | 高 | 低 | 未着手 | [#16](https://github.com/kittenkiki15/point-free-spacetime/issues/16) |
+| [C-0003](C-0003.md) | 情報的に完全なプロトコルの族の下では、統計の関数の推定と状態の推定の極限が一致する | 中 | 中 | 中 | 低 | 未着手 | [#17](https://github.com/kittenkiki15/point-free-spacetime/issues/17) |
+| [C-0004](C-0004.md) | 実験プロトコルを計算可能な手続きとして形式化すると、連続性の意味での等価原理が従う | 中 | 中 | 高 | 低 | 未着手 | [#18](https://github.com/kittenkiki15/point-free-spacetime/issues/18) |
+| [C-0005](C-0005.md) | 実験の可算性から、観測量の空間の可分性が従う | 中 | 中 | 中 | 低 | 未着手 | [#19](https://github.com/kittenkiki15/point-free-spacetime/issues/19) |
+| [C-0006](C-0006.md) | 等価原理の下でも、事後分布が点に収束しない場合がある | 中 | 中 | 中 | 低 | 未着手 | [#20](https://github.com/kittenkiki15/point-free-spacetime/issues/20) |
