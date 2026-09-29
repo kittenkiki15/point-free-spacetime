@@ -57,8 +57,8 @@ def ids_in(value, exclude: str = "") -> list[str]:
 
 
 def dependencies():
-    """ID → 依存する ID のリスト（自分自身への言及は除く）。"""
-    return {i: ids_in(table_row(f, "依存する ID"), i) for i, f in item_files().items()}
+    """ID → 依存する ID のリスト。自分自身への参照も残す（テストで循環として検出する）。"""
+    return {i: ids_in(table_row(f, "依存する ID")) for i, f in item_files().items()}
 
 
 def graph_text() -> str:

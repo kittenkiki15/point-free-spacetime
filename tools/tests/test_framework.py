@@ -49,6 +49,11 @@ def test_referenced_ids_exist():
                 assert ref in files, (i, key, ref)
 
 
+def test_no_self_dependency():
+    for i, ds in deps_graph.dependencies().items():
+        assert i not in ds, (i, "自分自身に依存している")
+
+
 def test_no_dependency_cycles():
     deps = deps_graph.dependencies()
     state = {}
