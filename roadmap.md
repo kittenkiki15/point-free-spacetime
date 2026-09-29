@@ -179,6 +179,7 @@ flowchart LR
 ### T-0014 文献の未確認事項の確認
 
 - 第 09 回に記憶で挙げた文献：Blackwell–Dubins 1962、Diaconis–Freedman、Doob、de Finetti、量子 de Finetti、Kreisel–Lacombe–Shoenfield・Ceitin。
+- 第 15 回の調査メモの 4 節：事後一致性の定理（Doob、Schwartz）と Blackwell–Dubins 1962 の原典で、QBism の主体の間の一致の主張（証明が文献中にない）を正確な定理の形にし、「データが指す状態の近傍で正」という条件がどの仮定に当たるかを確かめる。A-0007 の注意の同値（交換可能で情報的に完全な場合）の証明も確かめる。Hudson–Moody 1976 の原典の仮定。
 - 第 08 回の調査メモの 9 節：原典が未入手の文献（核型性と split property の原論文、dantoni1987、Doplicher–Longo、Buchholz–Doplicher–Longo、fewster2015、Hepp 1972、Vickers *Topology via Logic*、Abramsky 1987）、fewster2016・landsman2005 の掲載情報、記憶に基づいて挙げた事項（Wigner–Araki–Yanase の定理、Lieb–Robinson 評価と無限遠の観測量など）。
 - 第 06 回の調査メモの 7 節：sorkin2007 の掲載先、halvorson2002 の書名・刊行年、fewster2020 の DOI、borsten2021 の本文など。
 - 第 05 回の調査メモの 5 節：劣位代数とストーン空間上の閉じた関係の双対性、proximity frame（Celani、Bezhanishvili ら）。
