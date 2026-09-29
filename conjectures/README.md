@@ -31,5 +31,5 @@
 | [C-0002](C-0002.md) | 可能な実験は、再構成した観測量の時空の中でモデル化できる | 中 | 高 | 高 | 低 | 未着手 | [#16](https://github.com/kittenkiki15/point-free-spacetime/issues/16) |
 | [C-0003](C-0003.md) | 情報的に完全なプロトコルの族の下では、統計の関数の推定と状態の推定の極限が一致する | 中 | 中 | 中 | 低 | 未着手 | [#17](https://github.com/kittenkiki15/point-free-spacetime/issues/17) |
 | [C-0004](C-0004.md) | 実験プロトコルを計算可能な手続きとして形式化すると、連続性の意味での等価原理が従う | 中 | 中 | 高 | 低 | 未着手 | [#18](https://github.com/kittenkiki15/point-free-spacetime/issues/18) |
-| [C-0005](C-0005.md) | 実験から得る可算集合が、観測量の空間で稠密になる物理的に自然な条件がある | 中 | 中 | 中 | 低 | 未着手 | [#19](https://github.com/kittenkiki15/point-free-spacetime/issues/19) |
+| [C-0005](C-0005.md) | 実験から得る可算集合の閉包が、観測量の全体を含む物理的に自然な条件がある | 中 | 中 | 中 | 低 | 未着手 | [#19](https://github.com/kittenkiki15/point-free-spacetime/issues/19) |
 | [C-0006](C-0006.md) | 等価原理の下でも、事後分布が点に収束しない場合がある | 中 | 中 | 中 | 低 | 未着手 | [#20](https://github.com/kittenkiki15/point-free-spacetime/issues/20) |
