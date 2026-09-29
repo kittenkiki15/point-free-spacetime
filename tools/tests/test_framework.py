@@ -9,6 +9,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 import deps_graph  # noqa: E402
 
+ROADMAP = ROOT / "roadmap.md"
 STATES = {"採用", "作業上", "未定", "廃止"}
 LAYERS = {"実験", "観測量", "観測量の時空", "可能な実験", "可能な観測量", "点なし時空"}
 ROWS = ["状態", "層", "依存する ID", "関係する予想・結果", "初出"]
@@ -45,14 +46,14 @@ def test_readme_lists_every_file_with_same_name_layer_state():
 def test_referenced_ids_exist():
     files = deps_graph.item_files()
     for i, f in files.items():
-        for key in ["依存する ID", "関係する予想・結果"]:
+        for key in ["依存する ID", "関係する予想・結果", "目標の ID"]:
             for ref in deps_graph.ids_in(deps_graph.table_row(f, key), i):
                 assert ref in files, (i, key, ref)
 
 
 def test_id_links_point_to_matching_files():
     # 依存欄だけでなく本文も含めて、表示文字が ID のリンクがその ID のファイルを指すことを検査する
-    targets = [deps_graph.FRAMEWORK, *deps_graph.item_files().values()]
+    targets = [deps_graph.FRAMEWORK, ROADMAP, *deps_graph.item_files().values()]
     targets += [ROOT / d / "README.md" for d in ["definitions", "assumptions", "conjectures", "results"]]
     for md in targets:
         assert deps_graph.link_mismatches(md.read_text(encoding="utf-8"), md.parent) == [], md
@@ -67,6 +68,15 @@ def test_link_mismatch_is_detected():
     assert deps_graph.link_mismatches("[D-0001](D-0001.md)", conj) != []
     assert deps_graph.link_mismatches("[D-0001](D-0001.md)", deps_graph.KINDS["D"]) == []
     assert deps_graph.link_mismatches("[D-0001](../assumptions/D-0001.md)", conj) != []
+
+
+def test_targets_are_definitions_or_assumptions_not_dependencies():
+    # 目標の ID は定義・前提に限り、同じ項目の「依存する ID」には入れない（結論を仮定しない）
+    deps = deps_graph.dependencies()
+    for i, ts in deps_graph.targets().items():
+        for t in ts:
+            assert t[0] in "DA", (i, t)
+            assert t not in deps.get(i, []), (i, t, "目標を依存する ID にも書いている")
 
 
 def test_no_self_dependency():
@@ -106,10 +116,21 @@ def test_graph_is_up_to_date():
 
 
 def test_links_exist():
-    targets = [deps_graph.FRAMEWORK, *deps_graph.item_files().values()]
+    targets = [deps_graph.FRAMEWORK, ROADMAP, *deps_graph.item_files().values()]
     targets += [ROOT / d / "README.md" for d in ["definitions", "assumptions"]]
     for md in targets:
         for target in re.findall(r"\]\(([^)\s]+)\)", md.read_text(encoding="utf-8")):
             if re.match(r"[a-z]+:", target) or target.startswith("#"):
                 continue
             assert (md.parent / target.split("#")[0]).exists(), (md, target)
+
+
+def test_roadmap_task_ids_are_unique_and_described():
+    text = ROADMAP.read_text(encoding="utf-8")
+    rows = re.findall(r"^\| (T-\d{4}) \|", text, re.M)
+    assert rows, "タスクの表がない"
+    assert len(rows) == len(set(rows)), "タスクの ID が重複している"
+    headings = re.findall(r"^### (T-\d{4}) ", text, re.M)
+    assert headings == rows, "表のタスクと「各タスクの内容」の見出しが一致しない"
+    # 本文から参照するタスクの ID は、表にあるものに限る
+    assert set(re.findall(r"\bT-\d{4}\b", text)) <= set(rows)
