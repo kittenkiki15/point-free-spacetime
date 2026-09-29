@@ -34,6 +34,7 @@ def test_readme_lists_every_file_with_same_name_layer_state():
         rows = re.findall(r"^\| \[([DA]-\d{4})\]\(\1\.md\) \| (.+?) \| (.+?) \| (.+?) \|$", readme, re.M)
         files = {i: f for i, f in da_files().items() if f.parent.name == directory}
         assert {r[0] for r in rows} == set(files), directory
+        assert len(rows) == len(files), (directory, "一覧に同じ ID の行が重複している")
         for i, name, layer, state in rows:
             f = files[i]
             assert name == deps_graph.title_of(f), (i, "名前")
