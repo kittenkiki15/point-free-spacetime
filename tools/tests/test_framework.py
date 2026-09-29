@@ -100,8 +100,12 @@ def test_only_conjectures_have_targets():
 
 def test_roadmap_task_states_are_valid():
     text = ROADMAP.read_text(encoding="utf-8")
-    for row in re.findall(r"^\| (T-\d{4}) \|.*\| ([^|]+) \|$", text, re.M):
-        assert row[1] in {"未着手", "進行中", "完了", "保留"}, row
+    rows = [line for line in text.splitlines() if re.match(r"\| T-\d{4} \|", line)]
+    assert rows, "タスクの表がない"
+    for line in rows:
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        assert len(cells) == 6, (line, "列の数が表の見出しと合わない")
+        assert cells[-1] in {"未着手", "進行中", "完了", "保留"}, (cells[0], cells[-1])
 
 
 def test_no_self_dependency():
