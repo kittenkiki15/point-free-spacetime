@@ -71,12 +71,21 @@ def test_link_mismatch_is_detected():
 
 
 def test_targets_are_definitions_or_assumptions_not_dependencies():
-    # 目標の ID は定義・前提に限り、同じ項目の「依存する ID」には入れない（結論を仮定しない）
+    # 目標の ID は定義・前提に限り、依存をたどって（間接的にも）仮定しない（結論を仮定しない）
     deps = deps_graph.dependencies()
+
+    def ancestors(i, seen):
+        for d in deps.get(i, []):
+            if d not in seen:
+                seen.add(d)
+                ancestors(d, seen)
+        return seen
+
     for i, ts in deps_graph.targets().items():
+        used = ancestors(i, set())
         for t in ts:
             assert t[0] in "DA", (i, t)
-            assert t not in deps.get(i, []), (i, t, "目標を依存する ID にも書いている")
+            assert t not in used, (i, t, "目標を直接または間接に仮定している")
 
 
 def test_no_self_dependency():
