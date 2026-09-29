@@ -9,6 +9,7 @@
 | 検証方法 | Lean・数値実験・文献調査 |
 | 状態 | 未着手・検証中・証明済み・反証済み・数値的に支持・保留 |
 | Issue | #NN |
+| 依存する ID | 予想が使う定義・前提の ID（例：[D-NNNN](../definitions/D-NNNN.md)）。なければ「なし」 |
 | 初出 | [YYYY-MM-DD 第 NN 回](../summaries/YYYY-MM-DD_NN_topic.md) |
 
 ## 主張
