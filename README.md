@@ -4,6 +4,8 @@
 
 時空を「点の集合」としてではなく、開集合のなす束（フレーム）や、それを双対圏で捉えた空間（ロケール）のように、点を基本データとしない構造として扱う、点なし位相（point-free topology）の考え方を物理学に応用する可能性を、ユーザーと Claude（Anthropic の AI）との対話を通して探ります。
 
+その中心として、「観測」と「実験」の定式化から点なし時空を基礎づけるフレームワークを作ります。最新版は [`framework.md`](framework.md) にあります。
+
 ## 成果物
 
 | 成果物 | 場所 |
@@ -14,6 +16,9 @@
 | 用語一覧 | [`glossary.md`](glossary.md) |
 | 記号一覧 | [`symbols.md`](symbols.md) |
 | 参考文献一覧 | [`references.bib`](references.bib) |
+| フレームワーク（最新版） | [`framework.md`](framework.md) |
+| 定義の一覧 | [`definitions/`](definitions/) |
+| 前提（仮定）の一覧 | [`assumptions/`](assumptions/) |
 | 予想（未検証の主張）の一覧 | [`conjectures/`](conjectures/) |
 | 検証済みの結果の一覧 | [`results/`](results/) |
 | Lean 4 による形式証明 | [`lean/`](lean/) |
