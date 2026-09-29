@@ -159,7 +159,7 @@ flowchart LR
 ### T-0014 文献の未確認事項の確認
 
 - 第 09 回に記憶で挙げた文献：Blackwell–Dubins 1962、Diaconis–Freedman、Doob、de Finetti、量子 de Finetti、Kreisel–Lacombe–Shoenfield・Ceitin。
-- 第 08 回の調査メモの 9 節：原典が未入手の文献（核型性と split property の原論文、Doplicher–Longo、Buchholz–Doplicher–Longo、fewster2015、Hepp 1972、Vickers *Topology via Logic*、Abramsky 1987）、fewster2016・landsman2005 の掲載情報、記憶に基づいて挙げた事項（Wigner–Araki–Yanase の定理、Lieb–Robinson 評価と無限遠の観測量など）。
+- 第 08 回の調査メモの 9 節：原典が未入手の文献（核型性と split property の原論文、dantoni1987、Doplicher–Longo、Buchholz–Doplicher–Longo、fewster2015、Hepp 1972、Vickers *Topology via Logic*、Abramsky 1987）、fewster2016・landsman2005 の掲載情報、記憶に基づいて挙げた事項（Wigner–Araki–Yanase の定理、Lieb–Robinson 評価と無限遠の観測量など）。
 - 第 06 回の調査メモの 7 節：sorkin2007 の掲載先、halvorson2002 の書名・刊行年、fewster2020 の DOI、borsten2021 の本文など。
 - 第 05 回の調査メモの 5 節：劣位代数とストーン空間上の閉じた関係の双対性、proximity frame（Celani、Bezhanishvili ら）。
 - 基礎の調査メモの未確認事項（正則開集合の例の典拠、全射の例の候補の正確な定式化と典拠など）。

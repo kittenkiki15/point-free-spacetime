@@ -2,7 +2,7 @@
 
 各ファイル（definitions/D-NNNN.md、assumptions/A-NNNN.md、conjectures/C-NNNN.md、
 results/R-NNNN.md）の表にある「依存する ID」の行を読む。行がないファイルは、依存なしとして扱う。
-予想の「目標の ID」の行（仮定として使うのではなく、導こうとする定義・前提）は、点線の矢印で描く。
+予想の「目標の ID」の行（仮定するのではなく、定理として導こうとする前提）は、点線の矢印で描く。
 
 使い方:
     python3 tools/deps_graph.py          # framework.md の図を書き直す
@@ -85,7 +85,7 @@ def dependencies():
 
 
 def targets():
-    """ID → 目標の ID（導こうとする定義・前提）のリスト。"""
+    """ID → 目標の ID（定理として導こうとする前提）のリスト。"""
     return {i: ids_in(table_row(f, "目標の ID")) for i, f in item_files().items()}
 
 
