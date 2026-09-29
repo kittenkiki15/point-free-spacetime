@@ -50,6 +50,20 @@ def test_referenced_ids_exist():
                 assert ref in files, (i, key, ref)
 
 
+def test_id_links_point_to_matching_files():
+    for i, f in deps_graph.item_files().items():
+        for key in ["依存する ID", "関係する予想・結果"]:
+            assert deps_graph.link_mismatches(deps_graph.table_row(f, key)) == [], (i, key)
+
+
+def test_link_mismatch_is_detected():
+    value = "[D-0001](../definitions/D-0002.md)、[A-0001](../assumptions/A-0001.md)"
+    assert deps_graph.ids_in(value) == ["D-0001", "A-0001"]
+    assert deps_graph.link_mismatches(value) == [("D-0001", "../definitions/D-0002.md")]
+    assert deps_graph.link_mismatches("[D-0001](D-0001.md)") == []
+    assert deps_graph.link_mismatches("[D-0001](../assumptions/D-0001.md)") != []
+
+
 def test_no_self_dependency():
     for i, ds in deps_graph.dependencies().items():
         assert i not in ds, (i, "自分自身に依存している")

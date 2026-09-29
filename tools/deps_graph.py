@@ -51,9 +51,29 @@ def table_row(path: Path, key: str):
     return None
 
 
+LINK_RE = re.compile(r"\[([^\]]*)\]\(([^)\s]*)\)")
+DIRS = {"D": "definitions", "A": "assumptions", "C": "conjectures", "R": "results"}
+
+
 def ids_in(value, exclude: str = "") -> list[str]:
-    """文字列に現れる ID を、重複を除いて現れた順に返す（リンクの文字とパスの両方に現れるため）。"""
-    return [i for i in dict.fromkeys(ID_RE.findall(value or "")) if i != exclude]
+    """文字列に現れる ID を、重複を除いて現れた順に返す。
+
+    リンク `[X-NNNN](path)` では表示文字の ID だけを読み、リンク先のパスは読まない
+    （表示文字とリンク先の一致は link_mismatches で検査する）。
+    """
+    text = LINK_RE.sub(lambda m: m.group(1), value or "")
+    return [i for i in dict.fromkeys(ID_RE.findall(text)) if i != exclude]
+
+
+def link_mismatches(value) -> list[tuple[str, str]]:
+    """表示文字が ID のリンクのうち、リンク先がその ID のファイルでないものを返す。"""
+    bad = []
+    for text, target in LINK_RE.findall(value or ""):
+        if ID_RE.fullmatch(text):
+            path = Path(target.split("#")[0])
+            if path.stem != text or path.parent.name not in ("", DIRS[text[0]]):
+                bad.append((text, target))
+    return bad
 
 
 def dependencies():
