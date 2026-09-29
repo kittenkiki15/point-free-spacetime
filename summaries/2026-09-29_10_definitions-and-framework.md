@@ -41,7 +41,7 @@ Claude が枠組みの設計案を示し、ユーザーが確認した。
    - [`tools/deps_graph.py`](../tools/deps_graph.py)：各ファイルの「依存する ID」から、Mermaid の図を生成する。
    - [`tools/tests/test_framework.py`](../tools/tests/test_framework.py)：次の点を CI で検査する。
      - 一覧と各ファイルの一致
-     - 存在しない ID への参照がないこと
+     - 依存欄に存在しない ID への参照がないこと、ID を表示するリンクがその ID のファイルを指すこと（本文を含む）
      - 循環がないこと
      - 「関係する予想・結果」と予想の「依存する ID」の一致
      - 図が最新であること

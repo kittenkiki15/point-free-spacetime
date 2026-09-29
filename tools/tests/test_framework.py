@@ -51,9 +51,11 @@ def test_referenced_ids_exist():
 
 
 def test_id_links_point_to_matching_files():
-    for i, f in deps_graph.item_files().items():
-        for key in ["依存する ID", "関係する予想・結果"]:
-            assert deps_graph.link_mismatches(deps_graph.table_row(f, key), f.parent) == [], (i, key)
+    # 依存欄だけでなく本文も含めて、表示文字が ID のリンクがその ID のファイルを指すことを検査する
+    targets = [deps_graph.FRAMEWORK, *deps_graph.item_files().values()]
+    targets += [ROOT / d / "README.md" for d in ["definitions", "assumptions", "conjectures", "results"]]
+    for md in targets:
+        assert deps_graph.link_mismatches(md.read_text(encoding="utf-8"), md.parent) == [], md
 
 
 def test_link_mismatch_is_detected():
