@@ -16,7 +16,7 @@
 | `fuchs2009priors` | Fuchs–Schack, Priors in quantum Bayesian inference, AIP Conf. Proc. 1101 (2009) 255 | 全文（短報） | 一致が成り立たない例 |
 | `fuchs2013` | Fuchs–Schack, Quantum-Bayesian coherence, Rev. Mod. Phys. 85 (2013) 1693 | 1・2・4 節と 4.2 節 | 一致の定理はない。状態の割り当てが事前分布によることの強調 |
 
-`caves2002bayes` と `fuchs2013` は、ユーザーが例に挙げた中心文献である。一致の主張の根拠として `caves2002definetti` と `caves2002bayes` が引く `schack2001bayes` と、`fuchs2013` が一致しない例として引く `fuchs2009priors` を加えた。
+読んだのは arXiv 版である（`fuchs2013` は 2009 年の第 1 版で、節の番号はこの版による。出版社版とは比べていない）。`caves2002bayes` と `fuchs2013` は、ユーザーが例に挙げた中心文献である。一致の主張の根拠として `caves2002definetti` と `caves2002bayes` が引く `schack2001bayes` と、`fuchs2013` が一致しない例として引く `fuchs2009priors` を加えた。
 
 ## 2. 定理と主張の整理
 
