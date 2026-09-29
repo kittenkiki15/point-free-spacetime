@@ -86,7 +86,7 @@ def dependencies():
 
 def targets():
     """ID → 目標の ID（定理として導こうとする前提）のリスト。"""
-    return {i: ids_in(table_row(f, "目標の ID")) for i, f in item_files().items()}
+    return {i: ids_in(table_row(f, "目標の ID")) for i, f in item_files().items() if i[0] == "C"}
 
 
 def graph_text() -> str:

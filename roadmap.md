@@ -34,7 +34,7 @@ C-0001 の見直しに必要な定義と前提から先に固め（第 09 回の
 
 | ID | タスク | 段階 | 前提のタスク | 関係する ID | 状態 |
 | --- | --- | --- | --- | --- | --- |
-| T-0001 | 予想 C-0001 の見直し | A | なし | [C-0001](conjectures/C-0001.md)、[D-0008](definitions/D-0008.md)、[R-0001](results/R-0001.md)〜[R-0008](results/R-0008.md) | 未着手（第 12 回の予定） |
+| T-0001 | 予想 C-0001 の見直し（第 12 回の予定） | A | なし | [C-0001](conjectures/C-0001.md)、[D-0008](definitions/D-0008.md)、[R-0001](results/R-0001.md)〜[R-0008](results/R-0008.md) | 未着手 |
 | T-0002 | フレームワークの圏論的な概観 | A | T-0001 | [framework.md](framework.md) のすべての要素 | 未着手 |
 | T-0003 | QBism の先行研究の調査 | 調査 | なし | [D-0005](definitions/D-0005.md)、[A-0007](assumptions/A-0007.md)、[C-0003](conjectures/C-0003.md) | 未着手 |
 | T-0004 | 実験パラメータの空間と、結果の統計の空間の位相 | B | なし | [D-0001](definitions/D-0001.md)、[D-0003](definitions/D-0003.md)、[D-0004](definitions/D-0004.md)、[A-0005](assumptions/A-0005.md)、[A-0006](assumptions/A-0006.md) | 未着手 |

@@ -88,6 +88,18 @@ def test_targets_are_definitions_or_assumptions_not_dependencies():
             assert t not in used, (i, t, "目標を直接または間接に仮定している")
 
 
+def test_only_conjectures_have_targets():
+    for i, f in deps_graph.item_files().items():
+        if i[0] != "C":
+            assert deps_graph.table_row(f, "目標の ID") is None, (i, "目標の ID は予想の欄")
+
+
+def test_roadmap_task_states_are_valid():
+    text = ROADMAP.read_text(encoding="utf-8")
+    for row in re.findall(r"^\| (T-\d{4}) \|.*\| ([^|]+) \|$", text, re.M):
+        assert row[1] in {"未着手", "進行中", "完了", "保留"}, row
+
+
 def test_no_self_dependency():
     for i, ds in deps_graph.dependencies().items():
         assert i not in ds, (i, "自分自身に依存している")
