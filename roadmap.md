@@ -1,6 +1,6 @@
 # ロードマップ
 
-最終更新: 2026-09-30（第 16 回。T-0016 を進行中にし、用語のタスク T-0018 を追加）
+最終更新: 2026-09-30（第 17 回。T-0016 のうち実験の比較の原典を確認し、調査メモの確認と掘り下げを T-0016 の続きとした）
 
 このファイルは、[フレームワーク](framework.md) を完成させるための作業の最新版です。セッションの終わりごとに更新します（[`CLAUDE.md`](CLAUDE.md) の「セッションの終え方」）。
 
@@ -136,6 +136,7 @@ flowchart LR
 - [D-0005](definitions/D-0005.md)：極限の位相（一様構造、完備性、分離性）、収束させる対象、部分列の選び方、事後分布の集中の条件、事後分布を置く空間。
 - [D-0006](definitions/D-0006.md)（層 5）：予備的な検討にとどめる。実際の観測量の極限の位相を決めるときに、可能な観測量にも同じ取り方が使えるかを確かめる。層 5 の定義と前提そのものは T-0010 で扱う。
 - 関係する予想：[C-0005](conjectures/C-0005.md)、[C-0006](conjectures/C-0006.md)。
+- 第 17 回の候補（[調査メモ](surveys/2026-09-30_17_comparison-of-experiments.md)の 7 節）：実験を共通の空間に置く方法としての Le Cam の不足度（$`Θ`$ の読み方の二つの候補）、$`Θ`$ が有限の場合の極限の二つの見方の一致、模倣をねじれ射の圏 $`\mathrm{Tw}(\mathsf{Stoch})`$ の射と読む候補（第 14 回の模倣の向きの論点。T-0005 とも関係する）。
 
 ### T-0007 局在の詳細化
 
@@ -215,7 +216,10 @@ flowchart LR
 - ベイズ統計の事後一致性：Doob、Schwartz、Diaconis–Freedman の不一致の例、Ghosal–van der Vaart。[C-0006](conjectures/C-0006.md) の反例と条件、[A-0007](assumptions/A-0007.md) の一致の定理の正確な形（原典の確認は T-0014 と共通）。
 - 成果物：調査メモと、T-0004〜T-0006 で決める事項への候補。
 - 第 16 回：ユーザーの判断で、事後一致性の領域のうち「A-0007 の一致の定理の正確な形」に重点を置き、本文で定理の仮定と結論を確かめた（[調査メモ](surveys/2026-09-30_16_merging-and-consistency.md)）。結果を A-0007・D-0005 に反映した。残るのは、Le Cam の理論と実験の比較、一般化確率論と Ludwig、弱い併合（Kalai–Lehrer 1994。第 16 回にユーザーの判断で扱わなかった）。
-- 第 16 回の後に、ユーザーが実験の比較の原典 5 件を入手し、非公開リポジトリの `papers/` に置いた：`blackwell1951`（Blackwell, Comparison of experiments, Proc. Second Berkeley Symp., 1951）、`blackwell1953`（Blackwell, Equivalent comparisons of experiments, Ann. Math. Statist. 24, 1953）、`lecam1964`（Le Cam, Sufficiency and approximate sufficiency, Ann. Math. Statist. 35, 1964）、`shannon1958`（Shannon, A note on a partial ordering for communication channels, Information and Control 1, 1958）、`raginsky2011`（Raginsky, Shannon meets Blackwell and Le Cam: channels, codes, and statistical experiments, Proc. IEEE ISIT, 2011）。書誌情報は `references.bib` に登録済み。内容はこれから確かめる。
+- 第 16 回の後に、ユーザーが実験の比較の原典 5 件を入手し、非公開リポジトリの `papers/` に置いた：`blackwell1951`（Blackwell, Comparison of experiments, Proc. Second Berkeley Symp., 1951）、`blackwell1953`（Blackwell, Equivalent comparisons of experiments, Ann. Math. Statist. 24, 1953）、`lecam1964`（Le Cam, Sufficiency and approximate sufficiency, Ann. Math. Statist. 35, 1964）、`shannon1958`（Shannon, A note on a partial ordering for communication channels, Information and Control 1, 1958）、`raginsky2011`（Raginsky, Shannon meets Blackwell and Le Cam: channels, codes, and statistical experiments, Proc. IEEE ISIT, 2011）。書誌情報は `references.bib` に登録済み。
+- 第 17 回：ユーザーの判断で、残りのうち「Le Cam の理論と実験の比較」に重点を置き、上の原典 5 件の本文で定理の仮定と結論を確かめた（[調査メモ](surveys/2026-09-30_17_comparison-of-experiments.md)）。プロジェクトへのつながりの候補（調査メモの 7 節。Claude の見立て）を、D-0005 の未解決の点と下の T-0006 に記録した。
+- 第 17 回の後の予定（ユーザーの判断）：PR のマージ後に、ユーザーが第 17 回の調査メモを確認する。次回以降のセッションで、(1) 報告と調査メモへの疑問点・掘り下げ、(3) 調査メモの 7 節の候補の検算（有限の $`Θ`$ での不足度の距離 $`Δ`$ での収束（7.2 節の見通し）の証明、ねじれ射の圏による模倣の読み替え（7.3 節）の式での確認）を行う。
+- 残るのは、上の確認と掘り下げ、一般化確率論と Ludwig、弱い併合（Kalai–Lehrer 1994）。
 
 ### T-0017 時空の側の先行研究の調査（第 15 回に追加）
 
