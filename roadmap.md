@@ -1,6 +1,6 @@
 # ロードマップ
 
-最終更新: 2026-09-29（第 15 回。T-0003 を完了。調査のタスク T-0016・T-0017 を追加）
+最終更新: 2026-09-30（第 16 回。T-0016 を進行中にし、用語のタスク T-0018 を追加）
 
 このファイルは、[フレームワーク](framework.md) を完成させるための作業の最新版です。セッションの終わりごとに更新します（[`CLAUDE.md`](CLAUDE.md) の「セッションの終え方」）。
 
@@ -53,7 +53,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | T-0013 | `framework.md` の層別の表の検査 | 随時 | なし | [framework.md](framework.md)、`tools/` | 未着手 |
 | T-0014 | 文献の未確認事項の確認 | 随時 | なし | [`references.bib`](references.bib)、[`surveys/`](surveys/) | 未着手 |
 | T-0015 | D-0003 の未解決の点の解決と、D-0011 を可能な実験の定義に改めること（第 13 回） | A | T-0001 | [D-0003](definitions/D-0003.md)、[D-0011](definitions/D-0011.md)、[A-0008](assumptions/A-0008.md)、[A-0009](assumptions/A-0009.md)、[A-0010](assumptions/A-0010.md)、[C-0008](conjectures/C-0008.md) | 完了 |
-| T-0016 | 実験の族の位相と極限の先行研究の調査 | 調査 | なし | [D-0001](definitions/D-0001.md)〜[D-0005](definitions/D-0005.md)、[A-0006](assumptions/A-0006.md)、[A-0007](assumptions/A-0007.md)、[C-0003](conjectures/C-0003.md)、[C-0005](conjectures/C-0005.md)、[C-0006](conjectures/C-0006.md) | 未着手 |
+| T-0016 | 実験の族の位相と極限の先行研究の調査 | 調査 | なし | [D-0001](definitions/D-0001.md)〜[D-0005](definitions/D-0005.md)、[A-0006](assumptions/A-0006.md)、[A-0007](assumptions/A-0007.md)、[C-0003](conjectures/C-0003.md)、[C-0005](conjectures/C-0005.md)、[C-0006](conjectures/C-0006.md) | 進行中 |
 | T-0017 | 時空の側の先行研究の調査 | 調査 | なし | [D-0003](definitions/D-0003.md)、[D-0007](definitions/D-0007.md)、[D-0008](definitions/D-0008.md)、[A-0010](assumptions/A-0010.md)、[C-0002](conjectures/C-0002.md)、[C-0007](conjectures/C-0007.md)、[C-0008](conjectures/C-0008.md) | 未着手 |
 | T-0018 | 主体・観測者・装置の使い分け（第 16 回に追加） | 用語 | なし | [A-0001](assumptions/A-0001.md)、[A-0007](assumptions/A-0007.md)、[A-0010](assumptions/A-0010.md)、[D-0001](definitions/D-0001.md)、[D-0003](definitions/D-0003.md)、[D-0005](definitions/D-0005.md)、[D-0011](definitions/D-0011.md) | 未着手 |
 
@@ -214,6 +214,7 @@ flowchart LR
 - 操作的な確率論の枠組み：一般化確率論（Hardy、Barrett、Chiribella–D'Ariano–Perinotti）と Ludwig の公理的な量子力学。実験から統計への対応（[D-0001](definitions/D-0001.md)〜[D-0004](definitions/D-0004.md)）の先行研究、状態空間の再構成、有限な実験からの一様構造による完備化（[D-0005](definitions/D-0005.md) の極限の位相）。[C-0003](conjectures/C-0003.md)・[C-0005](conjectures/C-0005.md) との関係。
 - ベイズ統計の事後一致性：Doob、Schwartz、Diaconis–Freedman の不一致の例、Ghosal–van der Vaart。[C-0006](conjectures/C-0006.md) の反例と条件、[A-0007](assumptions/A-0007.md) の一致の定理の正確な形（原典の確認は T-0014 と共通）。
 - 成果物：調査メモと、T-0004〜T-0006 で決める事項への候補。
+- 第 16 回：ユーザーの判断で、事後一致性の領域のうち「A-0007 の一致の定理の正確な形」に重点を置き、本文で定理の仮定と結論を確かめた（[調査メモ](surveys/2026-09-30_16_merging-and-consistency.md)）。結果を A-0007・D-0005 に反映した。残るのは、Le Cam の理論と実験の比較、一般化確率論と Ludwig、弱い併合（Kalai–Lehrer 1994。第 16 回にユーザーの判断で扱わなかった）。
 
 ### T-0017 時空の側の先行研究の調査（第 15 回に追加）
 
