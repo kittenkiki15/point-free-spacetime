@@ -42,7 +42,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | T-0001 | 予想 C-0001 の見直し（第 12 回） | A | なし | [C-0001](conjectures/C-0001.md)、[C-0007](conjectures/C-0007.md)、[C-0008](conjectures/C-0008.md)、[D-0008](definitions/D-0008.md)、[R-0001](results/R-0001.md)〜[R-0008](results/R-0008.md) | 完了 |
 | T-0002 | フレームワークの圏論的な概観（第 14 回） | A | T-0001 | [framework.md](framework.md) のすべての要素 | 完了 |
 | T-0003 | QBism の先行研究の調査（第 15 回） | 調査 | なし | [D-0005](definitions/D-0005.md)、[A-0007](assumptions/A-0007.md)、[C-0003](conjectures/C-0003.md) | 完了 |
-| T-0004 | 実験パラメータの空間と、結果の統計の空間の位相 | B | なし | [D-0001](definitions/D-0001.md)、[D-0003](definitions/D-0003.md)、[D-0004](definitions/D-0004.md)、[A-0005](assumptions/A-0005.md)、[A-0006](assumptions/A-0006.md) | 未着手 |
+| T-0004 | 設定の空間と、結果の統計の空間の位相 | B | なし | [D-0001](definitions/D-0001.md)、[D-0003](definitions/D-0003.md)、[D-0004](definitions/D-0004.md)、[A-0005](assumptions/A-0005.md)、[A-0006](assumptions/A-0006.md) | 未着手 |
 | T-0005 | 尤度と同時分布、主体の間で共有するデータの空間 | B | T-0004 | [D-0001](definitions/D-0001.md)、[D-0004](definitions/D-0004.md)、[A-0006](assumptions/A-0006.md)、[A-0007](assumptions/A-0007.md) | 未着手 |
 | T-0006 | 極限と事後分布の集中 | B | T-0004、T-0005 | [D-0005](definitions/D-0005.md)、[D-0006](definitions/D-0006.md)、[A-0007](assumptions/A-0007.md)、[C-0005](conjectures/C-0005.md)、[C-0006](conjectures/C-0006.md) | 未着手 |
 | T-0007 | 局在の詳細化 | B | T-0004 | [D-0001](definitions/D-0001.md)、[D-0008](definitions/D-0008.md)、[A-0008](assumptions/A-0008.md) | 未着手 |
@@ -119,7 +119,7 @@ flowchart LR
   - [A-0007](assumptions/A-0007.md) と [D-0005](definitions/D-0005.md) の「注意」に比較の結果を加え、一致の定理の原典の確認を T-0014 に加えた。
 - 残した論点（今後の調査対象。調査メモの 5 節）：(b) 推定の対象（[C-0003](conjectures/C-0003.md) と断層撮影・SIC 測定）、(c) 立場の違い（QBism への批判）、(d) 第 14 回の圏論的概観とのつながり（非可換ベイズの逆）。
 
-### T-0004 実験パラメータの空間と、結果の統計の空間の位相
+### T-0004 設定の空間と、結果の統計の空間の位相
 
 各ファイルの未解決の点のうち、位相に関するものをまとめて決める。
 
