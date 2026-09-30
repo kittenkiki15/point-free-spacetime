@@ -1,6 +1,6 @@
 # ロードマップ
 
-最終更新: 2026-09-30（第 17 回。T-0016 のうち実験の比較の原典を確認し、調査メモの確認と掘り下げを T-0016 の続きとした）
+最終更新: 2026-09-30（第 18 回。T-0016 の続きとして極限の位相を調べた）
 
 このファイルは、[フレームワーク](framework.md) を完成させるための作業の最新版です。セッションの終わりごとに更新します（[`CLAUDE.md`](CLAUDE.md) の「セッションの終え方」）。
 
@@ -219,7 +219,9 @@ flowchart LR
 - 第 16 回の後に、ユーザーが実験の比較の原典 5 件を入手し、非公開リポジトリの `papers/` に置いた：`blackwell1951`（Blackwell, Comparison of experiments, Proc. Second Berkeley Symp., 1951）、`blackwell1953`（Blackwell, Equivalent comparisons of experiments, Ann. Math. Statist. 24, 1953）、`lecam1964`（Le Cam, Sufficiency and approximate sufficiency, Ann. Math. Statist. 35, 1964）、`shannon1958`（Shannon, A note on a partial ordering for communication channels, Information and Control 1, 1958）、`raginsky2011`（Raginsky, Shannon meets Blackwell and Le Cam: channels, codes, and statistical experiments, Proc. IEEE ISIT, 2011）。書誌情報は `references.bib` に登録済み。
 - 第 17 回：ユーザーの判断で、残りのうち「Le Cam の理論と実験の比較」に重点を置き、上の原典 5 件の本文で定理の仮定と結論を確かめた（[調査メモ](surveys/2026-09-30_17_comparison-of-experiments.md)）。プロジェクトへのつながりの候補（調査メモの 7 節。Claude の見立て）を、D-0005 の未解決の点と下の T-0006 に記録した。
 - 第 17 回の後の予定（ユーザーの判断）：PR のマージ後に、ユーザーが第 17 回の調査メモを確認する。次回以降のセッションで、(1) 報告と調査メモへの疑問点・掘り下げ、(3) 調査メモの 7 節の候補の検算（有限の $`Θ`$ での不足度の距離 $`Δ`$ での収束（7.2 節の見通し）の証明、ねじれ射の圏による模倣の読み替え（7.3 節）の式での確認）を行う。
-- 残るのは、上の確認と掘り下げ、一般化確率論と Ludwig、弱い併合（Kalai–Lehrer 1994）。
+- 第 18 回：ユーザーの判断で、残りを「極限の位相」に絞り（Le Cam の実験の弱収束と Ludwig の構成）、原典（Le Cam 1972、van der Vaart 2002、Torgersen 1970、Ludwig 1968・1985）で確かめた（[第 18 回の調査メモ](surveys/2026-09-30_18_limit-topology.md)）。第 17 回の 7.2 節の見通し（有限の $`Θ`$ での $`Δ`$ 収束）は、距離の同値から従うことを確かめた（Claude の検算）。A-0001 に Ludwig の「物理の有限性」を先例として加えた。
+- 第 18 回の後の予定（ユーザーの判断）：次のセッションで、第 17 回の調査メモについてのユーザーの疑問点と掘り下げの対話を行う。T-0016 を閉じるかは、その対話が終わってから決める。閉じる場合の移し先の案（Claude の提案。未決定）：弱い併合 → T-0005、一般化確率論の再構成 → C-0003・T-0011、第 17 回・第 18 回の検算の証明の形での確認とねじれ射の圏の確認 → T-0006。
+- 残るのは、上の対話、一般化確率論（状態空間の再構成）、弱い併合（Kalai–Lehrer 1994）。
 
 ### T-0017 時空の側の先行研究の調査（第 15 回に追加）
 
