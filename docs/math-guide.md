@@ -109,7 +109,7 @@ a ∧ ⋁_{i ∈ I} b_i = ⋁_{i ∈ I} (a ∧ b_i)
 | `\boldsymbol{v}` | 𝒗 |
 | `\mathbf{E}` | 𝐄 |
 
-ただし、`\left` と `\right` の後に置く区切り記号は、Unicode 文字ではなくコマンドで書きます。`\left| + \right⟩` は「Missing or unrecognized delimiter for \right」というエラーになりました（第 16 回にユーザーが確認）。ケットは `\left| + \right\rangle` と書きます。
+ただし、`\left` と `\right` の後に置く区切り記号には、区切り記号として認識される記号かコマンドを使います（`|` や `(` はそのまま使えます）。Unicode 文字の `⟩` は認識されません。`\left| + \right⟩` は「Missing or unrecognized delimiter for \right」というエラーになりました（第 16 回にユーザーが確認）。ケットは `\left| + \right\rangle` と書きます。
 
 ### 関数名と変数の間には `\,` を入れる
 
