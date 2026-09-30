@@ -215,6 +215,7 @@ flowchart LR
 - ベイズ統計の事後一致性：Doob、Schwartz、Diaconis–Freedman の不一致の例、Ghosal–van der Vaart。[C-0006](conjectures/C-0006.md) の反例と条件、[A-0007](assumptions/A-0007.md) の一致の定理の正確な形（原典の確認は T-0014 と共通）。
 - 成果物：調査メモと、T-0004〜T-0006 で決める事項への候補。
 - 第 16 回：ユーザーの判断で、事後一致性の領域のうち「A-0007 の一致の定理の正確な形」に重点を置き、本文で定理の仮定と結論を確かめた（[調査メモ](surveys/2026-09-30_16_merging-and-consistency.md)）。結果を A-0007・D-0005 に反映した。残るのは、Le Cam の理論と実験の比較、一般化確率論と Ludwig、弱い併合（Kalai–Lehrer 1994。第 16 回にユーザーの判断で扱わなかった）。
+- 第 16 回の後に、ユーザーが実験の比較の原典 5 件を入手し、非公開リポジトリの `papers/` に置いた：`blackwell1951`（Blackwell, Comparison of experiments, Proc. Second Berkeley Symp., 1951）、`blackwell1953`（Blackwell, Equivalent comparisons of experiments, Ann. Math. Statist. 24, 1953）、`lecam1964`（Le Cam, Sufficiency and approximate sufficiency, Ann. Math. Statist. 35, 1964）、`shannon1958`（Shannon, A note on a partial ordering for communication channels, Information and Control 1, 1958）、`raginsky2011`（Raginsky, Shannon meets Blackwell and Le Cam: channels, codes, and statistical experiments, Proc. IEEE ISIT, 2011）。書誌情報は `references.bib` に登録済み。内容はこれから確かめる。
 
 ### T-0017 時空の側の先行研究の調査（第 15 回に追加）
 
