@@ -184,11 +184,14 @@ def choice_pairs():
 
 
 def systems_of(f):
-    # 「体系」の行の、括弧の前の記号（複数の組に依存する場合は「・」で区切る）
+    # 「体系」の行の、括弧の前の記号（複数の組に依存する場合は「・」で区切る）。各記号は英大文字 1 文字で、重複しない
     row = deps_graph.table_row(f, "体系")
     if row is None:
         return None
-    return {s.strip() for s in row.split("（")[0].split("・")}
+    labels = [s.strip() for s in row.split("（")[0].split("・")]
+    assert all(re.fullmatch(r"[A-Z]", s) for s in labels), (f, "体系の記号は英大文字 1 文字")
+    assert len(labels) == len(set(labels)), (f, "「体系」の行に同じ記号が重複している")
+    return set(labels)
 
 
 def test_choice_pairs_are_pairs_with_distinct_systems():
