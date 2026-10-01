@@ -178,6 +178,7 @@ def choice_pairs():
         assert m, (line, "二者択一の組の表の行の書式が正しくない（体系の記号は英大文字 1 文字）")
         pair, system, a = m.groups()
         assert a not in result, (a, "同じ前提が二度登録されている")
+        assert a in deps_graph.item_files(), (a, "登録した前提のファイルがない")
         result[a] = (pair, system)
     return result
 
