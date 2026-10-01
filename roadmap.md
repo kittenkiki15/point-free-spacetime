@@ -47,7 +47,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | T-0006 | 極限と事後分布の集中 | B | T-0004、T-0005 | [D-0005](definitions/D-0005.md)、[D-0006](definitions/D-0006.md)、[A-0007](assumptions/A-0007.md)、[C-0005](conjectures/C-0005.md)、[C-0006](conjectures/C-0006.md) | 未着手 |
 | T-0007 | 局在の詳細化 | B | T-0004 | [D-0001](definitions/D-0001.md)、[D-0008](definitions/D-0008.md)、[A-0008](assumptions/A-0008.md) | 未着手 |
 | T-0008 | C-0001・C-0007・C-0008 の検証 | 検証 | T-0001 | [C-0001](conjectures/C-0001.md)、[C-0007](conjectures/C-0007.md)、[C-0008](conjectures/C-0008.md) | 未着手 |
-| T-0009 | 観測における時空の再構成 | C | T-0002、T-0006 | [D-0007](definitions/D-0007.md)、[C-0002](conjectures/C-0002.md)、[C-0003](conjectures/C-0003.md) | 未着手 |
+| T-0009 | 観測における時空の再構成 | C | T-0002、T-0006 | [D-0007](definitions/D-0007.md)、[D-0013](definitions/D-0013.md)、[C-0002](conjectures/C-0002.md)、[C-0003](conjectures/C-0003.md) | 未着手 |
 | T-0010 | 層 4〜6 の定義と前提 | D | T-0009 | [D-0006](definitions/D-0006.md)、[C-0002](conjectures/C-0002.md) | 未着手 |
 | T-0011 | 予想 C-0002〜C-0006 の詳細化 | 随時 | 関係する段階のタスク | [C-0002](conjectures/C-0002.md)〜[C-0006](conjectures/C-0006.md) | 未着手 |
 | T-0012 | ほかの予想の候補 | 随時 | なし | — | 未着手 |
@@ -55,7 +55,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | T-0014 | 文献の未確認事項の確認 | 随時 | なし | [`references.bib`](references.bib)、[`surveys/`](surveys/) | 未着手 |
 | T-0015 | D-0003 の未解決の点の解決と、D-0011 を可能な実験の定義に改めること（第 13 回） | A | T-0001 | [D-0003](definitions/D-0003.md)、[D-0011](definitions/D-0011.md)、[A-0008](assumptions/A-0008.md)、[A-0009](assumptions/A-0009.md)、[A-0010](assumptions/A-0010.md)、[C-0008](conjectures/C-0008.md) | 完了 |
 | T-0016 | 実験の族の位相と極限の先行研究の調査（第 15〜19 回） | 調査 | なし | [D-0001](definitions/D-0001.md)〜[D-0005](definitions/D-0005.md)、[A-0006](assumptions/A-0006.md)、[A-0007](assumptions/A-0007.md)、[C-0003](conjectures/C-0003.md)、[C-0005](conjectures/C-0005.md)、[C-0006](conjectures/C-0006.md) | 完了 |
-| T-0017 | 時空の側の先行研究の調査 | 調査 | なし | [D-0003](definitions/D-0003.md)、[D-0007](definitions/D-0007.md)、[D-0008](definitions/D-0008.md)、[A-0010](assumptions/A-0010.md)、[C-0002](conjectures/C-0002.md)、[C-0007](conjectures/C-0007.md)、[C-0008](conjectures/C-0008.md) | 未着手 |
+| T-0017 | 時空の側の先行研究の調査 | 調査 | なし | [D-0013](definitions/D-0013.md)、[D-0007](definitions/D-0007.md)、[D-0008](definitions/D-0008.md)、[A-0010](assumptions/A-0010.md)、[C-0002](conjectures/C-0002.md)、[C-0007](conjectures/C-0007.md)、[C-0008](conjectures/C-0008.md) | 未着手 |
 | T-0018 | 主体・観測者・装置の使い分けと、設定・時空・パラメータの概念と用語の整理（第 16 回に追加、第 19 回に範囲を拡大、第 20 回に完了） | 用語 | なし | [A-0001](assumptions/A-0001.md)、[A-0007](assumptions/A-0007.md)、[A-0010](assumptions/A-0010.md)、[D-0001](definitions/D-0001.md)、[D-0003](definitions/D-0003.md)、[D-0005](definitions/D-0005.md)、[D-0011](definitions/D-0011.md)、[D-0012](definitions/D-0012.md)、[D-0013](definitions/D-0013.md)、[A-0011](assumptions/A-0011.md)〜[A-0016](assumptions/A-0016.md)、[C-0009](conjectures/C-0009.md)〜[C-0013](conjectures/C-0013.md) | 完了 |
 | T-0019 | 量子・古典・混成の実験の扱いの先行研究の調査（第 19 回に追加） | 調査 | なし | [D-0001](definitions/D-0001.md)、[D-0002](definitions/D-0002.md)、[D-0003](definitions/D-0003.md)、[D-0004](definitions/D-0004.md)、[D-0005](definitions/D-0005.md)、[A-0003](assumptions/A-0003.md)、[A-0010](assumptions/A-0010.md)、[C-0003](conjectures/C-0003.md) | 未着手 |
 
@@ -167,7 +167,7 @@ flowchart LR
   - 観測における時空の局所性を定義する候補（可換子による因果的な補集合、split property、核型性）と、観測量が局在できる領域の族（上に閉じた族。交わりで閉じるのはどんな族か）。
   - 「観測する側と観測される側の対称性」：局所代数（フォン・ノイマン代数）の包含 $`𝒜(O_1) ⊂ 𝒜(O_2)`$（$`O_1 ⋐ O_2`$ は領域。第 08 回の調査メモの 4 節の記号では $`R_i = R(O_i)`$）について、$`𝒜(O_1) ⊗ 𝒜(O_1)`$ の上の flip が $`𝒜(O_2) ⊗ 𝒜(O_2)`$ の内部自己同型で実装できること ⇔ split（追加の条件の下で。系と装置の入れ替えにはそのまま適用できない）、split と大域的な対称性 ⇒ 対称性の局所的な実装（生成子を保存する局所的なカレントのぼかしと読むのは解釈）、という既知の鎖（第 08 回の調査メモの 4 節）。
   - 装置の占める領域による膨張（[D-0011](definitions/D-0011.md)）と余白付きの包含が、観測における時空にどう移るか。
-- [D-0003](definitions/D-0003.md) の整合条件（第 13 回に T-0015 から残した）：観測における時空のモデルが予測する基準の時計と物差しの読みと、較正の写像 $`τ^O`$ の一致（不動点の条件）。観測者の取り替え $`M_O → M_{O'}`$ の形（ポアンカレ変換になるか。[C-0008](conjectures/C-0008.md) はこれを仮定する）。実際の実験の記録された占める領域と、モデルの占める領域の整合的な関係（一致や包含。[D-0011](definitions/D-0011.md)）。
+- [D-0013](definitions/D-0013.md) の整合条件（第 13 回に T-0015 から残した。第 20 回に D-0003 から D-0013 に移った）：観測における時空のモデルが予測する基準の時計と物差しの読みと、較正の写像 $`τ^O`$ の一致（不動点の条件）。観測者の取り替え $`M_O → M_{O'}`$ の形（ポアンカレ変換になるか。[C-0008](conjectures/C-0008.md) はこれを仮定する）。実際の実験の記録された占める領域と、モデルの占める領域の整合的な関係（一致や包含。[D-0011](definitions/D-0011.md)）。
 
 ### T-0010 層 4〜6 の定義と前提
 
@@ -237,7 +237,7 @@ flowchart LR
 
 - 時空の因果構造からの再構成：Malament、Hawking–King–McCarthy の定理。観測から時空を再構成するときに、何の情報で幾何が決まるか（[C-0002](conjectures/C-0002.md)、[D-0007](definitions/D-0007.md)）。
 - 相対論的な局在の不可能性の定理：Newton–Wigner、Hegerfeldt、Malament の局在の定理。[C-0007](conjectures/C-0007.md)・[C-0008](conjectures/C-0008.md)・[D-0008](definitions/D-0008.md) に近い既存の定理があるか。
-- 操作的な座標づけと参照系：レーダー座標、Bondi の k 計算、量子参照系。較正の写像と観測者の取り替え（[A-0010](assumptions/A-0010.md)、[D-0003](definitions/D-0003.md) の整合条件）。
+- 操作的な座標づけと参照系：レーダー座標、Bondi の k 計算、量子参照系。較正の写像と観測者の取り替え（[A-0010](assumptions/A-0010.md)、[D-0013](definitions/D-0013.md) の整合条件、[A-0014](assumptions/A-0014.md)・[A-0015](assumptions/A-0015.md)。第 20 回に、整合条件は D-0003 から D-0013 に移った）。
 - 順序は段階 B の後、T-0008 の前とする（局在の定理を C-0007・C-0008 の検証に使うため）。
 
 ### T-0018 主体・観測者・装置の使い分けと、設定・時空・パラメータの概念と用語の整理（第 16 回に追加、第 20 回に完了）
