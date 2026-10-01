@@ -38,3 +38,4 @@
 | [R-0006](R-0006.md) | 余白付きの包含の補間性と、識別の関係の推移性（点の場合。既知の結果の形式化） | 命題 | Lean | [`Tolerance.lean`](../lean/PointFreeSpacetime/Tolerance.lean)：`marginSub_interpolates_iff` | 第 05 回 |
 | [R-0007](R-0007.md) | 膨張による余白付きの包含の補間性（点なし版。既知の事実の言い直し） | 命題 | Lean | [`Tolerance.lean`](../lean/PointFreeSpacetime/Tolerance.lean)：`margin_interpolates_iff` | 第 05 回 |
 | [R-0008](R-0008.md) | オープニングの不動点は膨張の像（既知の結果の形式化） | 命題 | Lean | [`Tolerance.lean`](../lean/PointFreeSpacetime/Tolerance.lean)：`opening_fixed_iff_mem_range` | 第 05 回 |
+| [R-0009](R-0009.md) | Harrow ほか 2010 の例 1 の古典的な通信路の識別の成功確率（文献の数値の照合） | 命題 | テスト | [`test_channel_discrimination.py`](../sim/tests/test_channel_discrimination.py)：`test_hhlw_example_1_recomputed` | 第 22 回 |
