@@ -163,3 +163,69 @@ def test_roadmap_task_ids_are_unique_and_described():
     assert headings == rows, "表のタスクと「各タスクの内容」の見出しが一致しない"
     # 本文から参照するタスクの ID は、表にあるものに限る
     assert set(re.findall(r"\bT-\d{4}\b", text)) <= set(rows)
+
+
+def choice_pairs():
+    # assumptions/README.md の「択一の組と体系」の表：前提の ID → (組, 体系)。表の全データ行の書式を検査する
+    readme = (ROOT / "assumptions" / "README.md").read_text(encoding="utf-8")
+    section = readme.split("## 択一の組と体系", 1)[1].split("\n## ", 1)[0]
+    lines = [line for line in section.splitlines() if line.startswith("|")]
+    assert lines[0].startswith("| 組 |") and set(lines[1]) <= set("|- "), "表の見出しがない"
+    pattern = re.compile(r"^\| (\d+) \| ([A-Z]) \| \[(A-\d{4})\]\(\3\.md\) \| [^|]+ \|$")
+    result = {}
+    for line in lines[2:]:
+        m = pattern.match(line)
+        assert m, (line, "択一の組の表の行の書式が正しくない（体系の記号は英大文字 1 文字）")
+        pair, system, a = m.groups()
+        assert a not in result, (a, "同じ前提が二度登録されている")
+        assert a in deps_graph.item_files(), (a, "登録した前提のファイルがない")
+        result[a] = (pair, system)
+    return result
+
+
+def systems_of(f):
+    # 「体系」の行の、括弧の前の記号（複数の組に依存する場合は「・」で区切る）。各記号は英大文字 1 文字で、重複しない
+    row = deps_graph.table_row(f, "体系")
+    if row is None:
+        return None
+    labels = [s.strip() for s in row.split("（")[0].split("・")]
+    assert all(re.fullmatch(r"[A-Z]", s) for s in labels), (f, "体系の記号は英大文字 1 文字")
+    assert len(labels) == len(set(labels)), (f, "「体系」の行に同じ記号が重複している")
+    return set(labels)
+
+
+def test_choice_groups_have_two_or_more_members_with_distinct_systems():
+    pairs = choice_pairs()
+    assert pairs, "択一の組の表がない"
+    labels = [s for _, s in pairs.values()]
+    assert len(labels) == len(set(labels)), "体系の記号が重複している"
+    for pair in {p for p, _ in pairs.values()}:
+        assert sum(1 for p, _ in pairs.values() if p == pair) >= 2, (pair, "組の前提が二つ以上でない")
+
+
+def test_choice_pairs_and_systems_are_consistent():
+    # 同じ組の二つの前提に（間接的にも）依存しない。組の前提とそれに依存する項目は、「体系」の行が依存と一致する
+    pairs = choice_pairs()
+    deps = deps_graph.dependencies()
+
+    def ancestors(i, seen):
+        for d in deps.get(i, []):
+            if d not in seen:
+                seen.add(d)
+                ancestors(d, seen)
+        return seen
+
+    for i, f in deps_graph.item_files().items():
+        used = ancestors(i, set()) | ({i} if i in pairs else set())
+        by_pair = {}
+        for a in used:
+            if a in pairs:
+                pair, system = pairs[a]
+                by_pair.setdefault(pair, set()).add(system)
+        for pair, systems in by_pair.items():
+            assert len(systems) == 1, (i, pair, "同じ組の二つの前提に依存している")
+        systems = {s for ss in by_pair.values() for s in ss}
+        if systems:
+            assert systems_of(f) == systems, (i, "「体系」の行が依存と一致しない")
+        else:
+            assert systems_of(f) is None, (i, "組の前提に依存しないのに「体系」の行がある")
