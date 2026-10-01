@@ -5,6 +5,7 @@
 | 種類 | 定理・命題・系・反例・数値的に支持 |
 | 検証 | Lean・テスト（有限の場合の総当たりなど）・自然言語の証明（対話・文献） |
 | 初出 | [YYYY-MM-DD 第 NN 回](../summaries/YYYY-MM-DD_NN_topic.md) |
+| 体系 | 二者択一の組の前提（[`assumptions/README.md`](../assumptions/README.md) の「二者択一の組と体系」）に依存する場合に、その体系。依存しない場合は行を置かない |
 | 関連する予想 | C-NNNN（なければ「なし」） |
 
 ## 主張

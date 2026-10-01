@@ -11,6 +11,7 @@
 | Issue | #NN |
 | 依存する ID | 予想の記述・証明に用いる定義と、仮定する前提の ID（例：[D-NNNN](../definitions/D-NNNN.md)）。なければ「なし」 |
 | 目標の ID | 予想が定理として導こうとする前提の ID（前提の主張を結論とする予想の場合。定義は命題ではないので書かない）。なければ「なし」 |
+| 体系 | 二者択一の組の前提（[`assumptions/README.md`](../assumptions/README.md) の「二者択一の組と体系」）に依存する場合に、その体系。依存しない場合は行を置かない |
 | 初出 | [YYYY-MM-DD 第 NN 回](../summaries/YYYY-MM-DD_NN_topic.md) |
 
 ## 主張
