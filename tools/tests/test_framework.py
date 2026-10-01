@@ -166,10 +166,20 @@ def test_roadmap_task_ids_are_unique_and_described():
 
 
 def choice_pairs():
-    # assumptions/README.md の「二者択一の組と体系」の表：前提の ID → (組, 体系)
+    # assumptions/README.md の「二者択一の組と体系」の表：前提の ID → (組, 体系)。表の全データ行の書式を検査する
     readme = (ROOT / "assumptions" / "README.md").read_text(encoding="utf-8")
-    rows = re.findall(r"^\| (\d+) \| ([A-Z]) \| \[(A-\d{4})\]\(\3\.md\) \|", readme, re.M)
-    return {a: (pair, system) for pair, system, a in rows}
+    section = readme.split("## 二者択一の組と体系", 1)[1].split("\n## ", 1)[0]
+    lines = [line for line in section.splitlines() if line.startswith("|")]
+    assert lines[0].startswith("| 組 |") and set(lines[1]) <= set("|- "), "表の見出しがない"
+    pattern = re.compile(r"^\| (\d+) \| ([A-Z]) \| \[(A-\d{4})\]\(\3\.md\) \| [^|]+ \|$")
+    result = {}
+    for line in lines[2:]:
+        m = pattern.match(line)
+        assert m, (line, "二者択一の組の表の行の書式が正しくない（体系の記号は英大文字 1 文字）")
+        pair, system, a = m.groups()
+        assert a not in result, (a, "同じ前提が二度登録されている")
+        result[a] = (pair, system)
+    return result
 
 
 def systems_of(f):
