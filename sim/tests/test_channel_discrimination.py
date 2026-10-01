@@ -4,7 +4,7 @@ from pfs_sim.channel_discrimination import HHLW_EXAMPLE_1, adaptive, best, nonad
 
 
 def test_hhlw_example_1_recomputed():
-    """Harrow ほか 2010 の例 1 の検算（第 22 回の調査メモの 2.6 節）。
+    """結果 R-0009：Harrow ほか 2010 の例 1 の検算（第 22 回の調査メモの 2.6 節）。
 
     原典が最良とする非適応的な方式（両方の入力を 1 番目）は 7/9 を与えるが、両方を 2 番目にすると 68/81 になる。
     原典が最良とする適応的な方式（k = 2、f(1) = 2、f(2) = 1）は、原典の (5) 式で 139/162 を与える（原典の値は 65/81）。
