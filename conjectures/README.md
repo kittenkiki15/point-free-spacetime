@@ -38,5 +38,5 @@
 | [C-0009](C-0009.md) | 較正の普遍性から、観測者の取り替えはローレンツ変換かガリレイ変換になる | 高 | 高 | 中 | 低 | 未着手 | [#37](https://github.com/kittenkiki15/point-free-spacetime/issues/37) |
 | [C-0010](C-0010.md) | 比較の実験で取り替えを与える体系では、較正の普遍性は検証できる条件に言い換えられる | 中 | 中 | 中 | 低 | 未着手 | [#38](https://github.com/kittenkiki15/point-free-spacetime/issues/38) |
 | [C-0011](C-0011.md) | 比較の一周のずれがすべて自明なら、観測者の取り替えは群をなす | 中 | 高 | 高 | 低 | 未着手 | [#39](https://github.com/kittenkiki15/point-free-spacetime/issues/39) |
-| [C-0012](C-0012.md) | 可能な実験は因果的な順序を破らない | 高 | 中 | 中 | 低 | 未着手 | [#40](https://github.com/kittenkiki15/point-free-spacetime/issues/40) |
+| [C-0012](C-0012.md) | 可能な実験の観測も、観測者の座標時刻で、登録が準備より前にない | 高 | 中 | 中 | 低 | 未着手 | [#40](https://github.com/kittenkiki15/point-free-spacetime/issues/40) |
 | [C-0013](C-0013.md) | 可能な実験でも較正の普遍性が成り立つ | 中 | 中 | 中 | 低 | 未着手 | [#41](https://github.com/kittenkiki15/point-free-spacetime/issues/41) |
