@@ -172,17 +172,26 @@ def choice_pairs():
     return {a: (pair, system) for pair, system, a in rows}
 
 
-def system_of(f):
+def systems_of(f):
+    # 「体系」の行の、括弧の前の記号（複数の組に依存する場合は「・」で区切る）
     row = deps_graph.table_row(f, "体系")
-    return None if row is None else row.split("（")[0].strip()
+    if row is None:
+        return None
+    return {s.strip() for s in row.split("（")[0].split("・")}
+
+
+def test_choice_pairs_are_pairs_with_distinct_systems():
+    pairs = choice_pairs()
+    assert pairs, "二者択一の組の表がない"
+    labels = [s for _, s in pairs.values()]
+    assert len(labels) == len(set(labels)), "体系の記号が重複している"
+    for pair in {p for p, _ in pairs.values()}:
+        assert sum(1 for p, _ in pairs.values() if p == pair) == 2, (pair, "組の前提がちょうど二つでない")
 
 
 def test_choice_pairs_and_systems_are_consistent():
     # 同じ組の二つの前提に（間接的にも）依存しない。組の前提とそれに依存する項目は、「体系」の行が依存と一致する
     pairs = choice_pairs()
-    assert pairs, "二者択一の組の表がない"
-    for pair in {p for p, _ in pairs.values()}:
-        assert len({s for p, s in pairs.values() if p == pair}) >= 2, (pair, "組の体系が二つ以上ない")
     deps = deps_graph.dependencies()
 
     def ancestors(i, seen):
@@ -194,14 +203,15 @@ def test_choice_pairs_and_systems_are_consistent():
 
     for i, f in deps_graph.item_files().items():
         used = ancestors(i, set()) | ({i} if i in pairs else set())
-        members = [pairs[a] for a in used if a in pairs]
         by_pair = {}
-        for pair, system in members:
-            by_pair.setdefault(pair, set()).add(system)
+        for a in used:
+            if a in pairs:
+                pair, system = pairs[a]
+                by_pair.setdefault(pair, set()).add(system)
         for pair, systems in by_pair.items():
             assert len(systems) == 1, (i, pair, "同じ組の二つの前提に依存している")
         systems = {s for ss in by_pair.values() for s in ss}
         if systems:
-            assert {system_of(f)} == systems, (i, "「体系」の行が依存と一致しない")
+            assert systems_of(f) == systems, (i, "「体系」の行が依存と一致しない")
         else:
-            assert system_of(f) is None, (i, "組の前提に依存しないのに「体系」の行がある")
+            assert systems_of(f) is None, (i, "組の前提に依存しないのに「体系」の行がある")
