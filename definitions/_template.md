@@ -4,7 +4,7 @@
 | --- | --- |
 | 状態 | 採用・作業上・未定・廃止 |
 | 層 | 実験・観測量・観測量の時空・可能な実験・可能な観測量・点なし時空 |
-| 体系 | 二者択一の組の前提（[`assumptions/README.md`](../assumptions/README.md) の「二者択一の組と体系」）に依存する場合に、その体系。依存しない場合は行を置かない |
+| 体系 | 択一の組の前提（[`assumptions/README.md`](../assumptions/README.md) の「択一の組と体系」）に依存する場合に、その体系。依存しない場合は行を置かない |
 | 依存する ID | この定義が使う定義・前提の ID（例：[D-NNNN](D-NNNN.md)、[A-NNNN](../assumptions/A-NNNN.md)）。なければ「なし」 |
 | 関係する予想・結果 | この定義に依存する予想・結果の ID。なければ「なし」 |
 | 初出 | [YYYY-MM-DD 第 NN 回](../summaries/YYYY-MM-DD_NN_topic.md) |

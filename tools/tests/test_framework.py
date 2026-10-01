@@ -166,16 +166,16 @@ def test_roadmap_task_ids_are_unique_and_described():
 
 
 def choice_pairs():
-    # assumptions/README.md の「二者択一の組と体系」の表：前提の ID → (組, 体系)。表の全データ行の書式を検査する
+    # assumptions/README.md の「択一の組と体系」の表：前提の ID → (組, 体系)。表の全データ行の書式を検査する
     readme = (ROOT / "assumptions" / "README.md").read_text(encoding="utf-8")
-    section = readme.split("## 二者択一の組と体系", 1)[1].split("\n## ", 1)[0]
+    section = readme.split("## 択一の組と体系", 1)[1].split("\n## ", 1)[0]
     lines = [line for line in section.splitlines() if line.startswith("|")]
     assert lines[0].startswith("| 組 |") and set(lines[1]) <= set("|- "), "表の見出しがない"
     pattern = re.compile(r"^\| (\d+) \| ([A-Z]) \| \[(A-\d{4})\]\(\3\.md\) \| [^|]+ \|$")
     result = {}
     for line in lines[2:]:
         m = pattern.match(line)
-        assert m, (line, "二者択一の組の表の行の書式が正しくない（体系の記号は英大文字 1 文字）")
+        assert m, (line, "択一の組の表の行の書式が正しくない（体系の記号は英大文字 1 文字）")
         pair, system, a = m.groups()
         assert a not in result, (a, "同じ前提が二度登録されている")
         assert a in deps_graph.item_files(), (a, "登録した前提のファイルがない")
@@ -194,13 +194,13 @@ def systems_of(f):
     return set(labels)
 
 
-def test_choice_pairs_are_pairs_with_distinct_systems():
+def test_choice_groups_have_two_or_more_members_with_distinct_systems():
     pairs = choice_pairs()
-    assert pairs, "二者択一の組の表がない"
+    assert pairs, "択一の組の表がない"
     labels = [s for _, s in pairs.values()]
     assert len(labels) == len(set(labels)), "体系の記号が重複している"
     for pair in {p for p, _ in pairs.values()}:
-        assert sum(1 for p, _ in pairs.values() if p == pair) == 2, (pair, "組の前提がちょうど二つでない")
+        assert sum(1 for p, _ in pairs.values() if p == pair) >= 2, (pair, "組の前提が二つ以上でない")
 
 
 def test_choice_pairs_and_systems_are_consistent():

@@ -1413,3 +1413,550 @@ N_e = 0 の観測者の座標の扱いを、未解決の点から注意に移し
 ## ユーザー
 
 ほかに相談したい項目はありません。このセッションの対話を終了して、PR を作成してください。
+
+---
+
+> 以下は、PR #43 の作成後、クロスモデルレビューへの対応中に行った対話です（ユーザーの依頼で追記した）。
+
+## ユーザー
+
+`tools/tests/test_framework.py` について、「二者択一」だけでなく、「同時に土台には置かない代替の前提」が三者以上ある「多肢選択」の場合も許可したいので、体系数 > 2 のときも検査を通るようにしたいです。可能でしょうか？
+
+また、このフレームワークでは、「同時読み出しをする実験」を排除したいです。単一の装置で「同時読み出し」ができる実験では、異なる設定で行った複数の観測の結果を同時に読み出せるはずですが、このフレームワークの定義では同一の装置に異なる設定を同時に設定することができません。また、「登録の事象」も読み出した結果ごとに異なるはずで、「同一の装置が登録（検出など）した時刻と場所」が同時に複数存在することになり、これもこのフレームワークの定義に合いません。このフレームワークで「同時読み出し」を実現したい場合は、読み出したい結果の個数 M に応じて、M 個の装置で並列に観測を行い、設定と結果の空間をそれぞれ X_π^M、Y_π^M と多次元化したプロトコル π^M を用いて実験を行うこととしたいです。ご意見ください。
+
+<details><summary>ツール: Bash</summary>
+
+```text
+cd /home/user/point-free-spacetime && git status --short; git log --oneline -1; git diff | head -20; sed -n '/^\*\*有限な実験\*\*/,/^添字/p' definitions/D-0001.md | cut -c1-250
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+a2a78c2 第 21 回の 9 回目のクロスモデルレビューに対応：A-0012 の非退化の区間が、始まりと最後の読み出しの厳密な順序を要することを注意に明記した
+**有限な実験**とは、一つの実験プロトコル $`π`$ に従い、有限の期間に、有限回の操作と有限回の観測を行って、観測ごとに結果を読み出すものである。操作の回数と期間の有限性は、�
+
+- プロトコル $`π`$（有限の記述を持つ。[A-0002](../assumptions/A-0002.md)）
+- 観測の回数 $`N_e ∈ ℕ`$（$`N_e = 0`$ も許す）
+- 設定の族 $`(x_i)_{i=1}^{N_e}`$：$`x_i`$ は $`i`$ 回目の観測の設定で、プロトコル $`π`$ の設定の空間 $`X_π`$ の元。初期状態の条件と測定の条件を定める実数の組（[A-0003](../assumptions/A-0003.md)）
+- 結果の族 $`(y_i)_{i=1}^{N_e}`$：$`y_i`$ は $`i`$ 回目の観測の結果で、結果の空間 $`Y_π`$ の元（実数の組。[A-0003](../assumptions/A-0003.md)）
+- **装置**：その実験で、準備から結果の読み出しまでに使う物理系
+- **観測者**：その実験の期間にあたる世界線の区間で、基準の時計と物差しを伴うもの
+
+添字 $`i`$ は観測を実行した順序を表す。設定 $`x_i`$ は、それまでの結果 $`y_1, …, y_{i-1}`$ に応じて選んでもよい（適応的な設定）。その場合は、選び方の規則もプロトコルの記述に含め�
+```
+
+</details>
+
+## Claude
+
+#### 1. 三つ以上の前提からなる組
+
+可能です。直す箇所は次のとおりです。
+
+- **テスト**：「組の前提がちょうど二つ」の検査を「二つ以上」に戻します。そのほかの検査はそのまま使えます。
+  - 一つの項目が、同じ組の二つ以上の前提に依存しないこと。
+  - 体系の記号が重複しないこと。
+  - 表の全行の書式。
+- **名前**：先のレビューで「ちょうど二つ」を検査するよう求められたのは、「二者択一」という名前だったからです。三つ以上を許すなら、名前を**「択一の組」**（組の中から一つを選んで土台にする）に改めることを提案します。`assumptions/README.md`、`CLAUDE.md`、`framework.md`、用語一覧、テンプレートの表記を揃えます。今の組 1（A-0014・A-0015）は、前提が二つの択一の組として扱います。
+
+#### 2. 同時読み出しを除き、並列の観測をプロトコル π^M で表すこと
+
+賛成です。今の定義とよく整合します。D-0001 は既に「観測ごとに結果を読み出す」と書いており、各観測の設定 $`x_i`$ と登録の事象 $`σ_e(x_i, y_i)`$ は一つずつです。そのため、同時読み出しを除くことは、定義の趣旨を明文化することにあたります。そのうえで、詰めておきたい点が四つあります。
+
+1. **装置の数え方**：D-0001 では、装置は実験と 1 対 1 に対応します。そこで、M 個の装置は、π^M の実験の**一つの装置（複合系）**とみなします。また、M 個の並列の観測は、π^M の **1 回の観測**とします。設定は $`X_π^M`$ の元、結果は $`Y_π^M`$ の元です。こう整理すれば、「1 回の観測に設定は一つ、結果も一つ」という形は崩れません。
+2. **登録の事象**：π^M の 1 回の観測でも、M 個の部分装置は別々の時刻と場所で登録します。今の $`σ_e : X_π × Y_π ⇀ M_{O_e}`$ は 1 点を返すので、次のどちらかが必要です。
+   - (a) 複合のプロトコルでは、登録の事象を $`M_{O_e}^M`$ に値をとる族（部分装置ごとの登録）とする。
+   - (b) 複合の観測では、登録の事象を「読み出しの事象」一つで代表する。
+
+   部分装置ごとの時空の情報を残せるので、(a) をおすすめします。準備の事象 $`τ`$ も、同じく部分装置ごとにします。D-0013 の 3 と A-0016 も、これに合わせて書き直します。
+3. **統計**：$`p_{π^M}(\,\cdot \mid x)`$ は $`Y_π^M`$ の上の同時分布で、各成分の積とは限りません。部分系の相関やもつれは、この同時分布に入ります。ベル実験もこの形で書けます。ここは T-0019 の「複合系の扱い」（一般化確率論）とつながるので、詳細化の論点として T-0019 に記録します。
+4. **読み出しの順序**：同時読み出しを除くことに加えて、A-0012 で残っていた逆順の読み出しも、同じ扱いで除けます。D-0001 の「添字 $`i`$ は観測を実行した順序」に、「各観測の結果の読み出しは、添字の順に、異なる時刻に行う」を加えます。そうすると、A-0012 の未解決の点の二つ（同時読み出しと逆順）が解消します。A-0012 で主張に含めて課していた条件（始まりと最後の読み出しの厳密な順序）は、別の条件として残ります。
+
+#### 進め方
+
+1 と、2 の文案（D-0001 に読み出しの順序と π^M の扱いを書き、D-0013 の登録・準備の事象を案 (a) に改め、A-0012 の未解決の点を整理する）で進めてよいでしょうか。登録の事象を (a)・(b) のどちらにするかも決めてください。
+
+なお、PR を作った後の変更なので、運用に従って PR 上に記録します。まとめには 1〜2 行だけ追記し、対話ログは書き直しません。
+
+## ユーザー
+
+1 と、2 の文案（D-0001 に読み出しの順序と π^M の扱いを書き、D-0013 の登録・準備の事象を案 (a) に改め、A-0012 の未解決の点を整理する）で進めてください。登録の事象は 、おすすめの (a) にしましょう。
+
+可能であれば、この会話に関しては、対話ログに追記していただきたいです。
+
+<details><summary>ツール: Bash</summary>
+
+```text
+grep -rln "二者択一" --include=*.md --include=*.py . | grep -v '^./logs'; sed -n '/^2\. \*\*較正の写像/,/^（定義される範囲で/p' definitions/D-0013.md; sed -n '/## 主張/,/## 採用/p' assumptions/A-0013.md assumptions/A-0016.md
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+````text
+./definitions/_template.md
+./framework.md
+./CLAUDE.md
+./conjectures/C-0010.md
+./conjectures/C-0009.md
+./conjectures/_template.md
+./conjectures/C-0011.md
+./assumptions/A-0015.md
+./assumptions/_template.md
+./assumptions/README.md
+./assumptions/A-0014.md
+./results/_template.md
+./NEXT.md
+./tools/tests/test_framework.py
+./surveys/2026-09-30_17_comparison-of-experiments.md
+./glossary.md
+./summaries/2026-09-30_17_comparison-of-experiments.md
+./summaries/2026-10-01_21_adaptive-settings-and-systems.md
+./summaries/2026-09-30_20_terms-setting-and-agents.md
+2. **較正の写像**：時空の読みを持つプロトコルの実験 $`e`$ について、[A-0010](../assumptions/A-0010.md) の換算を、次の二つの連続な部分写像として書く。
+   - **準備の事象**：$`τ_e : X_π ⇀ M_{O_e}`$。設定 $`x`$ の観測で、準備（放出、開始など）を行う時刻と場所を、観測者 $`O_e`$ の座標で表したもの。
+   - **登録の事象**：$`σ_e : X_π × Y_π ⇀ M_{O_e}`$。設定 $`x`$ の観測で結果 $`y`$ を得たとき、装置が登録（検出など）した時刻と場所を、観測者 $`O_e`$ の座標で表したもの。
+3. **観測の事象の族**：各回の準備の時刻と場所を区別する読みがその回の設定 $`x_i`$ に、登録の時刻と場所の読みが設定 $`x_i`$ か結果 $`y_i`$ に含まれるとき（準備の事象 $`τ_e(x_i)`$ は設定だけに依存するので、異なる回の準備は設定の読みで区別される必要がある。PR #42 のレビュー）、実験 $`e`$ の $`i`$ 回目の観測の、準備の事象と登録の事象の組
+
+```math
+\bigl(τ_e(x_i),\ σ_e(x_i, y_i)\bigr) ∈ M_{O_e} × M_{O_e}, \quad i = 1, …, N_e
+```
+
+（定義される範囲で）を、実験 $`e`$ の観測の事象の族とよぶ。この条件がないと、同じ設定・結果を繰り返した異なる回の事象が、同じ点に写される（PR #42 のレビュー）。
+## 主張
+
+時空の読みを持つ各プロトコル $`π`$ について、部分写像 $`τ_π : X_π ⇀ ℝ^{1+n}`$ と $`σ_π : X_π × Y_π ⇀ ℝ^{1+n}`$ があり、$`π`$ の任意の実際の実験 $`e`$ について、較正の写像（[D-0013](../definitions/D-0013.md)）は $`τ_e = τ_π`$、$`σ_e = σ_π`$ である（各観測者の座標 $`M_{O_e} = ℝ^{1+n}`$ の上で比べる）。つまり、装置の読みを観測者の
+…（以下 671 文字を省略）
+````
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+for f in definitions/_template.md framework.md CLAUDE.md conjectures/C-0010.md conjectures/C-0009.md conjectures/_template.md conjectures/C-0011.md assumptions/A-0015.md assumptions/_template.md assumptions/README.md assumptions/A-0014.md results/_template.md NEXT.md tools/tests/test_framework.py glossary.md summaries/2026-10-01_21_adaptive-settings-and-systems.md; do sed -i 's/二者択一/択一/g' $f; done; grep -rn "択一" --include=*.md --include=*.py . | grep -v '^./logs\|_17_\|_20_' | grep -o ".\{0,30\}択一.\{0,30\}"
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+ons/_template.md:7:| 体系 | 択一の組の前提（[`assumption
+/assumptions/README.md) の「択一の組と体系」）に依存
+い代替の前提の組は「択一の組」とし、組の各前
+(assumptions/README.md) の「択一の組と体系」）。未完
+採用・体系 E。A-0015 と択一）<br>[A-0015](assumptions/A-
+採用・体系 P。A-0014 と択一）<br>[A-0016](assumptions/A-
+い代替の前提の組は「択一の組」として `assumption
+/C-0010.md:14:| 体系 | E（[択一の組と体系](../assumption
+/C-0009.md:14:| 体系 | P（[択一の組と体系](../assumption
+es/_template.md:14:| 体系 | 択一の組の前提（[`assumption
+/assumptions/README.md) の「択一の組と体系」）に依存
+/C-0011.md:14:| 体系 | E（[択一の組と体系](../assumption
+ | P（[A-0014](A-0014.md) と択一。[一覧](README.md)の「�
+2:- [A-0014](A-0014.md) とは択一の前提である。
+系 P の土台）にした。択一の組と体系を明示した
+ons/_template.md:7:| 体系 | 択一の組の前提か、それに
+�（[README](README.md) の「択一の組と体系」）。そう
+論の土台にするもの（択一の組の前提では、その
+./assumptions/README.md:26:## 択一の組と体系
+い代替の前提の組を「択一の組」として登録しま
+排反とは限りません。択一は、同時に土台に置か
+ | E（[A-0015](A-0015.md) と択一。[一覧](README.md)の「�
+2:- [A-0015](A-0015.md) とは択一の前提である。どちら
+系 E の土台）にした。択一の組と体系を明示した
+lts/_template.md:8:| 体系 | 択一の組の前提（[`assumption
+/assumptions/README.md) の「択一の組と体系」）に依存
+./NEXT.md:48:  - 択一の前提の組を「体系」
+(assumptions/README.md) の「択一の組と体系」）、[A-001
+# assumptions/README.md の「択一の組と体系」の表：前
+   section = readme.split("## 択一の組と体系", 1)[1].split(
+178:        assert m, (line, "択一の組の表の行の書式が
+ork.py:199:    assert pairs, "択一の組の表がない"
+0:| alternative assumptions | 択一の組（前提の） | 同時
+(assumptions/README.md) の「択一の組と体系」。例：[A-
+設定の扱いと、前提の択一の組と体系
+ttings-and-systems.md:17:5. **択一の前提の状態**：ユー�
+ptions/A-0015.md) のような択一の前提の両方を『採用
+nd-systems.md:25:- 前提の**択一の組と体系**の運用を�
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+git checkout summaries/2026-10-01_21_adaptive-settings-and-systems.md && python3 - <<'EOF'
+import re,glob
+def sub(p,o,n,cnt=None):
+    s=open(p).read(); assert o in s,(p,o); s=s.replace(o,n); open(p,'w').write(s)
+sub('framework.md',"A-0015 と択一）","A-0015 と同じ択一の組）")
+sub('framework.md',"A-0014 と択一）","A-0014 と同じ択一の組）")
+sub('assumptions/A-0014.md',"[A-0015](A-0015.md) と択一。","[A-0015](A-0015.md) と同じ択一の組。")
+sub('assumptions/A-0015.md',"[A-0014](A-0014.md) と択一。","[A-0014](A-0014.md) と同じ択一の組。")
+sub('assumptions/A-0014.md',"とは択一の前提である。","とは同じ択一の組の前提である。")
+sub('assumptions/A-0015.md',"とは択一の前提である。","とは同じ択一の組の前提である。")
+sub('assumptions/README.md',"- 組はちょうど二つの前提からなり、","- 組は二つ以上の前提からなり（三つ以上の前提からなる多肢の組も許す。第 21 回に「二者択一の組」から改めた）、")
+sub('NEXT.md',"  - 択一の前提の組を「体系」","  - 択一の前提の組（第 21 回の PR のレビュー対応中に、三つ以上の前提も許すよう「二者択一の組」から改名）を「体系」")
+p='tools/tests/test_framework.py'; s=open(p).read()
+s=s.replace('''        assert sum(1 for p, _ in pairs.values() if p == pair) == 2, (pair, "組の前提がちょうど二つでない")''','''        assert sum(1 for p, _ in pairs.values() if p == pair) >= 2, (pair, "組の前提が二つ以上でない")''')
+s=s.replace("def test_choice_pairs_are_pairs_with_distinct_systems","def test_choice_groups_have_two_or_more_members_with_distinct_systems")
+open(p,'w').write(s)
+EOF
+grep -n ">= 2\|== 2" tools/tests/test_framework.py; grep -n "組と体系\|択一" CLAUDE.md glossary.md | cut -c1-200
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+Updated 1 path from the index
+203:        assert sum(1 for p, _ in pairs.values() if p == pair) >= 2, (pair, "組の前提が二つ以上でない")
+CLAUDE.md:108:- 同時には議論の土台に置かない代替の前提の組は「択一の組」として `assumptions/README.md` に登録し、組の各前提が定める体系を、組の前提
+glossary.md:10:| alternative assumptions | 択一の組（前提の） | 同時には議論の土台に置かない代替の前提の組。組の各前提が一つの体系を定め、組の前提の�
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+sed -i 's/同じ組の両方に依存しないことを/同じ組の二つ以上の前提に依存しないことを/' CLAUDE.md && grep -n "組の二つの前提\|両方" assumptions/README.md CLAUDE.md | cut -c1-200
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+assumptions/README.md:31:- 組は二つ以上の前提からなり（三つ以上の前提からなる多肢の組も許す。第 21 回に「二者択一の組」から改めた）、各前提は一�
+assumptions/README.md:32:- 組の前提のファイルには「体系」の行を置きます。組の前提に（間接的にも）依存する定義・前提・予想・結果にも「体系」の�
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+sed -n '28,33p' assumptions/README.md
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+前提を変えて得られる体系を比べるため（第 08 回の方針）、同時には議論の土台に置かない代替の前提の組を「択一の組」として登録します（第 21 回に、ユーザーの判断で導入）。
+
+- 組の前提は、数学的な内容だけなら論理的に排反とは限りません。択一は、同時に土台に置かないという運用上の約束です（例：A-0014 の取り替えと A-0015 の群の取り替えは、両者を結ぶ条件がなければ両立するが、A-0014 は取り替えについてほかの仮定を置かないことを主張に含むので、A-0015 と同時には置かない。PR #43 のレビュー）。
+- 組は二つ以上の前提からなり（三つ以上の前提からなる多肢の組も許す。第 21 回に「二者択一の組」から改めた）、各前提は一つの**体系**を定めます。体系の記号は英大文字 1 文字とし（E、P など）、組をまたいで重複させません。組の前提の状態が「採用」であることは、その前提を置く体系の土台にすると合意したことを意味し、組の両方を同時に土台にすることは意味しません。
+- 組の前提のファイルには「体系」の行を置きます。組の前提に（間接的にも）依存する定義・前提・予想・結果にも「体系」の行を置き、その体系を書きます（複数の組に依存する場合は、組ごとの体系を「・」で区切って並べます）。一つの項目が同じ組の二つの前提に依存しないこと、「体系」の行が依存と一致することを、`tools/tests/test_framework.py` で検査します。
+- 予想が、ある体系で組のほかの前提を導こうとする場合は、その前提を「目標の ID」に書きます（例：[C-0011](../conjectures/C-0011.md) は体系 E で A-0015 を目標とする）。
+```
+
+</details>
+
+## Claude
+
+択一の組の名前の変更とテストの修正が済みました。次に、D-0001・D-0013・A-0012・A-0013・A-0016 を書き換えます。
+
+<details><summary>ツール: Bash</summary>
+
+```text
+sed -i -e 's/組の両方を同時に土台にすることは意味しません/組の二つ以上の前提を同時に土台にすることは意味しません/' -e 's/一つの項目が同じ組の二つの前提に依存しないこと/一つの項目が同じ組の二つ以上の前提に依存しないこと/' assumptions/README.md && grep -c "二つ以上" assumptions/README.md; sed -n '/^## 注意/,/^## 未解決/p' definitions/D-0001.md | cut -c1-120; grep -n "^- 第" definitions/D-0001.md | tail -2 | cut -c1-80; sed -n '/## 未解決の点/,/## 履歴/p' assumptions/A-0012.md | cut -c1-120
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+2
+## 注意
+
+- $`N_e = 0`$ の実験は、観測を 1 回も行わない、情報を与えない実験である。統計的実験の�
+- $`Y_π`$ は 1 回の観測の結果の空間である。同じ実験の中の結果どうしの同時分布は、結�
+- 実験を行う観測者の世界線の区間（実験の期間）と、装置と操作が占める領域とは区別�
+- 装置と観測者を実験と 1 対 1 に対応させるのは、定義上の約束である（ユーザーの判断�
+- 観測者の基準の時計と物差しで装置の読みを座標に換算できることは、前提 [A-0010](../ass
+- 実験を行う者は**主体**（[D-0012](D-0012.md)）とよび、観測者・装置とは別の概念とする。�
+- 実際の実験の装置・観測者を「実際の装置」「実際の観測者」、可能な実験の装置・観�
+- 既存研究での装置・観測者の語の使われ方は、[第 20 回の調査メモ](../surveys/2026-09-30_20_ag
+- 設定の空間 $`X_π`$ と結果の空間 $`Y_π`$ は、プロトコルごとに異なりうる。
+- 有限な実験に何を対応させるか（結果の統計）は [D-0004](D-0004.md) で定める。
+
+## 未解決の点
+50:- 第 20 回：ユーザーの判断で、装置と観測者（実験の期�
+51:- 第 20 回：ユーザーの判断で、観測の回数 $`N_e`$（0 も許�
+## 未解決の点
+
+- 制限した実験 $`e'`$ の観測者の区間の終わりの正準な選び方（$`N_e ≥ 2`$ では、$`N_e − 1`
+- 結果の「読み出し」の時刻と、登録の事象（[D-0013](../definitions/D-0013.md)）の時刻との関係
+- 最後とその直前の観測の結果を同時に読み出す実験や、観測の番号と逆の順序で読み出�
+- 観測が時間的に重なる場合の扱い。$`N_e`$ 回目の準備が $`N_e − 1`$ 回目の読み出しより�
+- 実験の族の極限（[D-0005](../definitions/D-0005.md)）で、制限の列（入れ子の観測。第 17 回の�
+
+## 履歴
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+python3 - <<'EOF'
+H="第 21 回（PR #43 のレビュー対応中の対話）"
+def rw(p,pairs,hist=None):
+    s=open(p).read()
+    for o,n in pairs:
+        assert s.count(o)==1,(p,o[:50]); s=s.replace(o,n)
+    if hist: s=s.rstrip("\n")+"\n"+hist+"\n"
+    open(p,'w').write(s)
+# D-0001
+rw('definitions/D-0001.md',[
+("添字 $`i`$ は観測を実行した順序を表す。","添字 $`i`$ は観測を実行した順序を表す。各観測の結果の読み出しは、添字の順に、観測者の基準の時計で互いに異なる時刻に行う（複数の観測の結果を同時に読み出すことと、添字と逆の順に読み出すことは許さない）。"),
+("- 設定の空間 $`X_π`$ と結果の空間 $`Y_π`$ は、プロトコルごとに異なりうる。\n",
+"""- 設定の空間 $`X_π`$ と結果の空間 $`Y_π`$ は、プロトコルごとに異なりうる。
+- **同時読み出しと複合のプロトコル**：1 回の観測には設定が一つ、結果が一つあり、装置が登録する事象も一回の観測に一つの組である（[D-0013](D-0013.md)）。そのため、一つの装置で異なる設定の複数の観測の結果を同時に読み出すことは、この定義では表さない。複数（$`M`$ 個）の結果を同時に読み出したい場合は、$`M`$ 個の部分装置で並列に観測を行い、設定の空間と結果の空間をそれぞれ $`X_π^M`$、$`Y_π^M`$ とした**複合のプロトコル** $`π^M`$ の 1 回の観測として表す。$`M`$ 個の部分装置は、$`π^M`$ の実験の一つの装置（複合系）とみなす（装置と実験の 1 対 1 の対応は保たれる）。$`π^M`$ の結果の分布は $`Y_π^M`$ の上の同時分布で、成分ごとの分布の積とは限らない（部分系の相関やもつれを含む。複合系の扱いは [T-0019](../roadmap.md) の論点）。部分装置ごとの準備と登録の事象は [D-0013](D-0013.md) で定める（"""+H+"""に、ユーザーの判断で加えた）。
+"""),
+],f"- {H}：ユーザーの判断で、結果の読み出しを添字の順に異なる時刻に行うこと（同時読み出しと逆順の読み出しを除く）を定義に加え、同時読み出しを複合のプロトコル $`π^M`$ の 1 回の観測として表すことを注意に加えた。")
+# D-0013
+rw('definitions/D-0013.md',[
+("   - **登録の事象**：$`σ_e : X_π × Y_π ⇀ M_{O_e}`$。設定 $`x`$ の観測で結果 $`y`$ を得たとき、装置が登録（検出など）した時刻と場所を、観測者 $`O_e`$ の座標で表したもの。\n",
+"""   - **登録の事象**：$`σ_e : X_π × Y_π ⇀ M_{O_e}`$。設定 $`x`$ の観測で結果 $`y`$ を得たとき、装置が登録（検出など）した時刻と場所を、観測者 $`O_e`$ の座標で表したもの。
+   - **複合のプロトコル**（[D-0001](D-0001.md) の注意。$`M`$ 個の部分装置で並列に観測する $`π^M`$）では、準備
+…（以下 3352 文字を省略）
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+Traceback (most recent call last):
+  File "<stdin>", line 44, in <module>
+  File "<stdin>", line 5, in rw
+AssertionError: ('roadmap.md', 'PR #43 のレビューの論点）。\n- 問い：')
+14:| causal coverage | 因果被覆 | �
+15:| causal hull | 因果的な包 | 集
+16:| causal site | 因果サイト | Chr
+17:| comparison of experiments | 実験�
+18:| completely prime filter | 完全素
+35 passed in 0.23s
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+grep -n "^  4\. 逐次" roadmap.md | cut -c1-20; awk 'NR==276' roadmap.md | tail -c 200; sed -n '277p' roadmap.md | cut -c1-30
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+276:  4. 逐次・�
+準の論点（量子的な出力を後の装置につなぐ場合）のうち、古典的な記録を次の装置へ渡す部分にあたる（第 21 回に、ユーザーの判断で加えた）。
+- 問い：「量子的な観�
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+python3 - <<'EOF'
+def rw(p,o,n):
+    s=open(p).read(); assert s.count(o)==1,(p,o[:50]); open(p,'w').write(s.replace(o,n))
+rw('roadmap.md',"古典的な記録を次の装置へ渡す部分にあたる（第 21 回に、ユーザーの判断で加えた）。\n- 問い：",
+ "古典的な記録を次の装置へ渡す部分にあたる（第 21 回に、ユーザーの判断で加えた）。\n  5. 複合のプロトコル $`π^M`$（[D-0001](definitions/D-0001.md) の注意。$`M`$ 個の部分装置で並列に観測し、同時に読み出す）の結果の同時分布と、一般化確率論・量子論の複合系の扱い（テンソル積、局所的な効果、もつれ）との対応（第 21 回に加えた）。\n- 問い：")
+p='glossary.md'; L=open(p).read().split('\n')
+row="| composite protocol | 複合のプロトコル | $`M`$ 個の部分装置で並列に観測を行い、設定の空間と結果の空間をそれぞれ $`X_π^M`$、$`Y_π^M`$ としたプロトコル $`π^M`$。複数の結果を同時に読み出す観測を、その 1 回の観測として表す（[D-0001](definitions/D-0001.md)）。準備と登録の事象は部分装置ごとに定める（[D-0013](definitions/D-0013.md)）。 | [第 21 回](summaries/2026-10-01_21_adaptive-settings-and-systems.md) |"
+for i,l in enumerate(L):
+    if l.startswith('| ') and not l.startswith('| 英語') and not l.startswith('| ---'):
+        if l.split('|')[1].strip().lower()>"composite protocol": L.insert(i,row); break
+open(p,'w').write('\n'.join(L))
+p='summaries/2026-10-01_21_adaptive-settings-and-systems.md'; s=open(p).read()
+o="## 得られた結果（検証済み）"
+assert s.count(o)==1
+s=s.replace(o,"- PR #43 のレビュー対応中の対話で、ユーザーの判断で次を加えた：「二者択一の組」を三つ以上の前提も許す「択一の組」に改めた。結果の読み出しを添字の順に異なる時刻に行うこととし（D-0001）、同時読み出しは $`M`$ 個の部分装置による複合のプロトコル $`π^M`$ の 1 回の観測として表し、その準備・登録の事象を部分装置ごとに定めた（D-0013・A-0013・A-0016）。\n\n"+o,1)
+open(p,'w').write(s)
+EOF
+grep -n "composite" glossary.md | cut -c1-30; python3 tools/deps_graph.py >/dev/null; python3 -m pytest -q tools/tests 2>&1 | tail -1; git diff --stat | 
+…（以下 7 文字を省略）
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+19:| composite protocol | 複�
+35 passed in 0.19s
+ 22 files changed, 46 insertions(+), 35 deletions(-)
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+grep -n "τ_e\|σ_e\|X_π" symbols.md | cut -c1-200 | head
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+86:| $`τ^O_π`$ | 換算の写像（旧記法） | 第 13 回の記法で、観測者 $`O`$ がプロトコル $`π`$ の設定の時計・物差しの読みを $`M_O`$ に換算する写像（当時
+87:| $`N_e`$、$`(x_i)`$、$`(y_i)`$ | 観測の回数、設定の族、結果の族 | 有限な実験 $`e`$ の観測の回数（0 も許す）と、$`i`$ 回目（実行の順序）の観測の設�
+88:| $`τ_e`$、$`σ_e`$ | 準備の事象、登録の事象 | 実験 $`e`$ の較正の写像。$`τ_e(x)`$ は設定 $`x`$ の観測の準備の事象、$`σ_e(x, y)`$ は結果 $`y`$ を得た観�
+109:| $`X`$ | 設定の空間 | プロトコル全体の設定の空間 $`⨆_π X_π`$（[D-0003](definitions/D-0003.md)）。第 09 回の改訂案では「実験における時空」とよび、時
+111:| $`π`$、$`X_π`$、$`Y_π`$ | 実験プロトコル、その設定の空間と結果の空間 | $`π`$ は有限の記述を持つ実験プロトコル。$`X_π`$、$`Y_π`$ はプロトコル
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+sed -n '88p' symbols.md | tail -c 150; sed -n '111p' symbols.md | tail -c 120; python3 - <<'EOF'
+p='symbols.md'; L=open(p).read().split('\n')
+i=[k for k,l in enumerate(L) if l.startswith("| $`π`$、$`X_π`$、$`Y_π`$")][0]
+L.insert(i+1,"| $`π^M`$、$`X_π^M`$、$`Y_π^M`$ | 複合のプロトコル、その設定の空間と結果の空間 | $`M`$ 個の部分装置で並列に観測するプロトコル。複数の結果の同時読み出しを、その 1 回の観測として表す（[D-0001](definitions/D-0001.md)）。 | [第 21 回](summaries/2026-10-01_21_adaptive-settings-and-systems.md) |")
+j=[k for k,l in enumerate(L) if l.startswith("| $`τ_e`$、$`σ_e`$")][0]
+L.insert(j+1,"| $`τ_e^k`$、$`σ_e^k`$ | 部分装置ごとの準備の事象、登録の事象 | 複合のプロトコル $`π^M`$ の実験で、第 $`k`$ 部分装置の準備と登録の事象（$`τ_e`$・$`σ_e`$ の第 $`k`$ 成分。[D-0013](definitions/D-0013.md)）。 | [第 21 回](summaries/2026-10-01_21_adaptive-settings-and-systems.md) |")
+open(p,'w').write('\n'.join(L))
+EOF
+sed -n '5,6p' symbols.md
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+��、プロトコルだけで決まる $`τ_π`$・$`σ_π`$ に等しい | — | [第 20 回](summaries/2026-09-30_20_terms-setting-and-agents.md) |
+ #21 のレビューを受けて導入） | | [調査 08](surveys/2026-09-28_08_observation-as-limit.md)（1.4 節） |
+
+- 「Lean」の列は、Lean 4 と Mathlib での対応する記法・名前です。空欄は、対応するものをまだ確認していないことを表します。
+```
+
+</details>
+
+## Claude
+
+記号一覧への追加を確認しています（列の数が既存の表と合っているか）。
+
+<details><summary>ツール: Bash</summary>
+
+```text
+grep -n "^| 記号" symbols.md | head -3; grep -n "π^M\|τ_e^k" symbols.md | cut -c1-60
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+11:| 記号 | 読み方 | 意味 | Lean | 初出 |
+27:| 記号 | 読み方 | 意味 | Lean | 初出 |
+39:| 記号 | 読み方 | 意味 | Lean | 初出 |
+89:| $`τ_e^k`$、$`σ_e^k`$ | 部分装置ごとの準備�
+113:| $`π^M`$、$`X_π^M`$、$`Y_π^M`$ | 複合のプロ�
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+sed -i -e '89s/）。 | \[第 21 回\]/）。 | — | [第 21 回]/' -e '113s/）。 | \[第 21 回\]/）。 | — | [第 21 回]/' symbols.md && sed -n '89p;113p' symbols.md | awk -F'|' '{print NF}'; sed -n '88p' symbols.md | awk -F'|' '{print NF}'
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+7
+7
+7
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+cd ~/.claude/projects/-home-user && python3 - <<'EOF'
+import json
+for l in open('[ID].jsonl'):
+    d=json.loads(l)
+    if d.get('type')=='user':
+        c=d['message']['content']
+        t=c if isinstance(c,str) else (c[0].get('text','') if isinstance(c,list) and c and c[0].get('type')=='text' else '')
+        if 'test_framework.py` について' in t or '対話ログに追記' in t: print(d['timestamp'], t[:40])
+EOF
+head -8 /home/user/point-free-spacetime/logs/2026-10-01_21_adaptive-settings-and-systems.md
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+2026-10-01T10:43:55.408Z `tools/tests/test_framework.py` について、「二者
+2026-10-01T10:49:02.866Z 1 と、2 の文案（D-0001 に読み出しの順序と π^M の扱いを書き、D-
+# 2026-10-01 第 21 回: 適応的な設定の扱いと、前提の二者択一の組と体系
+
+> この記録は Claude Code のセッション記録から `tools/export_log.py` で自動変換したものです。
+> ツールの呼び出しは折りたたんで表示し、個人情報などは伏せ字にしています。
+
+## ユーザー
+
+次のセッションに進む前に、「適応的な設定」の実験に関する未解決事項を洗い出して、事前に解決した方がよいでしょうか？ T-0019 のタスク内容によると主もいますが、どのように考えますか？
+Shell cwd was reset to /home/user
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+cd /home/user/point-free-spacetime && python3 tools/export_log.py ~/.claude/projects/-home-user/[ID].jsonl /tmp/claude-0/noredact.md --until 2026-10-01T08:44:20Z >/dev/null 2>&1 || python3 tools/export_log.py ~/.claude/projects/-home-user/[ID].jsonl ../noredact.md --until 2026-10-01T08:44:20Z; grep -h "T-0019 のタスク内容" /tmp/claude-0/noredact.md ../noredact.md 2>/dev/null | head -2; rm -f ../noredact.md /tmp/claude-0/noredact.md
+```
+
+</details>
+
+<details><summary>結果: Bash</summary>
+
+```text
+次のセッションに進む前に、「適応的な設定」の実験に関する未解決事項を洗い出して、事前に解決した方がよいでしょうか？ T-0019 のタスク内容によると主もいますが、どのように考えますか？
+```
+
+</details>
+
+<details><summary>ツール: Bash</summary>
+
+```text
+L=logs/2026-10-01_21_adaptive-settings-and-systems.md; T=/tmp/claude-0/append.md; mkdir -p /tmp/claude-0; python3 tools/export_log.py ~/.claude/projects/-home-user/[ID].jsonl $T --title x --redact-file ../point-free-spacetime-private/redactions.txt --since 2026-10-01T10:43:55Z && python3 - <<EOF
+t=open('$T').read(); i=t.index('\n## '); body=t[i+1:]
+s=open('$L').read().rstrip('\n')
+s+="\n\n---\n\n> 以下は、PR #43 の作成後、クロスモデルレビューへの対応中に行った対話です（ユーザーの依頼で追記した）。\n\n"+body
+open('$L','w').write(s if s.endswith('\n') else s+'\n')
+EOF
+grep -v -e '^#' -e '^$' ../point-free-spacetime-private/redactions.txt | grep -iFcf - $L; grep -cE '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}|sk-[A-Za-z0-9]{10,}' $L; grep -n "以下は、PR #43" $L; tail -3 $L | cut -c1-80; grep -c "^## " $T
+```
+
+</details>
