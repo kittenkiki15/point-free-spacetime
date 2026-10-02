@@ -60,8 +60,8 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | T-0018 | 主体・観測者・装置の使い分けと、設定・時空・パラメータの概念と用語の整理（第 16 回に追加、第 19 回に範囲を拡大、第 20 回に完了） | 用語 | なし | [A-0001](assumptions/A-0001.md)、[A-0007](assumptions/A-0007.md)、[A-0010](assumptions/A-0010.md)、[D-0001](definitions/D-0001.md)、[D-0003](definitions/D-0003.md)、[D-0005](definitions/D-0005.md)、[D-0011](definitions/D-0011.md)、[D-0012](definitions/D-0012.md)、[D-0013](definitions/D-0013.md)、[A-0011](assumptions/A-0011.md)〜[A-0016](assumptions/A-0016.md)、[C-0009](conjectures/C-0009.md)〜[C-0013](conjectures/C-0013.md) | 完了 |
 | T-0019 | 量子・古典・混成の実験の扱いの先行研究の調査（第 19 回に追加） | 調査 | なし | [D-0001](definitions/D-0001.md)、[D-0002](definitions/D-0002.md)、[D-0003](definitions/D-0003.md)、[D-0004](definitions/D-0004.md)、[D-0005](definitions/D-0005.md)、[D-0006](definitions/D-0006.md)、[A-0003](assumptions/A-0003.md)、[A-0006](assumptions/A-0006.md)、[A-0010](assumptions/A-0010.md)、[C-0003](conjectures/C-0003.md) | 完了 |
 | T-0020 | T-0019 の判断（第 25 回）に沿った、実際の実験と可能な実験の区別の定義・前提への反映 | B | T-0019 | [D-0014](definitions/D-0014.md)、[A-0003](assumptions/A-0003.md)、[D-0001](definitions/D-0001.md)、[D-0002](definitions/D-0002.md)、[D-0012](definitions/D-0012.md)、[D-0013](definitions/D-0013.md)、[A-0013](assumptions/A-0013.md)、[A-0016](assumptions/A-0016.md)、[C-0012](conjectures/C-0012.md)、[C-0013](conjectures/C-0013.md) | 完了 |
-| T-0021 | 成果物の見直し（予想の優先度の棚卸、定義・前提の状態の更新、文章の校正） | 整理 | T-0020 | [conjectures/](conjectures/)、[definitions/](definitions/)、[assumptions/](assumptions/)、[results/](results/) | 未着手 |
-| T-0022 | 段階 A までの本プロジェクトの振り返り | 整理 | T-0021 | [framework.md](framework.md)、[roadmap.md](roadmap.md)、[summaries/](summaries/) | 未着手 |
+| T-0021 | 成果物の見直し（予想の優先度の棚卸、定義・前提の状態の更新、文章の校正） | 整理 | T-0020 | 横断的なタスク（特定の ID はない。対象はすべての定義・前提・予想・結果） | 未着手 |
+| T-0022 | 段階 A までの本プロジェクトの振り返り | 整理 | T-0021 | 横断的なタスク（特定の ID はない。対象は `framework.md`・`roadmap.md`・まとめ） | 未着手 |
 
 ```mermaid
 flowchart LR
