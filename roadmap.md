@@ -47,7 +47,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | T-0002 | フレームワークの圏論的な概観（第 14 回） | A | T-0001 | [framework.md](framework.md) のすべての要素 | 完了 |
 | T-0003 | QBism の先行研究の調査（第 15 回） | 調査 | なし | [D-0005](definitions/D-0005.md)、[A-0007](assumptions/A-0007.md)、[C-0003](conjectures/C-0003.md) | 完了 |
 | T-0004 | 設定の空間と、結果の統計の空間の位相 | B | なし | [D-0001](definitions/D-0001.md)、[D-0003](definitions/D-0003.md)、[D-0004](definitions/D-0004.md)、[A-0005](assumptions/A-0005.md)、[A-0006](assumptions/A-0006.md)、[A-0004](assumptions/A-0004.md)、[D-0014](definitions/D-0014.md) | 未着手 |
-| T-0005 | 尤度と同時分布、主体の間で共有するデータの空間 | B | T-0004 | [D-0001](definitions/D-0001.md)、[D-0004](definitions/D-0004.md)、[A-0006](assumptions/A-0006.md)、[A-0007](assumptions/A-0007.md)、[D-0002](definitions/D-0002.md)、[D-0012](definitions/D-0012.md)、[A-0011](assumptions/A-0011.md)、[A-0012](assumptions/A-0012.md)、[A-0001](assumptions/A-0001.md) | 未着手 |
+| T-0005 | 尤度と同時分布、主体の間で共有するデータの空間 | B | T-0004、T-0023 | [D-0001](definitions/D-0001.md)、[D-0004](definitions/D-0004.md)、[A-0006](assumptions/A-0006.md)、[A-0007](assumptions/A-0007.md)、[D-0002](definitions/D-0002.md)、[D-0012](definitions/D-0012.md)、[A-0011](assumptions/A-0011.md)、[A-0012](assumptions/A-0012.md)、[A-0001](assumptions/A-0001.md) | 未着手 |
 | T-0006 | 極限と事後分布の集中 | B | T-0004、T-0005 | [D-0005](definitions/D-0005.md)、[D-0006](definitions/D-0006.md)、[A-0007](assumptions/A-0007.md)、[C-0005](conjectures/C-0005.md)、[C-0006](conjectures/C-0006.md)、[D-0012](definitions/D-0012.md)、[A-0011](assumptions/A-0011.md)、[A-0012](assumptions/A-0012.md) | 未着手 |
 | T-0007 | 局在の詳細化 | B | T-0004 | [D-0001](definitions/D-0001.md)、[D-0008](definitions/D-0008.md)、[A-0008](assumptions/A-0008.md)、[D-0009](definitions/D-0009.md) | 未着手 |
 | T-0008 | C-0001・C-0007・C-0008 の検証 | 検証 | T-0001 | [C-0001](conjectures/C-0001.md)、[C-0007](conjectures/C-0007.md)、[C-0008](conjectures/C-0008.md)、[A-0009](assumptions/A-0009.md)、[D-0011](definitions/D-0011.md) | 未着手 |
@@ -65,7 +65,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | T-0020 | T-0019 の判断（第 25 回）に沿った、実際の実験と可能な実験の区別の定義・前提への反映 | B | T-0019 | [D-0014](definitions/D-0014.md)、[A-0003](assumptions/A-0003.md)、[D-0001](definitions/D-0001.md)、[D-0002](definitions/D-0002.md)、[D-0012](definitions/D-0012.md)、[D-0013](definitions/D-0013.md)、[A-0013](assumptions/A-0013.md)、[A-0016](assumptions/A-0016.md)、[C-0012](conjectures/C-0012.md)、[C-0013](conjectures/C-0013.md) | 完了 |
 | T-0021 | 成果物の見直し（予想の優先度の棚卸、定義・前提の状態の更新、文章の校正） | 整理 | T-0020 | 横断的なタスク（特定の ID はない。対象はすべての定義・前提・予想・結果） | 完了 |
 | T-0022 | 段階 A までの本プロジェクトの振り返り | 整理 | T-0021 | 横断的なタスク（特定の ID はない。対象は `framework.md`・`roadmap.md`・まとめ） | 未着手 |
-| T-0023 | 予想 C-0003・C-0004・C-0006 の検証（第 27 回に追加） | B | なし | [C-0003](conjectures/C-0003.md)、[C-0004](conjectures/C-0004.md)、[C-0006](conjectures/C-0006.md)、[A-0002](assumptions/A-0002.md) | 未着手 |
+| T-0023 | 予想 C-0003・C-0004・C-0006 の検証（第 27 回に追加） | B | T-0004 | [C-0003](conjectures/C-0003.md)、[C-0004](conjectures/C-0004.md)、[C-0006](conjectures/C-0006.md)、[A-0002](assumptions/A-0002.md) | 未着手 |
 | T-0024 | 較正と観測者の取り替えの予想の詳細化（第 27 回に追加） | 詳細化 | T-0017 | [C-0009](conjectures/C-0009.md)〜[C-0013](conjectures/C-0013.md)、[A-0013](assumptions/A-0013.md)、[A-0016](assumptions/A-0016.md)、[A-0014](assumptions/A-0014.md)、[A-0015](assumptions/A-0015.md) | 未着手 |
 
 ```mermaid
