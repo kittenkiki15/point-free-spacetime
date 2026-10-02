@@ -187,7 +187,9 @@ def open_points(path):
     if heading not in text:
         return []
     body = text.split(heading, 1)[1].split("\n## ", 1)[0]
-    return [line for line in body.splitlines() if line.startswith("- ") and not line.startswith("- なし")]
+    # 箇条書きに限らず、空行と「なし」以外の行があれば論点があるとみなす
+    lines = [line.strip() for line in body.splitlines() if line.strip()]
+    return [line for line in lines if not re.match(r"^(- )?なし(。|（|$)", line)]
 
 
 def test_open_points_are_assigned_to_open_tasks():
@@ -198,6 +200,18 @@ def test_open_points_are_assigned_to_open_tasks():
     covered = open_task_ids(ROADMAP.read_text(encoding="utf-8"))
     missing = [i for i, f in deps_graph.item_files().items() if i[0] in "DAC" and open_points(Path(f)) and i not in covered]
     assert not missing, ("どの未完了のタスクにも割り当てていない論点がある", sorted(missing))
+
+
+def test_open_points_detects_paragraphs_and_none(tmp_path):
+    with_paragraph = tmp_path / "D-9998.md"
+    with_paragraph.write_text("# D\n\n## 未解決の点\n\n箇条書きでない論点。\n\n## 履歴\n", encoding="utf-8")
+    assert open_points(with_paragraph)
+    none = tmp_path / "C-9999.md"
+    none.write_text("# C\n\n## 詳細化の論点\n\nなし。\n\n## 背景\n", encoding="utf-8")
+    assert not open_points(none)
+    none_with_note = tmp_path / "D-9997.md"
+    none_with_note.write_text("# D\n\n## 未解決の点\n\n- なし（別の項目で扱う）。\n\n## 履歴\n", encoding="utf-8")
+    assert not open_points(none_with_note)
 
 
 def test_open_task_ids_handles_states_and_ranges():
