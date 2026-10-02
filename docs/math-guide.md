@@ -141,7 +141,7 @@ GitHub では `\operatorname` が許可されておらず、`The following macro
 `x_{<j}` のように `<` の直後に英字が続くと、GitHub が HTML のタグの始まりとみなして以降を取り除き、ブロック数式が「Extra open brace or missing close brace」のエラーになりました（第 27 回に `surveys/2026-10-01_22_combs-and-composites.md` で確認。取り除かれた後の式 `x_{` を MathJax で変換すると、同じエラーになることを手元で確かめた）。`\lt` を使うか、`<` の後に半角スペースを入れます。
 
 ```markdown
-s_j(x_j \mid x_{\lt j}, y_{\lt j})
+$`s_j(x_j \mid x_{\lt j}, y_{\lt j})`$
 ```
 
 ### 数式ではないドル記号はエスケープする

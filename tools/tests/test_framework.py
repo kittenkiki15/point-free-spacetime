@@ -191,7 +191,10 @@ def open_points(path):
 
 
 def test_open_points_are_assigned_to_open_tasks():
-    """未解決の点・詳細化の論点を持つ定義・前提・予想は、どれかの未完了のタスクの「関係する ID」にある（roadmap.md の使い方。第 27 回）。"""
+    """未解決の点・詳細化の論点を持つ定義・前提・予想は、どれかの未完了のタスクの「関係する ID」にある（roadmap.md の使い方。第 27 回）。
+
+    ファイルの掲載漏れの検査で、論点ごとの割り当ては検査しない（各タスクの節の記述で確かめる）。
+    """
     covered = open_task_ids(ROADMAP.read_text(encoding="utf-8"))
     missing = [i for i, f in deps_graph.item_files().items() if i[0] in "DAC" and open_points(Path(f)) and i not in covered]
     assert not missing, ("どの未完了のタスクにも割り当てていない論点がある", sorted(missing))
