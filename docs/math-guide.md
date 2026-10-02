@@ -163,3 +163,7 @@ s_j(x_j \mid x_{\lt j}, y_{\lt j})
 - 大きな括弧・入れ子の分数（`\left( ... \right)`、`\frac`）
 
 ただし Chrome では、行列のかっこの内側の余白と、`aligned` の揃える位置の前の空白が、Firefox より少し広く表示されます。
+
+## Firefox だけで崩れたもの（原因は未確定）
+
+- `\hat{J}\lvert Ψ\rangle\!\rangle = 0`（第 27 回。`surveys/2026-10-02_23_quantum-clocks-and-frames.md` の 2.1 節）：Firefox では、`= 0` の手前で行の高さがずれて表示された。Chrome では正常に表示される。二重の山括弧を Unicode 文字 `⟩⟩` で書いても同じだった。ブラウザ依存の問題と判断して、そのままにしている（ユーザーの判断）。
