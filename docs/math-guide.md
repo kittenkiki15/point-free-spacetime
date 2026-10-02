@@ -15,6 +15,7 @@
 | 関数名と変数 | `\sin\,x` または `\sin(x)` | `\sin x` |
 | 定義済みでない関数名（diag など） | `\mathrm{diag}` | `\operatorname{diag}` |
 | 数式ではないドル記号 | `\$100` | `$100` |
+| 不等号 `<` の直後に文字が続く場合 | `x_{\lt j}` | `x_{<j}` |
 
 表の中の `\|` は、Markdown の表の列区切りと区別するためのエスケープです。
 実際に書くときは、絶対値は `\left| x \right|`、避ける書き方は `|x|` です。
@@ -133,6 +134,14 @@ GitHub では `\operatorname` が許可されておらず、`The following macro
 
 ```markdown
 対角作用素 $`\mathrm{diag}(1/n)`$
+```
+
+### 不等号 `<` の直後に文字を続けない
+
+`x_{<j}` のように `<` の直後に英字が続くと、GitHub が HTML のタグの始まりとみなして以降を取り除き、ブロック数式が「Extra open brace or missing close brace」のエラーになりました（第 27 回に `surveys/2026-10-01_22_combs-and-composites.md` で確認。取り除かれた後の式 `x_{` を MathJax で変換すると、同じエラーになることを手元で確かめた）。`\lt` を使うか、`<` の後に半角スペースを入れます。
+
+```markdown
+s_j(x_j \mid x_{\lt j}, y_{\lt j})
 ```
 
 ### 数式ではないドル記号はエスケープする
