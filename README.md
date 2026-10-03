@@ -39,7 +39,7 @@
 | 何をしようとしているか知りたい | [`framework.md`](framework.md)（構成の 6 つの層と、定義・前提・予想の依存関係の図） |
 | 先行研究のサーベイとして使いたい | [`surveys/README.md`](surveys/README.md) の「テーマ別の索引」 |
 | 各回の議論の要点を追いたい | [`summaries/`](summaries/)（各回のまとめ。短く、人が読む前提で書いています） |
-| 判断の根拠をたどりたい | [`logs/`](logs/)（対話ログ。全文の記録で、人が読むことは前提にしていません） |
+| 判断の根拠をたどりたい | [`logs/`](logs/)（対話ログ。公開できる範囲で処理した、PR を作るまでの対話の記録で、人が読むことは前提にしていません。PR を作った後の経緯は、各 PR で追えます） |
 | 研究の進め方（AI との共同研究の運用）を知りたい | [`CLAUDE.md`](CLAUDE.md)、[`docs/review-procedure.md`](docs/review-procedure.md)、振り返りの 2・3 節 |
 
 次に取り組む予定のタスクは [`NEXT.md`](NEXT.md) にあります。
