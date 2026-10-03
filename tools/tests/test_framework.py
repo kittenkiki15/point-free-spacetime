@@ -175,7 +175,8 @@ def open_task_ids(text):
         if state == "完了":
             continue
         ids |= set(re.findall(r"[DACR]-\d{4}", related))
-        for kind, start, end in re.findall(r"\[([DACR])-(\d{4})\]\([^)]*\)〜\[[DACR]-(\d{4})\]", related):
+        for kind, start, end_kind, end in re.findall(r"\[([DACR])-(\d{4})\]\([^)]*\)〜\[([DACR])-(\d{4})\]", related):
+            assert kind == end_kind and int(start) <= int(end), (line, "ID の範囲の始点と終点の種類が違うか、順序が逆")
             ids |= {f"{kind}-{n:04d}" for n in range(int(start), int(end) + 1)}
     return ids
 
@@ -220,6 +221,13 @@ def test_open_task_ids_handles_states_and_ranges():
         "| T-0002 | b | B | なし | [C-0002](c.md)〜[C-0004](c.md)、[A-0001](a.md) | 未着手 |\n"
     )
     assert open_task_ids(text) == {"C-0002", "C-0003", "C-0004", "A-0001"}
+    bad = "| T-0003 | c | B | なし | [C-0002](c.md)〜[A-0004](a.md) | 未着手 |\n"
+    try:
+        open_task_ids(bad)
+    except AssertionError:
+        pass
+    else:
+        raise AssertionError("種類の異なる ID の範囲を検出できない")
 
 def choice_pairs():
     # assumptions/README.md の「択一の組と体系」の表：前提の ID → (組, 体系)。表の全データ行の書式を検査する
