@@ -165,6 +165,70 @@ def test_roadmap_task_ids_are_unique_and_described():
     assert set(re.findall(r"\bT-\d{4}\b", text)) <= set(rows)
 
 
+
+def open_task_ids(text):
+    # 未完了（状態が「完了」でない）タスクの「関係する ID」に挙がった ID の集合。「X〜Y」の範囲も展開する
+    ids = set()
+    for line in re.findall(r"^\| T-\d{4} \|.*$", text, re.M):
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        related, state = cells[4], cells[5]
+        if state == "完了":
+            continue
+        ids |= set(re.findall(r"[DACR]-\d{4}", related))
+        for kind, start, end_kind, end in re.findall(r"\[([DACR])-(\d{4})\]\([^)]*\)〜\[([DACR])-(\d{4})\]", related):
+            assert kind == end_kind and int(start) <= int(end), (line, "ID の範囲の始点と終点の種類が違うか、順序が逆")
+            ids |= {f"{kind}-{n:04d}" for n in range(int(start), int(end) + 1)}
+    return ids
+
+
+def open_points(path):
+    # 定義・前提の「未解決の点」と予想の「詳細化の論点」の箇条（「なし」を除く）
+    heading = "## 詳細化の論点" if path.name.startswith("C-") else "## 未解決の点"
+    text = path.read_text(encoding="utf-8")
+    if heading not in text:
+        return []
+    body = text.split(heading, 1)[1].split("\n## ", 1)[0]
+    # 箇条書きに限らず、空行と「なし」以外の行があれば論点があるとみなす
+    lines = [line.strip() for line in body.splitlines() if line.strip()]
+    return [line for line in lines if not re.match(r"^(- )?なし(。|（|$)", line)]
+
+
+def test_open_points_are_assigned_to_open_tasks():
+    """未解決の点・詳細化の論点を持つ定義・前提・予想は、どれかの未完了のタスクの「関係する ID」にある（roadmap.md の使い方。第 27 回）。
+
+    ファイルの掲載漏れの検査で、論点ごとの割り当ては検査しない（各タスクの節の記述で確かめる）。
+    """
+    covered = open_task_ids(ROADMAP.read_text(encoding="utf-8"))
+    missing = [i for i, f in deps_graph.item_files().items() if i[0] in "DAC" and open_points(Path(f)) and i not in covered]
+    assert not missing, ("どの未完了のタスクにも割り当てていない論点がある", sorted(missing))
+
+
+def test_open_points_detects_paragraphs_and_none(tmp_path):
+    with_paragraph = tmp_path / "D-9998.md"
+    with_paragraph.write_text("# D\n\n## 未解決の点\n\n箇条書きでない論点。\n\n## 履歴\n", encoding="utf-8")
+    assert open_points(with_paragraph)
+    none = tmp_path / "C-9999.md"
+    none.write_text("# C\n\n## 詳細化の論点\n\nなし。\n\n## 背景\n", encoding="utf-8")
+    assert not open_points(none)
+    none_with_note = tmp_path / "D-9997.md"
+    none_with_note.write_text("# D\n\n## 未解決の点\n\n- なし（別の項目で扱う）。\n\n## 履歴\n", encoding="utf-8")
+    assert not open_points(none_with_note)
+
+
+def test_open_task_ids_handles_states_and_ranges():
+    text = (
+        "| T-0001 | a | B | なし | [D-0001](d.md) | 完了 |\n"
+        "| T-0002 | b | B | なし | [C-0002](c.md)〜[C-0004](c.md)、[A-0001](a.md) | 未着手 |\n"
+    )
+    assert open_task_ids(text) == {"C-0002", "C-0003", "C-0004", "A-0001"}
+    bad = "| T-0003 | c | B | なし | [C-0002](c.md)〜[A-0004](a.md) | 未着手 |\n"
+    try:
+        open_task_ids(bad)
+    except AssertionError:
+        pass
+    else:
+        raise AssertionError("種類の異なる ID の範囲を検出できない")
+
 def choice_pairs():
     # assumptions/README.md の「択一の組と体系」の表：前提の ID → (組, 体系)。表の全データ行の書式を検査する
     readme = (ROOT / "assumptions" / "README.md").read_text(encoding="utf-8")
