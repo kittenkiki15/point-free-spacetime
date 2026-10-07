@@ -20,7 +20,7 @@
 
 | ID | 論点 | 親の ID | 割り当てたタスク | 状態 | Issue |
 | --- | --- | --- | --- | --- | --- |
-| [Q-0001](Q-0001.md) | 結果の統計の空間の位相と、等価原理の「近い」の意味 | [D-0004](../definitions/D-0004.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#33](https://github.com/kittenkiki15/point-free-spacetime/issues/33) |
+| [Q-0001](Q-0001.md) | 結果の統計の空間の位相と、等価原理の「近い」の意味 | [D-0004](../definitions/D-0004.md) | [T-0004](../tasks/T-0004.md) | 解決 | [#33](https://github.com/kittenkiki15/point-free-spacetime/issues/33) |
 | [Q-0002](Q-0002.md) | 可能な実験の状態の集合の位相と、座標の同相性 | [D-0014](../definitions/D-0014.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#34](https://github.com/kittenkiki15/point-free-spacetime/issues/34) |
 | [Q-0003](Q-0003.md) | 許す状態（ボレル確率測度・正規状態） | [D-0014](../definitions/D-0014.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#35](https://github.com/kittenkiki15/point-free-spacetime/issues/35) |
 | [Q-0004](Q-0004.md) | 状態を値とする設定・結果の上の較正の可測構造 | [D-0014](../definitions/D-0014.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#36](https://github.com/kittenkiki15/point-free-spacetime/issues/36) |
