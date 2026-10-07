@@ -1,6 +1,6 @@
 # ロードマップ
 
-最終更新: 2026-10-07（第 32 回。T-0027 を進めた。タグ付けは PR のマージの後）
+最終更新: 2026-10-07（第 33 回。T-0027 を完了にし、T-0004 を進めた）
 
 このファイルは、[フレームワーク](framework.md) を完成させるための作業の最新版です。セッションの終わりごとに更新します（[`CLAUDE.md`](CLAUDE.md) の「セッションの終え方」）。
 
@@ -47,7 +47,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | [T-0001](tasks/T-0001.md) | 予想 C-0001 の見直し（第 12 回） | A | なし | [C-0001](conjectures/C-0001.md)、[C-0007](conjectures/C-0007.md)、[C-0008](conjectures/C-0008.md)、[D-0008](definitions/D-0008.md)、[R-0001](results/R-0001.md)〜[R-0008](results/R-0008.md) | 完了 | なし |
 | [T-0002](tasks/T-0002.md) | フレームワークの圏論的な概観（第 14 回） | A | T-0001 | [framework.md](framework.md) のすべての要素 | 完了 | なし |
 | [T-0003](tasks/T-0003.md) | QBism の先行研究の調査（第 15 回） | 調査 | なし | [D-0005](definitions/D-0005.md)、[A-0007](assumptions/A-0007.md)、[C-0003](conjectures/C-0003.md) | 完了 | なし |
-| [T-0004](tasks/T-0004.md) | 設定の空間と、結果の統計の空間の位相 | B | なし | [D-0001](definitions/D-0001.md)、[D-0003](definitions/D-0003.md)、[D-0004](definitions/D-0004.md)、[A-0005](assumptions/A-0005.md)、[A-0006](assumptions/A-0006.md)、[A-0004](assumptions/A-0004.md)、[D-0014](definitions/D-0014.md)、[D-0013](definitions/D-0013.md) | 未着手 | [#15](https://github.com/kittenkiki15/point-free-spacetime/issues/15) |
+| [T-0004](tasks/T-0004.md) | 設定の空間と、結果の統計の空間の位相 | B | なし | [D-0001](definitions/D-0001.md)、[D-0003](definitions/D-0003.md)、[D-0004](definitions/D-0004.md)、[A-0005](assumptions/A-0005.md)、[A-0006](assumptions/A-0006.md)、[A-0004](assumptions/A-0004.md)、[D-0014](definitions/D-0014.md)、[D-0013](definitions/D-0013.md)、[A-0017](assumptions/A-0017.md) | 進行中 | [#15](https://github.com/kittenkiki15/point-free-spacetime/issues/15) |
 | [T-0005](tasks/T-0005.md) | 尤度と同時分布、主体の間で共有するデータの空間 | B | T-0004、T-0023 | [D-0001](definitions/D-0001.md)、[D-0004](definitions/D-0004.md)、[A-0006](assumptions/A-0006.md)、[A-0007](assumptions/A-0007.md)、[D-0002](definitions/D-0002.md)、[D-0012](definitions/D-0012.md)、[A-0011](assumptions/A-0011.md)、[A-0012](assumptions/A-0012.md)、[A-0001](assumptions/A-0001.md) | 未着手 | [#16](https://github.com/kittenkiki15/point-free-spacetime/issues/16) |
 | [T-0006](tasks/T-0006.md) | 極限と事後分布の集中 | B | T-0004、T-0005 | [D-0005](definitions/D-0005.md)、[D-0006](definitions/D-0006.md)、[A-0007](assumptions/A-0007.md)、[C-0005](conjectures/C-0005.md)、[C-0006](conjectures/C-0006.md)、[D-0012](definitions/D-0012.md)、[A-0011](assumptions/A-0011.md)、[A-0012](assumptions/A-0012.md) | 未着手 | [#17](https://github.com/kittenkiki15/point-free-spacetime/issues/17) |
 | [T-0007](tasks/T-0007.md) | 局在の詳細化 | B | T-0004 | [D-0001](definitions/D-0001.md)、[D-0008](definitions/D-0008.md)、[A-0008](assumptions/A-0008.md)、[D-0009](definitions/D-0009.md) | 未着手 | [#18](https://github.com/kittenkiki15/point-free-spacetime/issues/18) |
@@ -70,7 +70,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | [T-0024](tasks/T-0024.md) | 較正と観測者の取り替えの予想の詳細化（第 27 回に追加） | 詳細化 | T-0017 | [C-0009](conjectures/C-0009.md)〜[C-0013](conjectures/C-0013.md)、[A-0013](assumptions/A-0013.md)、[A-0016](assumptions/A-0016.md)、[A-0014](assumptions/A-0014.md)、[A-0015](assumptions/A-0015.md) | 未着手 | [#28](https://github.com/kittenkiki15/point-free-spacetime/issues/28) |
 | [T-0025](tasks/T-0025.md) | 運用の改善（第 28 回に追加） | 整理 | T-0022 | 横断的なタスク（特定の ID はない。対象は運用の仕組み） | 完了 | 旧リポジトリ（非公開）の Issue #67 |
 | [T-0026](tasks/T-0026.md) | ナレッジグラフの中身の語彙（オントロジー）の設計 | 随時 | T-0025 | 横断的なタスク（特定の ID はない。対象は `tools/pfs.ttl` と、すべての定義・前提・予想・結果） | 未着手 | [#29](https://github.com/kittenkiki15/point-free-spacetime/issues/29) |
-| [T-0027](tasks/T-0027.md) | 段階 A の成果のリリース | 整理 | T-0025 | 横断的なタスク（特定の ID はない。対象はリポジトリ全体と `tools/`） | 進行中 | [#30](https://github.com/kittenkiki15/point-free-spacetime/issues/30) |
+| [T-0027](tasks/T-0027.md) | 段階 A の成果のリリース | 整理 | T-0025 | 横断的なタスク（特定の ID はない。対象はリポジトリ全体と `tools/`） | 完了 | [#30](https://github.com/kittenkiki15/point-free-spacetime/issues/30) |
 
 ```mermaid
 flowchart LR

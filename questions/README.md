@@ -20,3 +20,12 @@
 
 | ID | 論点 | 親の ID | 割り当てたタスク | 状態 | Issue |
 | --- | --- | --- | --- | --- | --- |
+| [Q-0001](Q-0001.md) | 結果の統計の空間の位相と、等価原理の「近い」の意味 | [D-0004](../definitions/D-0004.md) | [T-0004](../tasks/T-0004.md) | 解決 | [#33](https://github.com/kittenkiki15/point-free-spacetime/issues/33) |
+| [Q-0002](Q-0002.md) | 可能な実験の状態の集合の位相と、座標の同相性 | [D-0014](../definitions/D-0014.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#34](https://github.com/kittenkiki15/point-free-spacetime/issues/34) |
+| [Q-0003](Q-0003.md) | 許す状態（ボレル確率測度・正規状態） | [D-0014](../definitions/D-0014.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#35](https://github.com/kittenkiki15/point-free-spacetime/issues/35) |
+| [Q-0004](Q-0004.md) | 状態を値とする設定・結果の上の較正の可測構造 | [D-0014](../definitions/D-0014.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#36](https://github.com/kittenkiki15/point-free-spacetime/issues/36) |
+| [Q-0005](Q-0005.md) | コンパクト性を課す対象 | [A-0005](../assumptions/A-0005.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#37](https://github.com/kittenkiki15/point-free-spacetime/issues/37) |
+| [Q-0006](Q-0006.md) | 「一様に有界」の範囲 | [A-0005](../assumptions/A-0005.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#38](https://github.com/kittenkiki15/point-free-spacetime/issues/38) |
+| [Q-0007](Q-0007.md) | 結果の空間の意味 | [D-0004](../definitions/D-0004.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#39](https://github.com/kittenkiki15/point-free-spacetime/issues/39) |
+| [Q-0008](Q-0008.md) | 時計や物差しの読みでない結果の座標を、共通の空間に写す方法 | [D-0003](../definitions/D-0003.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#40](https://github.com/kittenkiki15/point-free-spacetime/issues/40) |
+| [Q-0009](Q-0009.md) | 設定に含める資源の量は、予算か実際の消費量か | [A-0004](../assumptions/A-0004.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#41](https://github.com/kittenkiki15/point-free-spacetime/issues/41) |
