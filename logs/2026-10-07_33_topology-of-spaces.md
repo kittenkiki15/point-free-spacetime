@@ -4,19 +4,19 @@
 > 発言とタイムスタンプ（UTC）だけを残し、ツールの呼び出しと結果は含めません（第 29 回にユーザーと決めた運用）。
 > 見出しの「記録 N」は、`/clear` などで分かれたセッション記録の別を示します。個人情報などは伏せ字にしています。
 
-## ユーザー（2026-10-07 10:44:11 UTC）
+## ユーザー（2026-10-07 10:44:11 UTC、記録 1）
 
 次のセッションを開始してください。
 
-## Claude（2026-10-07 10:44:35 UTC）
+## Claude（2026-10-07 10:44:35 UTC、記録 1）
 
 Both repos are reset onto the latest `main`; the next step is starting the dialogue log.
 
-## Claude（2026-10-07 10:45:12 UTC）
+## Claude（2026-10-07 10:45:12 UTC、記録 1）
 
 T-0027 is marked complete and the tests pass. Committing, then reading the open points for T-0004.
 
-## Claude（2026-10-07 10:45:57 UTC）
+## Claude（2026-10-07 10:45:57 UTC、記録 1）
 
 セッションの準備ができました。
 
@@ -50,3 +50,7 @@ T-0027 is marked complete and the tests pass. Committing, then reading the open 
 - 決めきれずに残った論点は、`questions/` に Q として移す。これが T-0025 の 5 の仕組みの最初の適用になります。
 
 この順序でよければ、まず 1 の弱位相の案の詳細（A-0006 の主張の書き方と、量子の場合 $`x ↦ \mathrm{Tr}(ρ_x E(B))`$ との整合）から始めます。
+
+## Claude（2026-10-07 10:46:13 UTC、記録 1）
+
+T-0004 の論点 1〜5 について、ご判断をお待ちしています。T-0027 の残りの論点 8 件を T-0026 に移すかどうかも、あわせてお知らせください（T-0027 の完了のコミットは push 済み、対話ログも同期済みです）。
