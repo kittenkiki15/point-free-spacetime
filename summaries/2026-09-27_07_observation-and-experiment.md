@@ -1,7 +1,7 @@
 # 2026-09-27 第 07 回: 観測と実験、局在と局所性、「実験における時空」と「観測における時空」
 
 - 対話ログ: [logs/2026-09-27_07_observation-and-experiment.md](../logs/2026-09-27_07_observation-and-experiment.md)
-- 関係する予想: [C-0001](../conjectures/C-0001.md)（[Issue #8](https://github.com/kittenkiki15/point-free-spacetime/issues/8)）
+- 関係する予想: [C-0001](../conjectures/C-0001.md)（[Issue #2](https://github.com/kittenkiki15/point-free-spacetime/issues/2)）
 - 前回の調査メモ: [surveys/2026-09-26_06_minimal-length-covariance.md](../surveys/2026-09-26_06_minimal-length-covariance.md)
 
 ## 要約

@@ -372,6 +372,11 @@ def issue_problems(conjectures, others):
             if f.stem not in TASKS_DONE_BEFORE_ISSUES:
                 problems.append(f"{f.stem} に Issue がない")
             continue
+        if OLD_REPO_ISSUE.fullmatch(cell):
+            # 旧リポジトリ（非公開）で閉じた Issue。新しい公開用リポジトリへは移していない（第 32 回）
+            if task_fields(f).get("状態") != "完了":
+                problems.append(f"{f.stem} は完了していないのに、Issue が旧リポジトリのものになっている")
+            continue
         n = issue_number(cell)
         if n is None:
             problems.append(f"{f.stem} の Issue の欄の形が正しくないか、表示とリンク先の番号が違う: {cell}")
@@ -383,6 +388,7 @@ def issue_problems(conjectures, others):
 
 
 # 第 30 回にタスクの Issue を作った時点で、すでに完了していたタスク（Issue なし。tasks/README.md）
+OLD_REPO_ISSUE = re.compile(r"旧リポジトリ（非公開）の Issue #\d+")
 TASKS_DONE_BEFORE_ISSUES = {"T-0001", "T-0002", "T-0003", "T-0015", "T-0016",
                             "T-0018", "T-0019", "T-0020", "T-0021", "T-0022"}
 
@@ -814,3 +820,15 @@ def test_related_ids_reads_shown_ids_only():
     # リンクでない裸の ID は、割り当てとして数えない
     assert related_ids("[C-0002](c.md)。D-0001 は扱わない") == {"C-0002"}
     assert related_ids("[C-0002](c.md)〜[C-0004](c.md)") == {"C-0002", "C-0003", "C-0004"}
+
+
+def test_issue_problems_accepts_old_repo_issue_only_for_done_tasks(tmp_path):
+    # 旧リポジトリ（非公開）で閉じた Issue は、完了したタスクにだけ許す（第 32 回）
+    done = tmp_path / "T-0025.md"
+    done.write_text("# T-0025: t\n\n| 項目 | 内容 |\n| --- | --- |\n| 状態 | 完了 |\n"
+                    "| Issue | 旧リポジトリ（非公開）の Issue #67 |\n", encoding="utf-8")
+    assert issue_problems([], [done]) == []
+    open_task = tmp_path / "T-0004.md"
+    open_task.write_text("# T-0004: t\n\n| 項目 | 内容 |\n| --- | --- |\n| 状態 | 未着手 |\n"
+                         "| Issue | 旧リポジトリ（非公開）の Issue #53 |\n", encoding="utf-8")
+    assert issue_problems([], [open_task])

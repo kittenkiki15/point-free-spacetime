@@ -8,7 +8,7 @@
 
 ユーザーの依頼（「NEXT.md と Issue #4 を確認して続きを」）を受けて、Claude が次の順に作業した。この回は、ユーザーとの対話による評価や決定はしていない。
 
-1. [Issue #4](https://github.com/kittenkiki15/point-free-spacetime/issues/4)（PR #3 のクロスモデルレビューで残った指摘）に対応した。
+1. 旧リポジトリ（非公開）の Issue #4（PR #3 のクロスモデルレビューで残った指摘）に対応した。
 2. NEXT.md のタスク 1：Heunen–van der Schaaf の 2 本（`heunen2024`、`heunen2026`）を通読し、論文メモを作った。調査メモ 7 節の予想の候補が既に扱われているかを確かめた。
 3. NEXT.md のタスク 2：「完備ブール代数の点はアトムと一対一に対応する」を Lean で形式化した。
 
