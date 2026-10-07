@@ -70,7 +70,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | [T-0024](tasks/T-0024.md) | 較正と観測者の取り替えの予想の詳細化（第 27 回に追加） | 詳細化 | T-0017 | [C-0009](conjectures/C-0009.md)〜[C-0013](conjectures/C-0013.md)、[A-0013](assumptions/A-0013.md)、[A-0016](assumptions/A-0016.md)、[A-0014](assumptions/A-0014.md)、[A-0015](assumptions/A-0015.md) | 未着手 | [#28](https://github.com/kittenkiki15/point-free-spacetime/issues/28) |
 | [T-0025](tasks/T-0025.md) | 運用の改善（第 28 回に追加） | 整理 | T-0022 | 横断的なタスク（特定の ID はない。対象は運用の仕組み） | 完了 | 旧リポジトリ（非公開）の Issue #67 |
 | [T-0026](tasks/T-0026.md) | ナレッジグラフの中身の語彙（オントロジー）の設計 | 随時 | T-0025 | 横断的なタスク（特定の ID はない。対象は `tools/pfs.ttl` と、すべての定義・前提・予想・結果） | 未着手 | [#29](https://github.com/kittenkiki15/point-free-spacetime/issues/29) |
-| [T-0027](tasks/T-0027.md) | 段階 A の成果のリリース | 整理 | T-0025 | 横断的なタスク（特定の ID はない。対象はリポジトリ全体と `tools/`） | 進行中 | [#30](https://github.com/kittenkiki15/point-free-spacetime/issues/30) |
+| [T-0027](tasks/T-0027.md) | 段階 A の成果のリリース | 整理 | T-0025 | 横断的なタスク（特定の ID はない。対象はリポジトリ全体と `tools/`） | 完了 | [#30](https://github.com/kittenkiki15/point-free-spacetime/issues/30) |
 
 ```mermaid
 flowchart LR
