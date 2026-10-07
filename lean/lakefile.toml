@@ -1,0 +1,21 @@
+name = "PointFreeSpacetime"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["PointFreeSpacetime"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+# Mathlib 固有の著作権ヘッダー形式は適用しない（本リポジトリは CC0）
+weak.linter.style.header = false
+
+# Reservoir を経由せず、GitHub から直接取得する
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.34.1"
+
+[[lean_lib]]
+name = "PointFreeSpacetime"
