@@ -2,7 +2,7 @@
 
 - 作成: 2026-09-26（第 06 回）
 - 目的: 予想 C-0001 を見直す前に、主張 4（ポアンカレ共変性と有界性）に関係する先行研究と、「区別できないほど近い」の「区別」をだれが、いつ、どうやって行うかについての先行研究を調べる。
-- 関連: [NEXT.md](../NEXT.md) のタスク 1、[予想 C-0001](../conjectures/C-0001.md)（[Issue #8](https://github.com/kittenkiki15/point-free-spacetime/issues/8)）、[第 05 回の調査メモ](2026-09-26_05_subordination.md)
+- 関連: [NEXT.md](../NEXT.md) のタスク 1、[予想 C-0001](../conjectures/C-0001.md)（[Issue #2](https://github.com/kittenkiki15/point-free-spacetime/issues/2)）、[第 05 回の調査メモ](2026-09-26_05_subordination.md)
 
 論文にない Claude の解釈や見通しには **（見立て）** と付ける。原典で確認した範囲を各節に書く。PDF（arXiv 版）は非公開リポジトリの `papers/` に置いた（borsten2021 は要旨だけを読んだので未入手）。
 

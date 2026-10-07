@@ -2,7 +2,7 @@
 
 - 対話ログ: [logs/2026-09-26_05_minimal-scale.md](../logs/2026-09-26_05_minimal-scale.md)
 - 調査メモ: [surveys/2026-09-26_05_subordination.md](../surveys/2026-09-26_05_subordination.md)
-- 予想: [C-0001](../conjectures/C-0001.md)（[Issue #8](https://github.com/kittenkiki15/point-free-spacetime/issues/8)）
+- 予想: [C-0001](../conjectures/C-0001.md)（[Issue #2](https://github.com/kittenkiki15/point-free-spacetime/issues/2)）
 - 結果: [R-0006](../results/R-0006.md)〜[R-0008](../results/R-0008.md)
 - Lean: [lean/PointFreeSpacetime/Tolerance.lean](../lean/PointFreeSpacetime/Tolerance.lean)
 

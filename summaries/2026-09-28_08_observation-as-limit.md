@@ -2,7 +2,7 @@
 
 - 対話ログ: [logs/2026-09-28_08_observation-as-limit.md](../logs/2026-09-28_08_observation-as-limit.md)
 - 調査メモ: [surveys/2026-09-28_08_observation-as-limit.md](../surveys/2026-09-28_08_observation-as-limit.md)
-- 関係する予想: [C-0001](../conjectures/C-0001.md)（[Issue #8](https://github.com/kittenkiki15/point-free-spacetime/issues/8)）
+- 関係する予想: [C-0001](../conjectures/C-0001.md)（[Issue #2](https://github.com/kittenkiki15/point-free-spacetime/issues/2)）
 - 前回のまとめ: [summaries/2026-09-27_07_observation-and-experiment.md](2026-09-27_07_observation-and-experiment.md)
 
 ## 要約
