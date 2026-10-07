@@ -1,0 +1,65 @@
+# 点なし時空のプロジェクトの ID の索引の語彙（pfs:）。tools/id_index.py が出力する Turtle で使う。
+# 第 31 回にユーザーと決めた（T-0025 の 4）。一般的な語彙（rdf:type・rdfs:label）を使える所では使い、
+# 本プロジェクト独自のクラスと述語をここに置く。数学・物理の中身どうしの関係の語彙は、まだ置いていない。
+
+@prefix pfs: <https://github.com/kittenkiki15/point-free-spacetime/blob/main/tools/pfs.ttl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# クラス
+
+pfs:Item a rdfs:Class ; rdfs:label "ID を持つ項目"@ja .
+pfs:Definition a rdfs:Class ; rdfs:subClassOf pfs:Item ; rdfs:label "定義"@ja .
+pfs:Assumption a rdfs:Class ; rdfs:subClassOf pfs:Item ; rdfs:label "前提"@ja .
+pfs:Conjecture a rdfs:Class ; rdfs:subClassOf pfs:Item ; rdfs:label "予想"@ja .
+pfs:Result a rdfs:Class ; rdfs:subClassOf pfs:Item ; rdfs:label "結果"@ja .
+pfs:Task a rdfs:Class ; rdfs:subClassOf pfs:Item ; rdfs:label "タスク"@ja .
+pfs:Question a rdfs:Class ; rdfs:subClassOf pfs:Item ; rdfs:label "未解決の点"@ja .
+pfs:Mention a rdfs:Class ; rdfs:label "言及"@ja ;
+    rdfs:comment "ファイルの 1 行にある ID の言及。言及元のファイル・行・節と、リンクかどうかを持つ。"@ja .
+
+# 意味上の依存と参照（循環の検査に使うのは pfs:dependsOn だけ）
+
+pfs:dependsOn a rdf:Property ; rdfs:domain pfs:Item ; rdfs:range pfs:Item ;
+    rdfs:label "依存する"@ja ; rdfs:comment "表の「依存する ID」。記述・証明に用いる定義と、仮定する前提。"@ja .
+pfs:targets a rdf:Property ; rdfs:domain pfs:Conjecture ; rdfs:range pfs:Assumption ;
+    rdfs:label "目標とする"@ja ; rdfs:comment "予想の表の「目標の ID」。仮定せず、定理として導こうとする前提。"@ja .
+pfs:refersTo a rdf:Property ; rdfs:domain pfs:Item ; rdfs:range pfs:Item ;
+    rdfs:label "参照する（依存ではない）"@ja ;
+    rdfs:comment "表の「参照する ID」。「## 定義」「## 主張」の本文の、逆参照・対比・例などのリンク。"@ja .
+
+# タスク・未解決の点・結果の関係
+
+pfs:concerns a rdf:Property ; rdfs:domain pfs:Task ; rdfs:label "関係する"@ja ;
+    rdfs:comment "タスクの表の「関係する ID」（リンクと「〜」の範囲で挙げた ID だけ）。"@ja .
+pfs:prerequisite a rdf:Property ; rdfs:domain pfs:Task ; rdfs:range pfs:Task ; rdfs:label "前提のタスク"@ja .
+pfs:parent a rdf:Property ; rdfs:domain pfs:Question ; rdfs:range pfs:Item ; rdfs:label "親の ID"@ja .
+pfs:assignedTask a rdf:Property ; rdfs:domain pfs:Question ; rdfs:range pfs:Task ; rdfs:label "割り当てたタスク"@ja .
+pfs:relatedConjecture a rdf:Property ; rdfs:domain pfs:Result ; rdfs:range pfs:Conjecture ; rdfs:label "関連する予想"@ja .
+
+# 表の値（文字列またはリンク先）
+
+pfs:status a rdf:Property ; rdfs:label "状態"@ja .
+pfs:layer a rdf:Property ; rdfs:label "層"@ja .
+pfs:system a rdf:Property ; rdfs:label "体系"@ja .
+pfs:confidence a rdf:Property ; rdfs:label "確度"@ja .
+pfs:importance a rdf:Property ; rdfs:label "重要度"@ja .
+pfs:verificationCost a rdf:Property ; rdfs:label "検証費用"@ja .
+pfs:priority a rdf:Property ; rdfs:label "優先度"@ja .
+pfs:verificationMethod a rdf:Property ; rdfs:label "検証方法"@ja .
+pfs:resultKind a rdf:Property ; rdfs:label "結果の種類"@ja .
+pfs:verification a rdf:Property ; rdfs:label "検証"@ja .
+pfs:stage a rdf:Property ; rdfs:label "段階"@ja .
+pfs:addedIn a rdf:Property ; rdfs:label "追加した回"@ja .
+pfs:resolvedIn a rdf:Property ; rdfs:label "解決した回"@ja .
+pfs:introducedIn a rdf:Property ; rdfs:label "初出"@ja ; rdfs:comment "初出の回のまとめ（リンクがなければ文字列）。"@ja .
+pfs:issue a rdf:Property ; rdfs:label "Issue"@ja .
+
+# 言及
+
+pfs:mentions a rdf:Property ; rdfs:domain pfs:Mention ; rdfs:range pfs:Item ; rdfs:label "言及先"@ja .
+pfs:source a rdf:Property ; rdfs:domain pfs:Mention ; rdfs:label "言及元のファイル"@ja .
+pfs:line a rdf:Property ; rdfs:domain pfs:Mention ; rdfs:range xsd:integer ; rdfs:label "行"@ja .
+pfs:section a rdf:Property ; rdfs:domain pfs:Mention ; rdfs:label "節"@ja ; rdfs:comment "直前の見出し。コードでは空。"@ja .
+pfs:linked a rdf:Property ; rdfs:domain pfs:Mention ; rdfs:range xsd:boolean ; rdfs:label "リンクか"@ja .

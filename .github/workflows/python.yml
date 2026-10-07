@@ -1,0 +1,29 @@
+name: Python
+
+on:
+  push:
+    branches: [main]
+    paths: ["sim/**", "tools/**", "**.md", "lean/**/*.lean", ".github/workflows/python.yml", "!logs/**"]
+  pull_request:
+    paths: ["sim/**", "tools/**", "**.md", "lean/**/*.lean", ".github/workflows/python.yml", "!logs/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sim
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - run: pip install -e '.[dev]'
+      - run: pip install -r ../tools/requirements-dev.txt
+      - run: python -m pytest
+      # tools/（対話ログの変換・伏せ字、結果の一覧と成果物の対応、定義・前提と framework.md の整合性、ID の索引）のテスト。
+      # ID の索引とリンクの検査は、logs/ を除くすべての Markdown を読むので、Markdown の変更でも動かす。対話ログ（logs/）だけの push では動かさない（第 31 回）
+      - run: python -m pytest ../tools/tests

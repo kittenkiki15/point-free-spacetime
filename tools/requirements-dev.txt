@@ -1,0 +1,2 @@
+# tools/tests の開発用の依存（第 31 回。ID の索引の Turtle の検査に rdflib を使う）
+rdflib>=7.0
