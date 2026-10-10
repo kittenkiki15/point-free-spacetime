@@ -151,3 +151,27 @@ D-0014 の層の登録と、層 2・3 を扱うタスクの有無をロードマ
 ## Claude（2026-10-10 23:43:58 UTC）
 
 まず、保留になった要約の段落を、これまでと同じ文言で置き換えます。
+
+## Claude（2026-10-10 23:44:13 UTC）
+
+次に、Q のファイル、一覧、タスク、検査、framework.md の表を確かめます。
+
+## Claude（2026-10-10 23:44:36 UTC）
+
+Q ファイルと一覧の編集をまとめて行います。
+
+## Claude（2026-10-10 23:44:52 UTC）
+
+Now the test changes.
+
+## Claude（2026-10-10 23:45:12 UTC）
+
+タスクのファイルと D-0014 を直します。
+
+## Claude（2026-10-10 23:45:43 UTC）
+
+Nothing parses the layer table, so I'll add the Q column to framework.md directly.
+
+## Claude（2026-10-10 23:45:53 UTC）
+
+T-0013（framework.md の層別の表の検査）に、Q の列も検査の対象に加えたことを記録し、テストを走らせます。
