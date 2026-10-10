@@ -3,6 +3,7 @@
 | 項目 | 内容 |
 | --- | --- |
 | 親の ID | <[D-NNNN](../definitions/D-NNNN.md)（定義・前提・予想のどれか一つ）> |
+| 層 | <実験・観測量・観測量の時空・可能な実験・可能な観測量・点なし時空のどれか（論点の中身で決める）> |
 | 割り当てたタスク | <[T-NNNN](../tasks/T-NNNN.md)> |
 | 状態 | <未解決・解決・取り下げ> |
 | Issue | <[#NN](https://github.com/kittenkiki15/point-free-spacetime/issues/NN)> |
