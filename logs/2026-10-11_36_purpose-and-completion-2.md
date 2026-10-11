@@ -286,7 +286,3 @@ I didn't sync the dialogue log this turn because a GitHub notification triggered
 次の第 37 回は、`NEXT.md` に書いたとおり T-0028 の続きです。層 1 の前提を A-0005 から下書きします。`/clear` の後に「次のセッションを開始してください」とお伝えください。
 
 このターンは GitHub の通知で起きたので、対話ログは同期していません。
-
-## ユーザー（2026-10-11 10:26:06 UTC、記録 3）
-
-次のセッションを開始してください。
