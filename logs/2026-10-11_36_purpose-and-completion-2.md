@@ -203,3 +203,90 @@ D-0010・D-0012・D-0013・D-0014 の「目的」は、下書きのとおりに�
 ## Claude（2026-10-11 08:56:19 UTC、記録 2）
 
 賛成です。この回で入れたのは、定義 4 件と担当の割り当てでした。この範囲でレビューに出せば、前提に進む前に指摘を反映できます。対話を終え、終了の手続きに進みます。
+
+## Claude（2026-10-11 08:57:33 UTC、記録 2）
+
+対話を終え、第 36 回の終了の手続きを済ませました。PR を二つ作りました。
+
+- 公開側：[kittenkiki15/point-free-spacetime#48](https://github.com/kittenkiki15/point-free-spacetime/pull/48)
+- 非公開側：[kittenkiki15/point-free-spacetime-private#25](https://github.com/kittenkiki15/point-free-spacetime-private/pull/25)。対話ログと、第 35 回のログの英語の段落を公開する承認が入っています。
+
+#### 終了の手続きで行ったこと
+
+- **まとめと記録**：
+  - まとめ `summaries/2026-10-11_36_purpose-and-completion-2.md` を書きました。
+  - 「各回の状況」と `NEXT.md` を更新しました。次の回は T-0028 の続きで、層 1 の前提を A-0005 から始めます。
+  - `roadmap.md` と、T-0028 の履歴も更新しました。
+- **確認**：
+  - テストは 151 件すべて通りました。
+  - Issue を照合しました。T-0028 の #45 は開いたまま（進行中）で、ファイルと一致しています。重複の #44 は「重複」として閉じてあります。
+- **待ち受け**：二つの PR の通知を受け取る設定をし、50 分後に安全網の確認を予約しました。
+
+クロスモデルレビューの結果が届いたら対応します。マージの判断はお任せします。
+
+対話ログを同期しました。
+
+## Claude（2026-10-11 08:57:40 UTC、記録 2）
+
+Both PRs are subscribed now, so I'll be notified of their CI and cross-model review results. The backup check-in is also still scheduled for 50 minutes from now. I'll handle the results as they come in.
+
+This turn was triggered by a GitHub notification, so I did not sync the dialogue log.
+
+## Claude（2026-10-11 08:58:40 UTC、記録 2）
+
+PR #48 の最初のクロスモデルレビューで指摘が 2 件ありました。どちらも直して push し（コミット c815218）、PR に返信しました。テストは 151 件すべて通りました。
+
+- **D-0010（誤り・食い違い）**：「最小の尺度を、補間的でないことで表す」と書いていました。しかし、通常の実数直線の上でも、固定した幅で膨らませれば補間的でなくなります。そこで、補間的でないことは「最小の尺度の候補」を述べるための道具だと改めました。物理的な最小の尺度を見分けるには追加の条件が要り、その条件は C-0001・C-0007 の側で扱う、とも明記しました。第 36 回のまとめも同じ書き方に揃えました。
+- **T-0028（提案）**：残りの作業順が「D → A → C → Q」のままでした。定義はもう終わっているので、`NEXT.md` に合わせて「A → C → Q」に直しました。
+
+このターンは GitHub の通知で起きたので、対話ログは同期していません。
+
+## Claude（2026-10-11 08:59:33 UTC、記録 2）
+
+レビューが確認を保留した点を、こちらで照合します。
+
+## Claude（2026-10-11 08:59:40 UTC、記録 2）
+
+PR #48 の 2 回目のクロスモデルレビューは、「誤り・食い違い」も「詳細化の論点」も 0 件でした。このリポジトリでは、この状態をマージの目安にしています。
+
+- **公開側の PR**：[kittenkiki15/point-free-spacetime#48](https://github.com/kittenkiki15/point-free-spacetime/pull/48)。最新のコミット c815218 の CI は、まだ結果が届いていません。
+- **レビューが確認を保留した点**：こちらで照合しました。
+  - **D-0010 の書き方**：R-0006 と R-0007 は、どちらも余白付きの包含が補間的になる条件を述べた結果です。R-0007 は、膨張 $`N`$ による $`a ◁ b \iff N\,a ≤ b`$ について、補間的であることと同値な条件を示しています。したがって、D-0010 の「補間的でないこと（$`N ∘ N ≰ N`$）」という書き方は、この二つの結果と合っています。
+  - **D-0013・D-0014 の目的**：定義の本文と比べて、書き込むときにすでに照合してあります。
+- **非公開側の PR**：[kittenkiki15/point-free-spacetime-private#25](https://github.com/kittenkiki15/point-free-spacetime-private/pull/25)。中身は対話ログと承認の記録です。
+
+二つの PR のマージは、お任せします。
+
+このターンは GitHub の通知で起きたので、対話ログは同期していません。
+
+## Claude（2026-10-11 09:00:45 UTC、記録 2）
+
+コミット 755b4a2 の CI はすべて通りました。これはレビュー対応の前のコミットです。最新のコミット c815218 の CI は、まだ結果が届いていません。
+
+このターンは GitHub の通知で起きたので、対話ログは同期していません。
+
+## Claude（2026-10-11 09:02:10 UTC、記録 2）
+
+The latest commit on PR [#48](https://github.com/kittenkiki15/point-free-spacetime/pull/48), c815218, passed CI. The previous review round found 0 issues, so nothing is left for me to fix. All that remains is your merge decision on the two PRs.
+
+I didn't sync the dialogue log this turn because a GitHub notification triggered it.
+
+## Claude（2026-10-11 09:28:00 UTC、記録 2）
+
+公開側の PR [kittenkiki15/point-free-spacetime#48](https://github.com/kittenkiki15/point-free-spacetime/pull/48) がマージされました。
+
+非公開側の PR [kittenkiki15/point-free-spacetime-private#25](https://github.com/kittenkiki15/point-free-spacetime-private/pull/25) は、まだマージを待っています。これがマージされたら、第 36 回のセッションを終えます。
+
+このターンは GitHub の通知で起きたので、対話ログは同期していません。
+
+## Claude（2026-10-11 09:28:42 UTC、記録 2）
+
+第 36 回の PR は 2 つともマージされました。公開側が [kittenkiki15/point-free-spacetime#48](https://github.com/kittenkiki15/point-free-spacetime/pull/48)、非公開側が [kittenkiki15/point-free-spacetime-private#25](https://github.com/kittenkiki15/point-free-spacetime-private/pull/25) です。PR の状態を後で確かめる予約は取り消しました。これでこのセッションは終わりです。
+
+次の第 37 回は、`NEXT.md` に書いたとおり T-0028 の続きです。層 1 の前提を A-0005 から下書きします。`/clear` の後に「次のセッションを開始してください」とお伝えください。
+
+このターンは GitHub の通知で起きたので、対話ログは同期していません。
+
+## ユーザー（2026-10-11 10:26:06 UTC、記録 3）
+
+次のセッションを開始してください。
