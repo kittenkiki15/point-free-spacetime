@@ -541,6 +541,9 @@ def question_problems(q, root=ROOT):
     item = f"- [{q.stem}](../questions/{q.stem}.md)：{title}"
     if item not in [line.strip() for line in section.splitlines()]:
         problems.append(f"親のファイル {parent} の節に、{q.stem} への所定の箇条の行（{item}）がない")
+    # 層は論点の中身で決める（親の層と違ってよい。第 34 回）
+    if row("層") not in LAYERS:
+        problems.append(f"層が六つの層のどれでもない: {row('層')}")
     state = row("状態")
     if state not in {"未解決", "解決", "取り下げ"}:
         problems.append(f"状態が正しくない: {state}")
@@ -601,12 +604,12 @@ def test_question_items_reads_only_the_open_points_section(tmp_path):
 
 
 def question_list_problems(readme, files):
-    """questions/README.md の一覧の各行（ID・論点・親の ID・割り当てたタスク・状態・Issue）と、Q のファイルの一致。"""
+    """questions/README.md の一覧の各行（ID・論点・層・親の ID・割り当てたタスク・状態・Issue）と、Q のファイルの一致。"""
     problems = []
     rows = {}
     text = readme.read_text(encoding="utf-8")
     # 一覧表の見出しがなければ失敗にする（Q が 0 件のときに一覧表を消しても通らないように。PR #68 のレビュー）
-    header = "| ID | 論点 | 親の ID | 割り当てたタスク | 状態 | Issue |"
+    header = "| ID | 論点 | 層 | 親の ID | 割り当てたタスク | 状態 | Issue |"
     if header not in [line.strip() for line in text.splitlines()]:
         return [f"一覧表の見出し（{header}）がない"]
     data = table_data_rows(text, "| ID | 論点 |")
@@ -625,7 +628,7 @@ def question_list_problems(readme, files):
         if q.stem not in rows:
             continue
         cells = rows[q.stem]
-        want = [deps_graph.title_of(q)] + [deps_graph.table_row(q, k) for k in ("親の ID", "割り当てたタスク", "状態", "Issue")]
+        want = [deps_graph.title_of(q)] + [deps_graph.table_row(q, k) for k in ("層", "親の ID", "割り当てたタスク", "状態", "Issue")]
         if cells != want:
             problems.append(f"{q.stem} の一覧の行がファイルと一致しない: {cells} ≠ {want}")
     return problems
@@ -633,10 +636,10 @@ def question_list_problems(readme, files):
 
 def test_question_list_problems_detects_mismatch(tmp_path):
     q = tmp_path / "Q-0001.md"
-    q.write_text("# Q-0001: 論点\n\n| 項目 | 内容 |\n| --- | --- |\n| 親の ID | [D-0001](../definitions/D-0001.md) |\n"
+    q.write_text("# Q-0001: 論点\n\n| 項目 | 内容 |\n| --- | --- |\n| 親の ID | [D-0001](../definitions/D-0001.md) |\n| 層 | 実験 |\n"
                  "| 割り当てたタスク | [T-0001](../tasks/T-0001.md) |\n| 状態 | 未解決 |\n| Issue | [#1](u) |\n", encoding="utf-8")
-    row = ("| ID | 論点 | 親の ID | 割り当てたタスク | 状態 | Issue |\n| --- | --- | --- | --- | --- | --- |\n"
-           "| [Q-0001](Q-0001.md) | 論点 | [D-0001](../definitions/D-0001.md) | [T-0001](../tasks/T-0001.md) | {} | [#1](u) |\n")
+    row = ("| ID | 論点 | 層 | 親の ID | 割り当てたタスク | 状態 | Issue |\n| --- | --- | --- | --- | --- | --- | --- |\n"
+           "| [Q-0001](Q-0001.md) | 論点 | 実験 | [D-0001](../definitions/D-0001.md) | [T-0001](../tasks/T-0001.md) | {} | [#1](u) |\n")
     readme = tmp_path / "README.md"
     readme.write_text(row.format("未解決"), encoding="utf-8")
     assert question_list_problems(readme, [q]) == []
@@ -644,7 +647,7 @@ def test_question_list_problems_detects_mismatch(tmp_path):
     assert question_list_problems(readme, [q])
     readme.write_text("", encoding="utf-8")
     assert question_list_problems(readme, [q])
-    readme.write_text(row.format("未解決") + "| Q-0001 | 論点 | x | y | 未解決 | z |\n", encoding="utf-8")
+    readme.write_text(row.format("未解決") + "| Q-0001 | 論点 | 実験 | x | y | 未解決 | z |\n", encoding="utf-8")
     assert any("形式" in p for p in question_list_problems(readme, [q]))
     # Q が 0 件でも、一覧表（見出しだけ）がなければ失敗する
     header_only = row.split("| [Q-0001]")[0]
@@ -677,7 +680,7 @@ def test_question_problems_detects_errors(tmp_path):
     (tmp_path / "tasks" / "T-0001.md").write_text(
         "# T-0001: t\n\n| 項目 | 内容 |\n| --- | --- |\n| 関係する ID | [D-0001](../definitions/D-0001.md) |\n| 状態 | 未着手 |\n",
         encoding="utf-8")
-    good = ("# Q-0001: 論点\n\n| 項目 | 内容 |\n| --- | --- |\n| 親の ID | [D-0001](../definitions/D-0001.md) |\n"
+    good = ("# Q-0001: 論点\n\n| 項目 | 内容 |\n| --- | --- |\n| 親の ID | [D-0001](../definitions/D-0001.md) |\n| 層 | 実験 |\n"
             "| 割り当てたタスク | [T-0001](../tasks/T-0001.md) |\n| 状態 | 未解決 |\n"
             "| Issue | [#1](https://github.com/kittenkiki15/point-free-spacetime/issues/1) |\n")
     q = tmp_path / "questions" / "Q-0001.md"
@@ -685,6 +688,8 @@ def test_question_problems_detects_errors(tmp_path):
     assert question_problems(q, tmp_path) == []
     q.write_text(good.replace("| 親の ID | [D-0001](../definitions/D-0001.md) |", "| 親の ID | D-0001 |"), encoding="utf-8")
     assert any("親のファイルへのリンク" in p for p in question_problems(q, tmp_path))
+    q.write_text(good.replace("| 層 | 実験 |", "| 層 | 層 1 |"), encoding="utf-8")
+    assert any(p.startswith("層が") for p in question_problems(q, tmp_path))
     q.write_text(good.replace("# Q-0001:", "# Q-9999:"), encoding="utf-8")
     assert any("ファイル名と一致" in p for p in question_problems(q, tmp_path))
     q.write_text(good.replace("issues/1)", "issues/2)"), encoding="utf-8")
