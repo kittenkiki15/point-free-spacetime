@@ -15,6 +15,14 @@
 | 体系 | 択一の組の前提（[`assumptions/README.md`](../assumptions/README.md) の「択一の組と体系」）に依存する場合に、その体系。依存しない場合は行を置かない |
 | 初出 | [YYYY-MM-DD 第 NN 回](../summaries/YYYY-MM-DD_NN_topic.md) |
 
+## 目的
+
+（証明できたら何に使えるか。どの層・どの予想に進めるか）
+
+## 完了の条件
+
+（証明・反証の形（Lean の定理、数値実験、紙の証明）と、その前に要る詳細化）
+
 ## 主張
 
 （自然言語による主張。数式は docs/math-guide.md に従う）

@@ -837,3 +837,37 @@ def test_issue_problems_accepts_old_repo_issue_only_for_done_tasks(tmp_path):
     open_task.write_text("# T-0004: t\n\n| 項目 | 内容 |\n| --- | --- |\n| 状態 | 未着手 |\n"
                          "| Issue | 旧リポジトリ（非公開）の Issue #53 |\n", encoding="utf-8")
     assert issue_problems([], [open_task])
+
+
+def purpose_section_problems(path):
+    """「## 目的」と「## 完了の条件」の節（第 35 回。T-0028）の検査。問題の一覧を返す。
+
+    ヘッダーの表のすぐ後に、この順で二つの節があり、どちらも空でないこと。
+    中身の妥当性は検査しない（ユーザーの確認を正本とする）。"""
+    lines = path.read_text(encoding="utf-8").split("\n")
+    headings = [(i, line) for i, line in enumerate(lines) if line.startswith("## ")]
+    if [h for _, h in headings[:2]] != ["## 目的", "## 完了の条件"]:
+        return ["表の後の最初の二つの節が「## 目的」「## 完了の条件」でない"]
+    problems = []
+    bounds = [i for i, _ in headings[:3]] + ([len(lines)] if len(headings) < 3 else [])
+    for (start, name), end in zip(headings[:2], bounds[1:3]):
+        if not "".join(lines[start + 1:end]).strip():
+            problems.append(f"{name[3:]} の節が空")
+    return problems
+
+
+def test_items_have_purpose_and_completion_sections():
+    files = [f for d in ("definitions", "assumptions", "conjectures", "results", "questions")
+             for f in sorted((ROOT / d).glob("*.md")) if f.name != "README.md"]
+    problems = {f.relative_to(ROOT).as_posix(): p for f in files if (p := purpose_section_problems(f))}
+    assert problems == {}
+
+
+def test_purpose_section_problems_detects_missing_or_empty(tmp_path):
+    f = tmp_path / "D-0001.md"
+    f.write_text("# D-0001: d\n\n| 項目 | 値 |\n| --- | --- |\n\n## 目的\n\nx\n\n## 完了の条件\n\ny\n\n## 定義\n", encoding="utf-8")
+    assert purpose_section_problems(f) == []
+    f.write_text("# D-0001: d\n\n## 目的\n\n\n## 完了の条件\n\ny\n", encoding="utf-8")
+    assert purpose_section_problems(f) == ["目的 の節が空"]
+    f.write_text("# D-0001: d\n\n## 定義\n\n## 目的\n\nx\n\n## 完了の条件\n\ny\n", encoding="utf-8")
+    assert purpose_section_problems(f)
