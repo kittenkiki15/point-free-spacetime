@@ -849,6 +849,10 @@ def purpose_section_problems(path):
     if [h for _, h in headings[:2]] != ["## 目的", "## 完了の条件"]:
         return ["表の後の最初の二つの節が「## 目的」「## 完了の条件」でない"]
     problems = []
+    # ヘッダーの表の終わりから「## 目的」までは空行だけ（PR #47 のレビュー）
+    table_end = max((i for i, line in enumerate(lines[:headings[0][0]]) if line.startswith("|")), default=None)
+    if table_end is None or any(line.strip() for line in lines[table_end + 1:headings[0][0]]):
+        problems.append("ヘッダーの表と「## 目的」の間に、空行でない行がある（または表がない）")
     bounds = [i for i, _ in headings[:3]] + ([len(lines)] if len(headings) < 3 else [])
     for (start, name), end in zip(headings[:2], bounds[1:3]):
         if not "".join(lines[start + 1:end]).strip():
@@ -867,7 +871,9 @@ def test_purpose_section_problems_detects_missing_or_empty(tmp_path):
     f = tmp_path / "D-0001.md"
     f.write_text("# D-0001: d\n\n| 項目 | 値 |\n| --- | --- |\n\n## 目的\n\nx\n\n## 完了の条件\n\ny\n\n## 定義\n", encoding="utf-8")
     assert purpose_section_problems(f) == []
-    f.write_text("# D-0001: d\n\n## 目的\n\n\n## 完了の条件\n\ny\n", encoding="utf-8")
+    f.write_text("# D-0001: d\n\n| 項目 | 値 |\n| --- | --- |\n\n## 目的\n\n\n## 完了の条件\n\ny\n", encoding="utf-8")
     assert purpose_section_problems(f) == ["目的 の節が空"]
+    f.write_text("# D-0001: d\n\n| 項目 | 値 |\n| --- | --- |\n\n説明文\n\n## 目的\n\nx\n\n## 完了の条件\n\ny\n", encoding="utf-8")
+    assert any("間に" in p for p in purpose_section_problems(f))
     f.write_text("# D-0001: d\n\n## 定義\n\n## 目的\n\nx\n\n## 完了の条件\n\ny\n", encoding="utf-8")
     assert purpose_section_problems(f)
