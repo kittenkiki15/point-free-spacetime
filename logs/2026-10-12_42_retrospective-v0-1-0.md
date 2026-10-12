@@ -165,3 +165,52 @@ PR #46（第 34 回）と比べたので、doc を更新します。まず `docs
 「4. 段階 B の計画の見直しの時期」について、賛成ありがとうございます。その案で進めてください。
 
 「1. レビューの改善 (r1)〜(r4)」は、この回で実装したいです。「2. 振り返りの記録」は、前回の T-0022 と同様に、「タスク（T-0030 として新しく置く案）として記録する」にしたいです。可能でしょうか？
+
+## Claude（2026-10-12 14:20:32 UTC、記録 2）
+
+Next I'll implement (r1) and (r2) in the workflow: pass the full text of the changed files and the previous reviews and replies to the model.
+
+## Claude（2026-10-12 14:20:57 UTC、記録 2）
+
+Next I'll check that the bash part works locally, using `main` as the base and the working branch as the head.
+
+## Claude（2026-10-12 14:21:11 UTC、記録 2）
+
+The local test works. Next I'll add (r2) and (r3) to the review instructions.
+
+## Claude（2026-10-12 14:21:23 UTC、記録 2）
+
+Next is (r4). I'll add it to the review rules in `CLAUDE.md`, along with a note that the review now receives the full text and the previous reviews.
+
+## Claude（2026-10-12 14:21:31 UTC、記録 2）
+
+Next I'll create the task T-0030. First I'll check the template and how tasks are listed in `roadmap.md`.
+
+## Claude（2026-10-12 14:22:47 UTC、記録 2）
+
+第 30 回より後に作ったタスクには、完了していても Issue が要る規則でした（Issue を作ってから閉じる）。T-0030 の Issue を作り、閉じます。
+
+## Claude（2026-10-12 14:23:57 UTC、記録 2）
+
+(r1)〜(r4) をこの回で実装し、振り返りをタスク T-0030 として記録しました。どちらもご希望どおりにできています。テストは 151 件すべて通り、push 済みです（fb54680、de0bb22）。段階 B の計画の見直しは、ご提案どおり次の回（T-0004 の具体的な検討に入る回）で行います。
+
+#### 実装した改善
+
+- **(r1) 変更したファイルの全文を渡す**：`.github/workflows/codex-review.yml` で、変更した定義・前提・予想・結果・Q・タスクのファイルを、差分に加えて全文（PR の head の版）もレビューに渡します。上限は合計 200 KB です。PR #55 の範囲で手元で試したところ、Q 7 件と T-0028 の合計は約 45 KB でした。
+- **(r2) 前の回までのレビューと返信を渡す**：同じワークフローで、PR のコメントのうち、クロスモデルレビュー自身のコメントと PR の作成者の返信だけを取り出して渡します。ほかの人のコメントは、指示の注入を避けるため入れません。上限は約 120 KB で、超えたときは古いものから省きます。
+- **(r3) レビューの指示の追加**：`.github/codex/review-prompt.md` に「進め方」の節を加えました。
+  - 指摘はその回で一度にすべて挙げる。
+  - 返信で説明した論点は、反論がある場合だけ理由を添えて挙げる。
+  - 予想は仮定と結論の関係として読み、「目的」「完了の条件」は主張に照らして判断する。
+- **(r4) 自己点検**：`CLAUDE.md` の「Git の運用」に加えました。PR を作る前と指摘を直すときに、同じ内容を述べる箇所（本文、まとめ、`NEXT.md`、各回の状況、PR の説明）をまとめて点検します。
+
+(r1)〜(r3) は、安全のため `main` の版のワークフローで動きます。効くのは、この回の PR がマージされた後の PR からです。この回の PR 自体は、これまでどおりのレビューになります。
+
+#### T-0030 の記録
+
+- `tasks/T-0030.md` を作り、`roadmap.md` の表と図に加えました。
+- 状態は「完了」です。判断と実装がこの回で済んだためです。
+- 規則では、第 30 回より後のタスクには Issue が要ります。そこで Issue（https://github.com/kittenkiki15/point-free-spacetime/issues/56）を作って閉じ、そのリンクを記録しています。
+- 振り返りの文書の 5 節にも、実装したことと T-0030 として記録したことを書き加えました。
+
+ほかに振り返りたい点がなければ、この回の終了の手続き（まとめ、`NEXT.md` など）に進みます。
