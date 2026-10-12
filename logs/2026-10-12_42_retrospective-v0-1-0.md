@@ -230,3 +230,15 @@ I'm writing the session 42 summary and updating the related files.
 ## Claude（2026-10-12 14:29:26 UTC、記録 2）
 
 The summary and related files are updated and pushed. Next I'll create the PRs.
+
+## Claude（2026-10-12 14:30:16 UTC、記録 2）
+
+対話ログは同期済みです。
+
+## Claude（2026-10-12 14:30:25 UTC、記録 2）
+
+どちらの通知も、#57 と #31 の購読が始まったという知らせだけです。対応することはないので、CI とレビューの結果を待ちます。
+
+## ユーザー（2026-10-12 14:32:15 UTC、記録 2）
+
+Codex review 2 件がスキップされているようですが、この動作は正常でしょうか？ ご確認ください。
