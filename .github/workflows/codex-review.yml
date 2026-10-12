@@ -125,11 +125,13 @@ jobs:
             const parts = [];
             let size = 0;
             let omitted = 0;
-            for (const c of keep.slice().reverse()) {
+            const newestFirst = keep.slice().reverse();
+            for (const [i, c] of newestFirst.entries()) {
               const who = c.user.login === 'github-actions[bot]' ? 'レビュー' : 'PR の作成者の返信';
               const part = `### ${who}（${c.created_at}）\n\n~~~~~~~~~~markdown\n${c.body}\n~~~~~~~~~~\n`;
               const bytes = Buffer.byteLength(part);
-              if (size + bytes > limit) { omitted += 1; continue; }
+              // 上限に達したら、それより古いコメントは入れない（返信を飛ばして古いレビューだけを渡さないため）
+              if (size + bytes > limit) { omitted = newestFirst.length - i; break; }
               parts.unshift(part);
               size += bytes;
             }
