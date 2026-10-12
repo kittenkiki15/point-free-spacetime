@@ -74,6 +74,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | [T-0027](tasks/T-0027.md) | 段階 A の成果のリリース | 整理 | T-0025 | 横断的なタスク（特定の ID はない。対象はリポジトリ全体と `tools/`） | 完了 | [#30](https://github.com/kittenkiki15/point-free-spacetime/issues/30) |
 | [T-0028](tasks/T-0028.md) | 各項目の検討の目的と完了の条件の明確化 | 整理 | なし | 横断的なタスク（特定の ID はない。対象はすべての定義・前提・予想・結果と、未解決の点） | 進行中 | [#45](https://github.com/kittenkiki15/point-free-spacetime/issues/45) |
 | [T-0029](tasks/T-0029.md) | 実際の実験の延長として適切な列の取り方の候補 | B | T-0004 | [A-0001](assumptions/A-0001.md)、[A-0018](assumptions/A-0018.md)、[D-0005](definitions/D-0005.md)、[C-0005](conjectures/C-0005.md) | 未着手 | [#49](https://github.com/kittenkiki15/point-free-spacetime/issues/49) |
+| [T-0030](tasks/T-0030.md) | v0.1.0 以降の振り返り | 整理 | T-0027 | 横断的なタスク（特定の ID はない。対象は `roadmap.md`・まとめ・運用の仕組み（`CLAUDE.md`・`.github/codex/`）） | 完了 | [#56](https://github.com/kittenkiki15/point-free-spacetime/issues/56) |
 
 ```mermaid
 flowchart LR
@@ -91,6 +92,8 @@ flowchart LR
   T0027 --> T0004["T-0004 位相"]
   T0004 -->|第 34 回まで| T0028["T-0028 目的と完了の条件"]
   T0028 -->|残りの Q| T0004
+  T0028 -->|層 1 の後| T0030["T-0030 v0.1.0 以降の振り返り"]
+  T0030 -->|段階 B の見直し| T0004
   T0004 --> T0023["T-0023 C-0003・C-0004・C-0006 の検証"]
   T0023 --> T0029["T-0029 延長の列の取り方"]
   T0029 --> T0005["T-0005 尤度と同時分布"]
