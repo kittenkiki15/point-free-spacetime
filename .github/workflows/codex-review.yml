@@ -198,12 +198,12 @@ jobs:
               | while read -r f; do
                   git show "$HEAD_SHA:$f" > "$RUNNER_TEMP/full.md"
                   n=$(wc -c < "$RUNNER_TEMP/full.md")
-                  used=$((used + n))
                   echo
-                  if [ "$used" -gt "$MAX_FULL_BYTES" ]; then
+                  if [ $((used + n)) -gt "$MAX_FULL_BYTES" ]; then
                     echo "### $f（上限のため全文を省いた）"
                     continue
                   fi
+                  used=$((used + n))
                   echo "### $f"
                   echo
                   echo "~~~~~~~~~~markdown"
