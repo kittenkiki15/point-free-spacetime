@@ -97,3 +97,76 @@ C (予想) についてのクロスモデルレビューを先に完了させた
 ## Claude（2026-10-12 07:21:06 UTC、記録 2）
 
 I've created PRs #54 and #29. Next I'll subscribe to their notifications and schedule a check-in.
+
+## Claude（2026-10-12 07:21:29 UTC、記録 2）
+
+対話ログは同期済みです。
+
+## Claude（2026-10-12 07:21:37 UTC、記録 2）
+
+Both notifications only confirm the subscriptions to #54 and #29. Nothing to handle yet; I'll respond when CI and review results arrive.
+
+## Claude（2026-10-12 07:23:03 UTC、記録 2）
+
+I've pushed the fix for the first review on #54 (55ce1c0). While at it, I'll also change the leftover "高々可算個" in C-0012 and C-0013 to "有限個".
+
+## Claude（2026-10-12 07:23:30 UTC、記録 2）
+
+PR #54 の 1 回目のクロスモデルレビューに対応して push し（55ce1c0・5cdc644）、PR に返信しました。テストは 151 件すべて通っています。
+
+- **C-0012 の目的とまとめ**（誤り・食い違い）：「新しい前提を加えずに順序が従う」と書いていましたが、完了の条件では、A-0016 から導けない仮定を加えることも認めています。そこで、場合を二つに分けて書きました。
+  - A-0016 と既存の条件だけで導けた場合：新しい前提を加えずに順序が従う。
+  - 追加の仮定を使って導けた場合：その仮定を満たすモデルに限った、条件付きの結論になる。
+- **稠密性の対象**（詳細化の論点）：本文は変えていません。稠密性を実際の記録に求めるのか、仮想的な延長の列に求めるのかを、T-0024 で明示する論点として、C-0012・C-0013 に記録しました。実際の記録は有限個なので、一般には稠密になりません。
+- **表記の統一**：C-0013 に残っていた「高々可算個」を、A-0001 に合わせて「有限個」に改めました。
+
+次のレビューの結果を待って対応します。
+
+## Claude（2026-10-12 07:24:34 UTC、記録 2）
+
+CI on 3dee147 (#54) finished with no failures. Next I'm waiting for CI and the review on the latest commit, 5cdc644.
+
+## Claude（2026-10-12 07:24:54 UTC、記録 2）
+
+CI on another earlier commit of PR #54 also finished with no failures. Waiting for CI and the review on the latest commit, 5cdc644.
+
+## Claude（2026-10-12 07:25:38 UTC、記録 2）
+
+PR #54 の 2 回目のクロスモデルレビューに対応して push し（ccbdffb）、PR に返信しました。テストは 151 件すべて通っています。
+
+- **C-0013 の対象の範囲**（誤り・食い違い）：目的とまとめが、可能な実験の事象すべてに同じ較正の規則を当てはめられるように読めました。完了の条件の証明は、段階 1（決定的な較正）に限られています。そこで範囲を「段階 1 で対象とする可能な実験の事象」と明記し、段階 2・3 は対象外であることも添えました。
+- **C-0012 の「可能な実験は実際には行われない」**（詳細化の論点）：レビューは判断を保留していましたが、D-0002 を確かめたところ、実際の実験に対応する可能な実験も考えていました。そのため、この説明は正確ではありません。「可能な実験のうち、実際に行われていないものには、記録との直接の照合ができない」と改め、まとめも同じ趣旨に直しました。
+
+次のレビューの結果を待って対応します。
+
+## Claude（2026-10-12 07:26:26 UTC、記録 2）
+
+PR #54 の 3 回目のクロスモデルレビューで、「誤り・食い違い」も詳細化の論点も 0 件になりました。マージの目安に達しています。
+
+最新のコミット ccbdffb の CI がまだ終わっていないので、結果が出たらお知らせします。マージのご判断をお願いします。対象は公開側の #54 と、非公開側の #29（対話ログだけ）です。
+
+## Claude（2026-10-12 07:26:40 UTC、記録 2）
+
+CI on 55ce1c0 also finished with no failures. Waiting for CI on the latest commit, ccbdffb.
+
+## Claude（2026-10-12 07:26:56 UTC、記録 2）
+
+CI on 5cdc644 also finished with no failures. Only the CI on the latest commit, ccbdffb, is still running.
+
+## Claude（2026-10-12 07:29:07 UTC、記録 2）
+
+PR #54 の最新のコミット ccbdffb でも、CI は失敗なく終わりました。直前のクロスモデルレビューでも「誤り・食い違い」は 0 件で、マージの目安に達しています。
+
+マージのご判断をお願いします。対象は公開側の #54 と、非公開側の #29（対話ログだけ）です。
+
+## Claude（2026-10-12 08:13:55 UTC、記録 2）
+
+At the scheduled check-in, both #54 and #29 are still open, waiting for merge. #54 has green CI and no conflicts. Nothing new to handle.
+
+I've stopped the scheduled check-ins. The next GitHub event or a message from you will bring me back.
+
+## Claude（2026-10-12 09:37:01 UTC、記録 2）
+
+公開側の PR #54 と非公開側の PR #29 が、どちらもマージされました。これで第 40 回のセッションは終わりです。
+
+次の第 41 回は、T-0028 の続きとして、層 1 の Q 7 件（Q-0005〜Q-0011）の「目的」と「完了の条件」を書きます。`NEXT.md` に記録してあります。
