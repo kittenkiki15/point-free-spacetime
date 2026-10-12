@@ -194,8 +194,9 @@ jobs:
             used=0
             git diff --name-only --diff-filter=AM "$BASE_SHA...$HEAD_SHA" -- \
               'definitions/*.md' 'assumptions/*.md' 'conjectures/*.md' 'results/*.md' 'questions/*.md' 'tasks/*.md' \
-              | grep -v -e '/README\.md$' -e '/_template\.md$' \
               | while read -r f; do
+                  # 一覧と書式のファイルは除く（grep -v は 0 件で失敗し、pipefail でプロンプトの生成が止まるため、case で除く）
+                  case "$f" in */README.md|*/_template.md) continue ;; esac
                   git show "$HEAD_SHA:$f" > "$RUNNER_TEMP/full.md"
                   n=$(wc -c < "$RUNNER_TEMP/full.md")
                   echo
