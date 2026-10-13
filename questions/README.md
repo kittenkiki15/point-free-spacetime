@@ -26,10 +26,10 @@
 | [Q-0002](Q-0002.md) | 可能な実験の状態の集合の位相と、座標の同相性 | 可能な実験 | [D-0014](../definitions/D-0014.md) | [T-0010](../tasks/T-0010.md) | 未解決 | [#34](https://github.com/kittenkiki15/point-free-spacetime/issues/34) |
 | [Q-0003](Q-0003.md) | 許す状態（ボレル確率測度・正規状態） | 可能な実験 | [D-0014](../definitions/D-0014.md) | [T-0010](../tasks/T-0010.md) | 未解決 | [#35](https://github.com/kittenkiki15/point-free-spacetime/issues/35) |
 | [Q-0004](Q-0004.md) | 状態を値とする設定・結果の上の較正の可測構造 | 可能な実験 | [D-0014](../definitions/D-0014.md) | [T-0010](../tasks/T-0010.md) | 未解決 | [#36](https://github.com/kittenkiki15/point-free-spacetime/issues/36) |
-| [Q-0005](Q-0005.md) | コンパクト性を課す対象 | 実験 | [A-0005](../assumptions/A-0005.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#37](https://github.com/kittenkiki15/point-free-spacetime/issues/37) |
-| [Q-0006](Q-0006.md) | 「一様に有界」の範囲 | 実験 | [A-0005](../assumptions/A-0005.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#38](https://github.com/kittenkiki15/point-free-spacetime/issues/38) |
+| [Q-0005](Q-0005.md) | コンパクト性を課す対象 | 実験 | [A-0005](../assumptions/A-0005.md) | [T-0004](../tasks/T-0004.md) | 解決 | [#37](https://github.com/kittenkiki15/point-free-spacetime/issues/37) |
+| [Q-0006](Q-0006.md) | 「一様に有界」の範囲 | 実験 | [A-0005](../assumptions/A-0005.md) | [T-0004](../tasks/T-0004.md) | 解決 | [#38](https://github.com/kittenkiki15/point-free-spacetime/issues/38) |
 | [Q-0007](Q-0007.md) | 結果の空間の意味 | 実験 | [D-0004](../definitions/D-0004.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#39](https://github.com/kittenkiki15/point-free-spacetime/issues/39) |
-| [Q-0008](Q-0008.md) | 時計や物差しの読みでない結果の座標を、共通の空間に写す方法 | 実験 | [D-0003](../definitions/D-0003.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#40](https://github.com/kittenkiki15/point-free-spacetime/issues/40) |
+| [Q-0008](Q-0008.md) | 時計や物差しの読みでない結果の座標を、共通の空間に写す方法 | 実験 | [D-0003](../definitions/D-0003.md) | [T-0010](../tasks/T-0010.md) | 未解決 | [#40](https://github.com/kittenkiki15/point-free-spacetime/issues/40) |
 | [Q-0009](Q-0009.md) | 設定に含める資源の量は、予算か実際の消費量か | 実験 | [A-0004](../assumptions/A-0004.md) | [T-0004](../tasks/T-0004.md) | 解決 | [#41](https://github.com/kittenkiki15/point-free-spacetime/issues/41) |
 | [Q-0010](Q-0010.md) | 記録する資源の範囲 | 実験 | [A-0004](../assumptions/A-0004.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#43](https://github.com/kittenkiki15/point-free-spacetime/issues/43) |
 | [Q-0011](Q-0011.md) | 「物理学の実践」の範囲と、延長での主体の制限 | 実験 | [A-0018](../assumptions/A-0018.md) | [T-0029](../tasks/T-0029.md) | 未解決 | [#50](https://github.com/kittenkiki15/point-free-spacetime/issues/50) |
