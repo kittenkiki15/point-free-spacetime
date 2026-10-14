@@ -1,6 +1,6 @@
 # ロードマップ
 
-最終更新: 2026-10-14（第 46 回。T-0032 の区切り 1 を行った）
+最終更新: 2026-10-14（第 47 回。T-0032 の区切り 2 で予想 C-0014〜C-0017 を登録した）
 
 このファイルは、[フレームワーク](framework.md) を完成させるための作業の最新版です。セッションの終わりごとに更新します（[`CLAUDE.md`](CLAUDE.md) の「セッションの終え方」）。
 
@@ -82,7 +82,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | [T-0029](tasks/T-0029.md) | 実際の実験の延長として適切な列の取り方の候補 | B | T-0004、T-0031 | [A-0001](assumptions/A-0001.md)、[A-0018](assumptions/A-0018.md)、[D-0005](definitions/D-0005.md)、[C-0005](conjectures/C-0005.md)、[A-0004](assumptions/A-0004.md) | 未着手 | [#49](https://github.com/kittenkiki15/point-free-spacetime/issues/49) |
 | [T-0030](tasks/T-0030.md) | v0.1.0 以降の振り返り | 整理 | T-0027 | 横断的なタスク（特定の ID はない。対象は `roadmap.md`・まとめ・運用の仕組み（`CLAUDE.md`・`.github/codex/`）） | 完了 | [#56](https://github.com/kittenkiki15/point-free-spacetime/issues/56) |
 | [T-0031](tasks/T-0031.md) | 実際の実験と延長の、時制を含まない定式化 | B | なし | [A-0001](assumptions/A-0001.md)、[A-0018](assumptions/A-0018.md)、[D-0002](definitions/D-0002.md)、[D-0012](definitions/D-0012.md)、[C-0005](conjectures/C-0005.md) | 未着手 | [#59](https://github.com/kittenkiki15/point-free-spacetime/issues/59) |
-| [T-0032](tasks/T-0032.md) | 実験の層の前提の点検（包含の前提と、結果の空間の意味論） | B | なし | [A-0017](assumptions/A-0017.md)、[A-0006](assumptions/A-0006.md)、[A-0005](assumptions/A-0005.md)、[A-0003](assumptions/A-0003.md)、[D-0003](definitions/D-0003.md)、[A-0010](assumptions/A-0010.md)、[D-0013](definitions/D-0013.md)、[A-0008](assumptions/A-0008.md)、[A-0016](assumptions/A-0016.md)、[D-0014](definitions/D-0014.md)、[Q-0007](questions/Q-0007.md) | 進行中 | [#61](https://github.com/kittenkiki15/point-free-spacetime/issues/61) |
+| [T-0032](tasks/T-0032.md) | 実験の層の前提の点検（包含の前提と、結果の空間の意味論） | B | なし | [A-0017](assumptions/A-0017.md)、[A-0006](assumptions/A-0006.md)、[A-0005](assumptions/A-0005.md)、[A-0003](assumptions/A-0003.md)、[D-0003](definitions/D-0003.md)、[A-0010](assumptions/A-0010.md)、[D-0013](definitions/D-0013.md)、[A-0008](assumptions/A-0008.md)、[A-0016](assumptions/A-0016.md)、[D-0014](definitions/D-0014.md)、[Q-0007](questions/Q-0007.md)、[C-0014](conjectures/C-0014.md)、[C-0015](conjectures/C-0015.md)、[C-0016](conjectures/C-0016.md)、[C-0017](conjectures/C-0017.md) | 進行中 | [#61](https://github.com/kittenkiki15/point-free-spacetime/issues/61) |
 
 ```mermaid
 flowchart LR
