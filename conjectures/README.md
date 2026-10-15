@@ -27,12 +27,16 @@
 
 | ID | 予想 | 確度 | 重要度 | 検証費用 | 優先度 | 状態 | Issue |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| [C-0015](C-0015.md) | 鋭くしていった統計の列が点に集中する条件 | 中 | 高 | 中 | 高 | 未着手 | [#65](https://github.com/kittenkiki15/point-free-spacetime/issues/65) |
 | [C-0007](C-0007.md) | 局在の限界から、装置の占める領域の上下限が導かれる | 低 | 高 | 高 | 中 | 未着手 | [#8](https://github.com/kittenkiki15/point-free-spacetime/issues/8) |
 | [C-0001](C-0001.md) | 長さ空間の尺度 ℓ の膨張の余白付きの包含は補間的でなく、離散化と区別できる | 高 | 中 | 低 | 中 | 未着手 | [#2](https://github.com/kittenkiki15/point-free-spacetime/issues/2) |
 | [C-0008](C-0008.md) | ポアンカレ共変な装置の占める領域は有界にできない | 高 | 中 | 中 | 中 | 未着手 | [#9](https://github.com/kittenkiki15/point-free-spacetime/issues/9) |
 | [C-0003](C-0003.md) | 情報的に完全なプロトコルの族の下では、統計の関数の推定と状態の推定の極限が一致する | 高 | 中 | 低 | 中 | 未着手 | [#4](https://github.com/kittenkiki15/point-free-spacetime/issues/4) |
 | [C-0004](C-0004.md) | 実験プロトコルを計算可能な手続きとして形式化すると、連続性の意味での等価原理が従う | 高 | 中 | 中 | 中 | 未着手 | [#5](https://github.com/kittenkiki15/point-free-spacetime/issues/5) |
 | [C-0006](C-0006.md) | 等価原理の下でも、事後分布が点に収束しない場合がある | 高 | 中 | 低 | 中 | 未着手 | [#7](https://github.com/kittenkiki15/point-free-spacetime/issues/7) |
+| [C-0014](C-0014.md) | 実際の実験の応答の列の極限として得られる応答は、ベール第 1 級の応答に限られる | 高 | 中 | 中 | 中 | 未着手 | [#64](https://github.com/kittenkiki15/point-free-spacetime/issues/64) |
+| [C-0016](C-0016.md) | 設定の空間の意味論によって、閾値の振る舞いを連続な模型として書けるかが変わる | 高 | 中 | 低 | 中 | 未着手 | [#66](https://github.com/kittenkiki15/point-free-spacetime/issues/66) |
+| [C-0018](C-0018.md) | 計算可能な連続な応答は、延長で使えるプロトコルの応答で近似できる | 中 | 中 | 中 | 中 | 未着手 | [#68](https://github.com/kittenkiki15/point-free-spacetime/issues/68) |
 | [C-0002](C-0002.md) | 可能な実験は、再構成した観測量の時空の中でモデル化できる | 中 | 高 | 高 | 低 | 未着手 | [#3](https://github.com/kittenkiki15/point-free-spacetime/issues/3) |
 | [C-0005](C-0005.md) | 実験から得る可算集合の閉包が、観測量の全体を含む物理的に自然な条件がある | 中 | 中 | 中 | 低 | 未着手 | [#6](https://github.com/kittenkiki15/point-free-spacetime/issues/6) |
 | [C-0009](C-0009.md) | 較正の普遍性から、観測者の取り替えはローレンツ変換かガリレイ変換になる | 高 | 高 | 高 | 低 | 未着手 | [#10](https://github.com/kittenkiki15/point-free-spacetime/issues/10) |
@@ -40,3 +44,4 @@
 | [C-0011](C-0011.md) | 比較の取り替えが経路に依らず、全域へ整合的に広げられるなら、観測者の取り替えは群の作用で記述できる | 中 | 高 | 高 | 低 | 未着手 | [#12](https://github.com/kittenkiki15/point-free-spacetime/issues/12) |
 | [C-0012](C-0012.md) | 可能な実験の観測も、観測者の座標時刻で、登録が準備より前にない | 高 | 中 | 中 | 低 | 未着手 | [#13](https://github.com/kittenkiki15/point-free-spacetime/issues/13) |
 | [C-0013](C-0013.md) | 可能な実験でも較正の普遍性が成り立つ | 中 | 中 | 中 | 低 | 未着手 | [#14](https://github.com/kittenkiki15/point-free-spacetime/issues/14) |
+| [C-0017](C-0017.md) | 許されるすべての意味論で妥当な命題は、記録の構文から導ける命題に一致する | 中 | 高 | 高 | 低 | 未着手 | [#67](https://github.com/kittenkiki15/point-free-spacetime/issues/67) |
