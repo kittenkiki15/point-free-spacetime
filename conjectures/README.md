@@ -35,7 +35,7 @@
 | [C-0004](C-0004.md) | 実験プロトコルを計算可能な手続きとして形式化すると、連続性の意味での等価原理が従う | 高 | 中 | 中 | 中 | 未着手 | [#5](https://github.com/kittenkiki15/point-free-spacetime/issues/5) |
 | [C-0006](C-0006.md) | 等価原理の下でも、事後分布が点に収束しない場合がある | 高 | 中 | 低 | 中 | 未着手 | [#7](https://github.com/kittenkiki15/point-free-spacetime/issues/7) |
 | [C-0014](C-0014.md) | 実際の実験の応答の列の極限として得られる応答は、ベール第 1 級の応答に限られる | 高 | 中 | 中 | 中 | 未着手 | [#64](https://github.com/kittenkiki15/point-free-spacetime/issues/64) |
-| [C-0016](C-0016.md) | 設定と結果の空間の意味論によって、閾値の応答が理想化かどうかが変わる | 高 | 中 | 低 | 中 | 未着手 | [#66](https://github.com/kittenkiki15/point-free-spacetime/issues/66) |
+| [C-0016](C-0016.md) | 設定の空間の意味論によって、閾値の振る舞いを連続な模型として書けるかが変わる | 高 | 中 | 低 | 中 | 未着手 | [#66](https://github.com/kittenkiki15/point-free-spacetime/issues/66) |
 | [C-0018](C-0018.md) | 計算可能な連続な応答は、延長で使えるプロトコルの応答で近似できる | 中 | 中 | 中 | 中 | 未着手 | [#68](https://github.com/kittenkiki15/point-free-spacetime/issues/68) |
 | [C-0002](C-0002.md) | 可能な実験は、再構成した観測量の時空の中でモデル化できる | 中 | 高 | 高 | 低 | 未着手 | [#3](https://github.com/kittenkiki15/point-free-spacetime/issues/3) |
 | [C-0005](C-0005.md) | 実験から得る可算集合の閉包が、観測量の全体を含む物理的に自然な条件がある | 中 | 中 | 中 | 低 | 未着手 | [#6](https://github.com/kittenkiki15/point-free-spacetime/issues/6) |
