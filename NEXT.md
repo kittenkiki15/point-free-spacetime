@@ -20,6 +20,19 @@
 
 - 書籍の本文が必要になったら、該当するページ（目次・索引で特定する）のスクリーンショットをお願いする（第 18 回に Ludwig の書籍で行った方法）。
 - arXiv の論文は Claude が取得できる。出版社版の本文（有料のもの）が必要になったら、その都度お願いする。
+- 第 50 回の調査メモ（[surveys/2026-10-16_50_semantics-and-representations.md](surveys/2026-10-16_50_semantics-and-representations.md)）の原典を読むときに、入手をお願いしたい文献（第 50 回の時点で、Claude が無料の版を確かめられていないもの。読む前に Claude が無料の版をもう一度探し、見つかったものは依頼から外す）：
+  - 書籍（該当するページのスクリーンショット）：
+    - `weihrauch2000`（Weihrauch, Computable Analysis）：許容的な表現の定義と、定理 4.1.13（二進表現が許容的でないこと）の前後。
+    - `vickers1989`（Vickers, Topology via Logic）：位相系（topological system）の定義と、幾何学的論理・点の扱いの章。
+    - Johnstone『Sketches of an Elephant』（未登録）：C1.2 の例 1.2.8（全射のロケール）と、ドリーニュの定理（コヒーレントなトポスは十分な点を持つ）の命題の場合の扱い。
+  - 論文（出版社版の PDF）：
+    - `kreitz1985`（Kreitz–Weihrauch, Theory of representations, TCS 1985）：許容的な表現の定義。
+    - `schroder2002`（Schröder, Extended admissibility, TCS 2002）：許容的な表現と点列連続性の一致。
+    - `brattka2005`（Brattka, Effective Borel measurability and reducibility of functions, MLQ 2005）：極限計算可能な関数と実効的に $`Σ^0_2`$ 可測な関数の一致。
+    - `schroder2007`（Schröder, Admissible representations for probability measures, MLQ 2007）：確率測度の空間の許容的な表現。
+    - `abramsky1991`（Abramsky, Domain theory in logical form, APAL 1991）：論理の形と、ストーン双対の主定理。
+    - `banaschewski1996`（Banaschewski–Pultr, Cauchy points of uniform and nearness frames, Quaest. Math. 1996）：コーシー点の定義と、完備化のスペクトルとの一致（C-0015 の条件 (C) を点なしの言葉で述べ直すため）。
+  - `brattka2011` は arXiv 版を非公開側の `papers/` に置いた（第 50 回）。
 
 ## 未解決の論点
 
