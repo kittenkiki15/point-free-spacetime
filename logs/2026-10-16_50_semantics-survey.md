@@ -268,3 +268,7 @@ PR #72 の第 3 回のクロスモデルレビューで、誤り・食い違い�
 ## ユーザー（2026-10-16 12:20:13 UTC、記録 2）
 
 はい、brattka2011 の arXiv 版を追加してください。
+
+## Claude（2026-10-16 12:21:15 UTC、記録 2）
+
+Update the private PR description too.
