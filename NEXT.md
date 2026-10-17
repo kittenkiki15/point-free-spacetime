@@ -1,6 +1,6 @@
 # 次のセッションでやること
 
-最終更新: 2026-10-16（第 50 回セッションの後）
+最終更新: 2026-10-17（第 50 回セッションの後の短い相談）
 
 ## 状況
 
@@ -20,7 +20,7 @@
 
 - 書籍の本文が必要になったら、該当するページ（目次・索引で特定する）のスクリーンショットをお願いする（第 18 回に Ludwig の書籍で行った方法）。
 - arXiv の論文は Claude が取得できる。出版社版の本文（有料のもの）が必要になったら、その都度お願いする。
-- 第 50 回の調査メモ（[surveys/2026-10-16_50_semantics-and-representations.md](surveys/2026-10-16_50_semantics-and-representations.md)）の原典は、第 50 回の PR のマージ後に、ユーザーが論文 5 件と書籍 `vickers1989` を入手した（非公開側の `papers/`。`brattka2005` は著者の版）。`schroder2007`（MLQ）の代わりに届いた ENTCS の論文（題名がほぼ同じ別の論文。MLQ の版との関係は未確認）は、`schroder2007entcs` として登録した。MLQ の版と、書籍 `weihrauch2000`・Johnstone『Sketches of an Elephant』は、電子版が入手できないので依頼の対象外とした（ユーザーの判断）。`brattka2011` は arXiv 版を置いてある（第 50 回）。
+- 第 50 回の調査メモ（[surveys/2026-10-16_50_semantics-and-representations.md](surveys/2026-10-16_50_semantics-and-representations.md)）の原典は、第 50 回の PR のマージ後に、ユーザーが論文 5 件と書籍 `vickers1989` を入手した（非公開側の `papers/`。`brattka2005` は著者の版）。`schroder2007`（MLQ）の代わりに届いた ENTCS の論文（題名がほぼ同じ別の論文。MLQ の版との関係は未確認）は、`schroder2007entcs` として登録した。MLQ の版と、Johnstone『Sketches of an Elephant』は、電子版が入手できないので依頼の対象外とした（ユーザーの判断）。`brattka2011` は arXiv 版を置いてある（第 50 回）。書籍 `weihrauch2000` は、その後にユーザーが入手し、該当ページの抜き刷りで調査メモの記述を確かめた（ユーザーの手元にあり、非公開側には登録しない）。
 
 ## 未解決の論点
 
