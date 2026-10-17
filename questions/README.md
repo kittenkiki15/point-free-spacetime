@@ -33,3 +33,10 @@
 | [Q-0009](Q-0009.md) | 設定に含める資源の量は、予算か実際の消費量か | 実験 | [A-0004](../assumptions/A-0004.md) | [T-0004](../tasks/T-0004.md) | 解決 | [#41](https://github.com/kittenkiki15/point-free-spacetime/issues/41) |
 | [Q-0010](Q-0010.md) | 記録する資源の範囲 | 実験 | [A-0004](../assumptions/A-0004.md) | [T-0004](../tasks/T-0004.md) | 未解決 | [#43](https://github.com/kittenkiki15/point-free-spacetime/issues/43) |
 | [Q-0011](Q-0011.md) | 「物理学の実践」の範囲と、延長での主体の制限 | 実験 | [A-0018](../assumptions/A-0018.md) | [T-0029](../tasks/T-0029.md) | 未解決 | [#50](https://github.com/kittenkiki15/point-free-spacetime/issues/50) |
+| [Q-0012](Q-0012.md) | 最初から利用できる部品の指定 | 実験 | [D-0001](../definitions/D-0001.md) | [T-0033](../tasks/T-0033.md) | 未解決 | [#76](https://github.com/kittenkiki15/point-free-spacetime/issues/76) |
+| [Q-0013](Q-0013.md) | 計算機を部品としてどう組み込むか | 実験 | [A-0002](../assumptions/A-0002.md) | [T-0033](../tasks/T-0033.md) | 未解決 | [#77](https://github.com/kittenkiki15/point-free-spacetime/issues/77) |
+| [Q-0014](Q-0014.md) | 装置の組み立ての規則 | 実験 | [D-0001](../definitions/D-0001.md) | [T-0033](../tasks/T-0033.md) | 未解決 | [#78](https://github.com/kittenkiki15/point-free-spacetime/issues/78) |
+| [Q-0015](Q-0015.md) | 記録の命題と読みの符号化 | 実験 | [C-0017](../conjectures/C-0017.md) | [T-0033](../tasks/T-0033.md) | 未解決 | [#79](https://github.com/kittenkiki15/point-free-spacetime/issues/79) |
+| [Q-0016](Q-0016.md) | 統計の命題の扱い | 観測量 | [C-0017](../conjectures/C-0017.md) | [T-0033](../tasks/T-0033.md) | 未解決 | [#80](https://github.com/kittenkiki15/point-free-spacetime/issues/80) |
+| [Q-0017](Q-0017.md) | 対象の論理とメタの論理 | 実験 | [C-0017](../conjectures/C-0017.md) | [T-0033](../tasks/T-0033.md) | 未解決 | [#81](https://github.com/kittenkiki15/point-free-spacetime/issues/81) |
+| [Q-0018](Q-0018.md) | 実無限と選択公理の扱い | 実験 | [C-0014](../conjectures/C-0014.md) | [T-0033](../tasks/T-0033.md) | 未解決 | [#82](https://github.com/kittenkiki15/point-free-spacetime/issues/82) |
