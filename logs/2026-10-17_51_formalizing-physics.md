@@ -233,3 +233,188 @@ Q のファイルと親のファイルの書き換えが済みました。次は
 ## Claude（2026-10-17 06:29:51 UTC、記録 2）
 
 作業はひととおり終わり、テスト（151 件）も通りました。対話ログを同期してからコミットし、PR を作ります。
+
+## Claude（2026-10-17 06:30:55 UTC、記録 2）
+
+第 51 回の作業を終え、PR を作りました。
+
+- 公開リポジトリ：[kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83)
+- 非公開リポジトリ：[kittenkiki15/point-free-spacetime-private#41](https://github.com/kittenkiki15/point-free-spacetime-private/pull/41)（対話ログと、保留した発言の承認）
+
+手元のテスト（151 件）は通っています。CI とクロスモデルレビューの結果は、PR の通知で受け取って対応します。
+
+#### 行ったこと
+- **新しいタスク**：T-0033「物理学の形式化（装置・命題・推論規則）」を加え、T-0032 の区切り 3 の前に置きました（Issue #75）。
+- **Q の編成**：合意した 7 つの Q を作り、T-0033 に割り当てました（Issue #76〜#82）。
+
+  | 区切り | Q | 論点 |
+  | --- | --- | --- |
+  | 1 装置 | Q-0012 | 最初から利用できる部品の指定 |
+  | 1 装置 | Q-0013 | 計算機を部品としてどう組み込むか |
+  | 1 装置 | Q-0014 | 装置の組み立ての規則 |
+  | 2 命題 | Q-0015 | 記録の命題と読みの符号化 |
+  | 2 命題 | Q-0016 | 統計の命題の扱い |
+  | 3 推論規則 | Q-0017 | 対象の論理とメタの論理 |
+  | 3 推論規則 | Q-0018 | 実無限と選択公理の扱い |
+
+  ご説明いただいた装置の「構成的な定義」の意味は、Q-0012 と T-0033 に書きました。部品は公理系のように所与のものとして扱い、何を含めるかで物理理論が変わる、という関係です。
+- **元の箇条の扱い**
+  - 親のファイル（D-0001、A-0002、C-0014、C-0017）では、Q へのリンクの行に置き換えました。
+  - ほかのファイルでは、「Q-00xx に移した」という一文に置き換えました。
+- **移さずに残した部分**：論点の一部は、元のファイルに残しました。
+  - D-0001 の「装置とそれ以外の境界の取り方」
+  - C-0004 の証明の書き方
+  - C-0010 の較正の論点（「検証」の意味の一般的な定め方は Q-0015 で決める、と書き足しました）
+- **関係するファイル**：`roadmap.md`（T-0031 は T-0033 の後）、T-0023・T-0031・T-0032 の履歴、`framework.md`、`NEXT.md`、まとめ、各回の状況を更新しました。
+
+次の回は、T-0033 の [Q-0012](https://github.com/kittenkiki15/point-free-spacetime/blob/claude/clever-planck-pr5kq1/questions/Q-0012.md)（最初から利用できる部品の指定）から始めます。
+
+一つお伝えしておくことがあります。今回は途中で文脈が分かれ、第 51 回の提案（「4. ご判断をお願いしたいこと」）が手元の文脈にありませんでした。そのため、セッション記録で提案の内容を確かめてから続けました。
+
+## Claude（2026-10-17 06:31:06 UTC、記録 2）
+
+対話ログを同期しました。
+
+## Claude（2026-10-17 06:31:14 UTC、記録 2）
+
+PR を 2 件とも監視する設定ができました。
+
+- [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83)
+- [kittenkiki15/point-free-spacetime-private#41](https://github.com/kittenkiki15/point-free-spacetime-private/pull/41)
+
+CI とクロスモデルレビューの結果はまだ届いていません。届いたら対応します。
+
+## Claude（2026-10-17 06:32:43 UTC、記録 2）
+
+Now I'll apply the fixes for all six findings.
+
+## Claude（2026-10-17 06:34:17 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) のクロスモデルレビュー（1 回目）に対応し、修正を push して PR に返信しました。手元のテスト（151 件）は通っています。
+
+**「誤り・食い違い」6 件：本文を直しました**
+- **Q-0016**
+  - 応答関数と観測量の関係を正確にしました（応答関数は D-0004、観測量は D-0005）。
+  - 確率の命題の判定を二つに分けました。分布の表現から判定するなら半決定できる見込みですが、記録から判定する場合は、誤判定を許す統計的な判定になります。
+- **Q-0017**
+  - C-0017 の主張の 2 の中身を正しく書きました。主張の 2 は、条件付きの完全性の主張です。コヒーレント性は、その条件の候補として書き分けました。
+  - Lean と Mathlib について、「古典論理である」という断定をやめました。「古典論理と選択公理を利用できるが、個々の証明で使うかは区別する」としています。
+- **担当先の食い違い**：A-0002・A-0006・A-0016・A-0018・D-0001・D-0013・D-0014・C-0004 の完了の条件と担当、T-0023 の内容が、移す前の担当のままでした。移した論点の担当を、T-0033 の Q に改めました。
+- **ロードマップの図**：T-0032 が循環していたので、区切りの前後で二つのノードに分けました。
+
+**「詳細化の論点」3 件：本文は直さず、各 Q の「論点」に記録しました**
+- Q-0015：基本の命題の「とき」が、連言なのか含意なのか。
+- Q-0012：Q-0013 との進め方。T-0033 にも、検討の始めに決めると書きました。
+- Q-0018：構成的な証明が使える条件。有理数の点を一つも含まない $`K_a`$ もあります。
+
+もう一度レビューが走るので、結果が届いたら対応します。
+
+## Claude（2026-10-17 06:34:26 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) の最初のコミットの CI は、すべて通りました。レビューに対応して push した修正のコミットについては、CI と 2 回目のレビューの結果をまだ待っています。
+
+## Claude（2026-10-17 06:36:17 UTC、記録 2）
+
+2 回目のレビューの指摘を直しました。コミットして返信します。
+
+## Claude（2026-10-17 06:36:36 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) の 2 回目のレビューに対応して push し、PR に返信しました。
+
+**「誤り・食い違い」2 件：本文を直しました**
+- **A-0018**：「目的」と「採用の理由」に、手順の実効性を T-0029 で扱うという記述が残っていました。担当を Q-0013 に改めました。
+- **Q-0018**：「選択公理でしか存在が保証されない列は、それを作る手順を持たない」という書き方は強すぎました。そこで、「その存在証明からは生成の手順が得られないので、それだけでは物理的に生成できる列とは見なさない」に改めました。
+
+**「詳細化の論点」3 件：本文は直さず、記録しました**
+- 頻度を数えるための記録の形：Q-0016 と T-0031 に記録しました。
+- Q-0014 の結論の反映先：D-0013・D-0014 を加えました。
+- 半決定するときの閾値 q の与え方：Q-0016 に記録しました。
+
+手元のテスト（151 件）は通っています。もう一度レビューが走るので、結果が届いたら対応します。
+
+## Claude（2026-10-17 06:37:41 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) で、1 回目のレビューへの修正コミットの CI は通りました。今は、2 回目のレビューへの修正コミット（a3828ab）について、CI と 3 回目のレビューの結果を待っています。
+
+## Claude（2026-10-17 06:39:34 UTC、記録 2）
+
+3 回目のレビューに対応して push しました。PR に返信を書きます。
+
+## Claude（2026-10-17 06:39:45 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) の 3 回目のレビューに対応して push し（e508ed8）、PR に返信しました。手元のテスト（151 件）は通っています。
+
+「誤り・食い違い」の 4 件は、本文を直しました。
+
+1. **Q-0014**：レビューの指摘どおり、$N_e = 0$ の実験に装置と観測者を対応させることは、D-0001 と D-0013 で既に決まっていました。その旨を明記し、Q-0014 には未決定の部分だけを残しました。残したのは、合成の規則の下でもその扱いを保つかと、空の実験を単位元にするかです。
+2. **Q-0013**：完了の条件に、C-0014 の (2b) で要る K・Prob(K)・ι の実効的な表現の扱いを加えました。
+3. **T-0033**：成果物を反映する先を、親のファイルだけでなく、各 Q の完了の条件に挙げた関係ファイルまで広げました。
+4. **まとめ**：確率の命題を半決定できるという記述に、条件（確率の値を下から近似できる表現と、実効的に与えた閾値）を加えました。
+
+「詳細化の論点」の 2 件は、本文は直さずに記録しました。
+
+- 核を定める範囲：Q-0014 に記録しました。
+- 「検証」と統計的な判定の分担：Q-0015 に記録しました。
+
+もう一度レビューが走るので、結果が届いたら対応します。
+
+## Claude（2026-10-17 06:40:03 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) の a3828ab の CI は通りました。今は、最新のコミット e508ed8 の CI と 4 回目のレビューの結果を待っています。
+
+## Claude（2026-10-17 06:41:23 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) の 4 回目のクロスモデルレビューで、「誤り・食い違い」が 0 件になりました。マージの目安に達しています。マージはお任せします。
+
+「詳細化の論点」は 1 件でした。Q-0012（部品の指定）をいつ解決にするかで、次のどちらにするかの問いです。
+
+- 部品の指定ができた時点で解決にする。
+- 組み立ての規則を決める Q-0014 の後まで待つ。
+
+本文は直さず、Q-0012 の論点に記録しました。このコミットを push したので、念のためもう一度レビューが走ります。
+
+非公開リポジトリの PR [kittenkiki15/point-free-spacetime-private#41](https://github.com/kittenkiki15/point-free-spacetime-private/pull/41)（対話ログ）も、あわせてマージをお願いします。
+
+## Claude（2026-10-17 06:42:12 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) の 5 回目のクロスモデルレビューは、「誤り・食い違い」も「詳細化の論点」も 0 件でした。マージの目安に達しています。
+
+最新のコミットの CI はまだ結果が出ていませんが、ほかのコミットではすべて通っています。
+
+非公開リポジトリの PR [kittenkiki15/point-free-spacetime-private#41](https://github.com/kittenkiki15/point-free-spacetime-private/pull/41) とあわせて、マージをお願いします。
+
+## Claude（2026-10-17 06:43:15 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) で、e508ed8 までの CI が通りました。最新のコミット 44ef850 の CI は、まだ結果が届いていません。
+
+## Claude（2026-10-17 06:44:58 UTC、記録 2）
+
+PR [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83) は、最新のコミット（44ef850）の CI がすべて通りました。クロスモデルレビューの指摘も 0 件になっています。
+
+あとはマージを待つだけです。非公開リポジトリの PR [kittenkiki15/point-free-spacetime-private#41](https://github.com/kittenkiki15/point-free-spacetime-private/pull/41) とあわせて、マージをお願いします。
+
+念のため、07:35（UTC）に両方の PR の状態をもう一度確かめる予定を入れてあります。
+
+## Claude（2026-10-17 07:36:24 UTC、記録 2）
+
+07:35（UTC）の予定どおり確認しましたが、前回の報告から変わったことはありませんでした。
+
+- [kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83)：CI はすべて通っており、クロスモデルレビューの指摘も 0 件です。マージできる状態で、マージを待っています。
+- [kittenkiki15/point-free-spacetime-private#41](https://github.com/kittenkiki15/point-free-spacetime-private/pull/41)：開いたままで、マージを待っています。
+
+定期の確認は、ここで止めます。次に GitHub の通知が届くか、メッセージをいただいたときに再開します。
+
+## Claude（2026-10-17 22:55:45 UTC、記録 2）
+
+第 51 回の PR は 2 件ともマージされたので、この回は終わりです。
+
+- 公開リポジトリ：[kittenkiki15/point-free-spacetime#83](https://github.com/kittenkiki15/point-free-spacetime/pull/83)
+- 非公開リポジトリ：[kittenkiki15/point-free-spacetime-private#41](https://github.com/kittenkiki15/point-free-spacetime-private/pull/41)
+
+次の第 52 回は、T-0033 の区切り 1 として、Q-0012（最初から利用できる部品の指定）から始めます。手順は `NEXT.md` に書いてあります。
+
+PR の監視は止めました。予定していた確認も、もう残っていません。
+
+## Claude（2026-10-17 22:55:53 UTC、記録 2）
+
+非公開リポジトリの PR [kittenkiki15/point-free-spacetime-private#41](https://github.com/kittenkiki15/point-free-spacetime-private/pull/41) がマージされたという通知が届きました。前回の報告で書いたとおりです。第 51 回は、これで完了しています。
