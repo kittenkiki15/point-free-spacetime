@@ -28,6 +28,7 @@
 | ID | 予想 | 確度 | 重要度 | 検証費用 | 優先度 | 状態 | Issue |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [C-0015](C-0015.md) | 鋭くしていった統計の列が点に集中する条件 | 高 | 高 | 中 | 高 | 未着手 | [#65](https://github.com/kittenkiki15/point-free-spacetime/issues/65) |
+| [C-0019](C-0019.md) | 構成的な定義の言語で書いた有効な記述は、実行でき、停止する | 高 | 中 | 低 | 高 | 未着手 | [#87](https://github.com/kittenkiki15/point-free-spacetime/issues/87) |
 | [C-0007](C-0007.md) | 局在の限界から、装置の占める領域の上下限が導かれる | 低 | 高 | 高 | 中 | 未着手 | [#8](https://github.com/kittenkiki15/point-free-spacetime/issues/8) |
 | [C-0001](C-0001.md) | 長さ空間の尺度 ℓ の膨張の余白付きの包含は補間的でなく、離散化と区別できる | 高 | 中 | 低 | 中 | 未着手 | [#2](https://github.com/kittenkiki15/point-free-spacetime/issues/2) |
 | [C-0008](C-0008.md) | ポアンカレ共変な装置の占める領域は有界にできない | 高 | 中 | 中 | 中 | 未着手 | [#9](https://github.com/kittenkiki15/point-free-spacetime/issues/9) |
@@ -45,3 +46,4 @@
 | [C-0012](C-0012.md) | 可能な実験の観測も、観測者の座標時刻で、登録が準備より前にない | 高 | 中 | 中 | 低 | 未着手 | [#13](https://github.com/kittenkiki15/point-free-spacetime/issues/13) |
 | [C-0013](C-0013.md) | 可能な実験でも較正の普遍性が成り立つ | 中 | 中 | 中 | 低 | 未着手 | [#14](https://github.com/kittenkiki15/point-free-spacetime/issues/14) |
 | [C-0017](C-0017.md) | 許されるすべての意味論で妥当な命題は、記録の構文から導ける命題に一致する | 中 | 高 | 高 | 低 | 未着手 | [#67](https://github.com/kittenkiki15/point-free-spacetime/issues/67) |
+| [C-0020](C-0020.md) | 部品の連続性・観測対象の側の連続性・有限の組み立てから、等価原理が従う | 高 | 高 | 中 | 保留 | 未着手 | [#88](https://github.com/kittenkiki15/point-free-spacetime/issues/88) |
