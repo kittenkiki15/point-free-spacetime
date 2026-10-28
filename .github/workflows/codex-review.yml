@@ -2,7 +2,7 @@ name: Codex review
 
 # OpenAI のモデルによるクロスモデルレビュー。
 # リポジトリの Secret `OPENAI_API_KEY` が未設定の場合は何もしない。
-# モデルは Repository variables の `CODEX_REVIEW_MODEL` で変更できる（既定は gpt-6-sol）。
+# モデルは Repository variables の `CODEX_REVIEW_MODEL` で変更できる（既定は gpt-6.1-sol。第 54 回の PR の後に gpt-6-sol から改めた）。
 # 対話の生ログ（logs/）は修正できないため、レビューの対象外とする。
 #
 # 安全のため pull_request_target で起動する。
@@ -226,7 +226,7 @@ jobs:
         if: steps.key.outputs.present == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          REVIEW_MODEL: ${{ vars.CODEX_REVIEW_MODEL || 'gpt-6-sol' }}
+          REVIEW_MODEL: ${{ vars.CODEX_REVIEW_MODEL || 'gpt-6.1-sol' }}
           REVIEW_EFFORT: high
         run: |
           python3 .github/codex/review.py "$RUNNER_TEMP/codex-prompt.md" "$RUNNER_TEMP/codex-output.md"
@@ -250,7 +250,7 @@ jobs:
         uses: actions/github-script@v7
         env:
           CODEX_FINAL_MESSAGE: ${{ needs.codex.outputs.final_message }}
-          CODEX_MODEL: ${{ vars.CODEX_REVIEW_MODEL || 'gpt-6-sol' }}
+          CODEX_MODEL: ${{ vars.CODEX_REVIEW_MODEL || 'gpt-6.1-sol' }}
         with:
           github-token: ${{ github.token }}
           script: |

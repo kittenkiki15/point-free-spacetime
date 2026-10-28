@@ -19,7 +19,7 @@ API_URL = "https://api.openai.com/v1/responses"
 def main() -> int:
     prompt_path, output_path = sys.argv[1], sys.argv[2]
     body = {
-        "model": os.environ.get("REVIEW_MODEL", "gpt-6-sol"),
+        "model": os.environ.get("REVIEW_MODEL", "gpt-6.1-sol"),
         "reasoning": {"effort": os.environ.get("REVIEW_EFFORT", "high")},
         "input": open(prompt_path, encoding="utf-8").read(),
     }
