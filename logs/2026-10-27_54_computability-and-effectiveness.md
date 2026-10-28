@@ -347,3 +347,11 @@ Now update C-0019/C-0020 priorities and record the alternative direction.
 ## Claude（2026-10-28 08:36:38 UTC、記録 2）
 
 Now write the summary.
+
+## Claude（2026-10-28 08:38:18 UTC、記録 2）
+
+まとめと関係するファイルを push しました。続けて、公開側と非公開側の PR を作ります。
+
+## Claude（2026-10-28 08:38:37 UTC、記録 2）
+
+Subscribe to both PRs for CI/review.
