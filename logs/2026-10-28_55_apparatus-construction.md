@@ -140,3 +140,23 @@ Now NEXT.md.
 ## Claude（2026-10-30 07:40:05 UTC）
 
 Issue の照合は一致しました。コミットして PR を作ります。
+
+## Claude（2026-10-30 07:41:10 UTC）
+
+次の回の進め方は、それで問題ありません。次回は研究の内容の議論を止めて、目的の再確認だけを行います。目的の聞き取りを先に行い、Claude からは研究の内容の提案をしません。この方針は `NEXT.md` に書きました。
+
+#### セッションの終わりに行ったこと
+
+- **Q-0019 の下書き**：判断をお願いした 5 点は、保留のままにしました。保留にした理由と、目的の再確認の後にこの案を見直すことを、[Q-0019](questions/Q-0019.md) と [T-0034](tasks/T-0034.md) の履歴に書きました。
+- **T-0035 を追加**：[T-0035](tasks/T-0035.md)「プロジェクトの目的の再確認と文書化」を加え、T-0034 の続きより前に置きました（Issue [#96](https://github.com/kittenkiki15/point-free-spacetime/issues/96)）。
+  - 手がかりとして、次の二つを挙げました。
+    - 今の文書に書かれた目的：`framework.md` の冒頭、第 04 回の方針、振り返りの文書の 5 節など。
+    - ずれの具体例：今回の Q-0019 の案と、第 54 回の P1〜P4。
+  - T-0034 を続けるか順序を見直すかは、T-0035 の結論で決めます。
+- **関連ファイルの更新**：まとめ、各回の状況、`NEXT.md`、`roadmap.md`、`framework.md`、用語一覧（「始位相」を追加）を更新しました。`tools/tests` は 151 件すべて通っています。
+- **Issue の照合**：今回状態を変えたタスク・予想・Q の Issue が、どれも開いていて、ファイルの状態と一致することを GitHub で確かめました。
+- **PR**：
+  - 公開側：[kittenkiki15/point-free-spacetime#97](https://github.com/kittenkiki15/point-free-spacetime/pull/97)
+  - 非公開側（対話ログ）：[kittenkiki15/point-free-spacetime-private#45](https://github.com/kittenkiki15/point-free-spacetime-private/pull/45)
+
+両方の PR の通知を受け取る設定にしました。CI とクロスモデルレビューの指摘には、マージまでこのセッションで対応します。
