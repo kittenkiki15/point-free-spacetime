@@ -1,6 +1,6 @@
 # ロードマップ
 
-最終更新: 2026-10-28（第 54 回。T-0034 を加えて T-0033 の区切り 1 を移し、Q-0013 を解決にした）
+最終更新: 2026-10-30（第 55 回。T-0035 を加えて T-0034 の前に置いた）
 
 このファイルは、[フレームワーク](framework.md) を完成させるための作業の最新版です。セッションの終わりごとに更新します（[`CLAUDE.md`](CLAUDE.md) の「セッションの終え方」）。
 
@@ -17,7 +17,7 @@
 C-0001 の見直しに必要な定義と前提から先に固め（第 09 回の PR #22 で決めた方針）、そのあとでフレームワークの層を下から順に詳しくしていく。
 
 ```math
-\text{T-0001} \;→\; \text{T-0015} \;→\; \text{T-0002} \;→\; \text{T-0003} \;→\; \text{T-0016} \;→\; \text{T-0018} \;→\; \text{T-0019} \;→\; \text{T-0020} \;→\; \text{段階 A のクロージング（T-0021、T-0022、T-0025）} \;→\; \text{リリース（T-0027）} \;→\; \text{T-0004（途中まで）} \;→\; \text{T-0028（少なくとも層 1）} \;→\; \text{段階 B（T-0032 の区切り 1・2、T-0034、T-0033、T-0032 の区切り 3、T-0004 の続き、T-0023、T-0031、T-0029、T-0005、T-0006、T-0007）} \;→\; \text{T-0017} \;→\; \text{T-0024} \;→\; \text{T-0008} \;→\; \text{段階 C（T-0009）} \;→\; \text{段階 D（T-0010）}
+\text{T-0001} \;→\; \text{T-0015} \;→\; \text{T-0002} \;→\; \text{T-0003} \;→\; \text{T-0016} \;→\; \text{T-0018} \;→\; \text{T-0019} \;→\; \text{T-0020} \;→\; \text{段階 A のクロージング（T-0021、T-0022、T-0025）} \;→\; \text{リリース（T-0027）} \;→\; \text{T-0004（途中まで）} \;→\; \text{T-0028（少なくとも層 1）} \;→\; \text{段階 B（T-0032 の区切り 1・2、T-0035、T-0034、T-0033、T-0032 の区切り 3、T-0004 の続き、T-0023、T-0031、T-0029、T-0005、T-0006、T-0007）} \;→\; \text{T-0017} \;→\; \text{T-0024} \;→\; \text{T-0008} \;→\; \text{段階 C（T-0009）} \;→\; \text{段階 D（T-0010）}
 ```
 
 | 段階 | 内容 | タスク |
@@ -29,6 +29,7 @@ C-0001 の見直しに必要な定義と前提から先に固め（第 09 回の
 | （整理） | 段階 A のクロージング（成果物の見直し、振り返り、運用の改善） | T-0021、T-0022、T-0025 |
 | （整理） | 段階 A の成果のリリース（不具合の修正、公開前の確認、タグ付け） | T-0027 |
 | （整理） | 各項目の検討の目的と完了の条件の明確化 | T-0028 |
+| （整理） | プロジェクトの目的の再確認と文書化 | T-0035 |
 | B | 層 1・2（実験・観測量）の詳細化 | T-0020、T-0032、T-0034、T-0033、T-0004、T-0023、T-0031、T-0029、T-0005〜T-0007 |
 | （調査） | 時空の側の先行研究（因果構造からの再構成、局在の不可能性の定理、操作的な座標づけ） | T-0017 |
 | （詳細化） | 較正と観測者の取り替えの予想の詳細化 | T-0024 |
@@ -49,6 +50,8 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 
 第 54 回に、[T-0034](tasks/T-0034.md)（装置の構成的な定義）を加え、T-0033 の区切り 1（装置）を移して、T-0033 の前に置いた（ユーザーの提案）。Q-0013 の完了の条件の (2)・(4) を検討する目的を整理したところ、装置の構成的な定義が、等価原理の導出（C-0004）、応答の豊富さ（C-0018）、実行できない手順の除外（A-0018）の土台になると分かったためである。Q-0012・Q-0014 を T-0034 に割り当て直し、[Q-0019](questions/Q-0019.md)〜[Q-0022](questions/Q-0022.md) と [C-0019](conjectures/C-0019.md)・[C-0020](conjectures/C-0020.md) を新設して T-0034 に割り当て、Q-0013 を解決にした。
 
+第 55 回に、[T-0035](tasks/T-0035.md)（プロジェクトの目的の再確認と文書化）を加え、T-0034 の続きの前に置いた（ユーザーの提案）。55 回の対話でユーザーの中の目的が変化してきたが、文書化されておらず、Claude の提案とずれ始めたためである。T-0034 は、T-0035 の結論に従って、続けるか順序を見直すかを決める。また、[C-0020](conjectures/C-0020.md) の逆の向きを [C-0021](conjectures/C-0021.md) として登録し、[T-0009](tasks/T-0009.md) に割り当てた。
+
 ## 3. タスク
 
 状態は、未着手・進行中・完了・保留のどれかです。
@@ -63,7 +66,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | [T-0006](tasks/T-0006.md) | 極限と事後分布の集中 | B | T-0004、T-0005 | [D-0005](definitions/D-0005.md)、[D-0006](definitions/D-0006.md)、[A-0007](assumptions/A-0007.md)、[C-0005](conjectures/C-0005.md)、[C-0006](conjectures/C-0006.md)、[D-0012](definitions/D-0012.md)、[A-0011](assumptions/A-0011.md)、[A-0012](assumptions/A-0012.md)、[A-0005](assumptions/A-0005.md) | 未着手 | [#17](https://github.com/kittenkiki15/point-free-spacetime/issues/17) |
 | [T-0007](tasks/T-0007.md) | 局在の詳細化 | B | T-0004 | [D-0001](definitions/D-0001.md)、[D-0008](definitions/D-0008.md)、[A-0008](assumptions/A-0008.md)、[D-0009](definitions/D-0009.md)、[D-0013](definitions/D-0013.md) | 未着手 | [#18](https://github.com/kittenkiki15/point-free-spacetime/issues/18) |
 | [T-0008](tasks/T-0008.md) | C-0001・C-0007・C-0008 の検証 | 検証 | T-0001 | [C-0001](conjectures/C-0001.md)、[C-0007](conjectures/C-0007.md)、[C-0008](conjectures/C-0008.md)、[A-0009](assumptions/A-0009.md)、[D-0011](definitions/D-0011.md)、[D-0013](definitions/D-0013.md)、[A-0010](assumptions/A-0010.md) | 未着手 | [#19](https://github.com/kittenkiki15/point-free-spacetime/issues/19) |
-| [T-0009](tasks/T-0009.md) | 観測における時空の再構成 | C | T-0002、T-0006 | [D-0007](definitions/D-0007.md)、[D-0013](definitions/D-0013.md)、[C-0002](conjectures/C-0002.md)、[C-0003](conjectures/C-0003.md)、[A-0016](assumptions/A-0016.md) | 未着手 | [#20](https://github.com/kittenkiki15/point-free-spacetime/issues/20) |
+| [T-0009](tasks/T-0009.md) | 観測における時空の再構成 | C | T-0002、T-0006 | [D-0007](definitions/D-0007.md)、[D-0013](definitions/D-0013.md)、[C-0002](conjectures/C-0002.md)、[C-0003](conjectures/C-0003.md)、[C-0021](conjectures/C-0021.md)、[A-0016](assumptions/A-0016.md) | 未着手 | [#20](https://github.com/kittenkiki15/point-free-spacetime/issues/20) |
 | [T-0010](tasks/T-0010.md) | 層 4〜6 の定義と前提 | D | T-0009 | [D-0006](definitions/D-0006.md)、[C-0002](conjectures/C-0002.md)、[D-0002](definitions/D-0002.md)、[D-0014](definitions/D-0014.md)、[A-0017](assumptions/A-0017.md)、[D-0003](definitions/D-0003.md)、[A-0006](assumptions/A-0006.md) | 未着手 | [#21](https://github.com/kittenkiki15/point-free-spacetime/issues/21) |
 | [T-0011](tasks/T-0011.md) | 予想 C-0002〜C-0006 の詳細化 | 随時 | 関係する段階のタスク | [C-0002](conjectures/C-0002.md)〜[C-0006](conjectures/C-0006.md) | 未着手 | [#22](https://github.com/kittenkiki15/point-free-spacetime/issues/22) |
 | [T-0012](tasks/T-0012.md) | ほかの予想の候補 | 随時 | なし | — | 未着手 | [#23](https://github.com/kittenkiki15/point-free-spacetime/issues/23) |
@@ -89,6 +92,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | [T-0032](tasks/T-0032.md) | 実験の層の前提の点検（包含の前提と、結果の空間の意味論） | B | なし | [A-0017](assumptions/A-0017.md)、[A-0006](assumptions/A-0006.md)、[A-0005](assumptions/A-0005.md)、[A-0003](assumptions/A-0003.md)、[D-0003](definitions/D-0003.md)、[A-0010](assumptions/A-0010.md)、[D-0013](definitions/D-0013.md)、[A-0008](assumptions/A-0008.md)、[A-0016](assumptions/A-0016.md)、[D-0014](definitions/D-0014.md)、[Q-0007](questions/Q-0007.md)、[C-0014](conjectures/C-0014.md)、[C-0015](conjectures/C-0015.md)、[C-0016](conjectures/C-0016.md)、[C-0017](conjectures/C-0017.md)、[C-0018](conjectures/C-0018.md) | 進行中 | [#61](https://github.com/kittenkiki15/point-free-spacetime/issues/61) |
 | [T-0033](tasks/T-0033.md) | 物理学の形式化（装置・命題・推論規則） | B | T-0034 | [C-0010](conjectures/C-0010.md)、[C-0014](conjectures/C-0014.md)〜[C-0017](conjectures/C-0017.md) | 進行中 | [#75](https://github.com/kittenkiki15/point-free-spacetime/issues/75) |
 | [T-0034](tasks/T-0034.md) | 装置の構成的な定義 | B | なし | [D-0001](definitions/D-0001.md)、[D-0013](definitions/D-0013.md)、[D-0014](definitions/D-0014.md)、[A-0002](assumptions/A-0002.md)、[A-0006](assumptions/A-0006.md)、[A-0016](assumptions/A-0016.md)、[A-0018](assumptions/A-0018.md)、[C-0004](conjectures/C-0004.md)、[C-0018](conjectures/C-0018.md)、[C-0019](conjectures/C-0019.md)、[C-0020](conjectures/C-0020.md) | 進行中 | [#86](https://github.com/kittenkiki15/point-free-spacetime/issues/86) |
+| [T-0035](tasks/T-0035.md) | プロジェクトの目的の再確認と文書化 | 整理 | なし | 横断的なタスク（特定の ID はない。対象はプロジェクトの目的を述べた文書（`framework.md`・`README.md`・`roadmap.md`）と、各項目の「目的」） | 未着手 | [#96](https://github.com/kittenkiki15/point-free-spacetime/issues/96) |
 
 ```mermaid
 flowchart LR
@@ -109,6 +113,7 @@ flowchart LR
   T0028 -->|層 1 の後| T0030["T-0030 v0.1.0 以降の振り返り"]
   T0030 -->|段階 B の見直し| T0004
   T0032["T-0032 前提の点検（区切り 1・2）"] --> T0034["T-0034 装置の構成的な定義"]
+  T0035["T-0035 目的の再確認"] -->|第 56 回| T0034
   T0034 --> T0033["T-0033 物理学の形式化（命題・推論規則）"]
   T0033 --> T0032b["T-0032 前提の点検（区切り 3）"]
   T0032b --> T0004

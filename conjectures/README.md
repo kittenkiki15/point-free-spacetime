@@ -38,6 +38,8 @@
 | [C-0014](C-0014.md) | 実際の実験の応答の列の極限として得られる応答は、ベール第 1 級の応答に限られる | 高 | 中 | 中 | 中 | 未着手 | [#64](https://github.com/kittenkiki15/point-free-spacetime/issues/64) |
 | [C-0016](C-0016.md) | 設定の空間の意味論によって、閾値の振る舞いを連続な模型として書けるかが変わる | 高 | 中 | 低 | 中 | 未着手 | [#66](https://github.com/kittenkiki15/point-free-spacetime/issues/66) |
 | [C-0018](C-0018.md) | 計算可能な連続な応答は、延長で使えるプロトコルの応答で近似できる | 中 | 中 | 中 | 中 | 未着手 | [#68](https://github.com/kittenkiki15/point-free-spacetime/issues/68) |
+| [C-0020](C-0020.md) | 部品の連続性・観測対象の側の連続性・有限の組み立てから、等価原理が従う | 高 | 高 | 中 | 中 | 未着手 | [#88](https://github.com/kittenkiki15/point-free-spacetime/issues/88) |
+| [C-0021](C-0021.md) | 等価原理から、観測における時空に、観測対象の側の連続性が成り立つ自然な位相構造が誘導される | 中 | 高 | 高 | 中 | 未着手 | [#95](https://github.com/kittenkiki15/point-free-spacetime/issues/95) |
 | [C-0002](C-0002.md) | 可能な実験は、再構成した観測量の時空の中でモデル化できる | 中 | 高 | 高 | 低 | 未着手 | [#3](https://github.com/kittenkiki15/point-free-spacetime/issues/3) |
 | [C-0005](C-0005.md) | 実験から得る可算集合の閉包が、観測量の全体を含む物理的に自然な条件がある | 中 | 中 | 中 | 低 | 未着手 | [#6](https://github.com/kittenkiki15/point-free-spacetime/issues/6) |
 | [C-0009](C-0009.md) | 較正の普遍性から、観測者の取り替えはローレンツ変換かガリレイ変換になる | 高 | 高 | 高 | 低 | 未着手 | [#10](https://github.com/kittenkiki15/point-free-spacetime/issues/10) |
@@ -46,4 +48,3 @@
 | [C-0012](C-0012.md) | 可能な実験の観測も、観測者の座標時刻で、登録が準備より前にない | 高 | 中 | 中 | 低 | 未着手 | [#13](https://github.com/kittenkiki15/point-free-spacetime/issues/13) |
 | [C-0013](C-0013.md) | 可能な実験でも較正の普遍性が成り立つ | 中 | 中 | 中 | 低 | 未着手 | [#14](https://github.com/kittenkiki15/point-free-spacetime/issues/14) |
 | [C-0017](C-0017.md) | 許されるすべての意味論で妥当な命題は、記録の構文から導ける命題に一致する | 中 | 高 | 高 | 低 | 未着手 | [#67](https://github.com/kittenkiki15/point-free-spacetime/issues/67) |
-| [C-0020](C-0020.md) | 部品の連続性・観測対象の側の連続性・有限の組み立てから、等価原理が従う | 高 | 高 | 中 | 保留 | 未着手 | [#88](https://github.com/kittenkiki15/point-free-spacetime/issues/88) |
