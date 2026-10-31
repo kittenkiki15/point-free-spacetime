@@ -977,10 +977,9 @@ def test_goal_problems_detects_errors(tmp_path):
 def purpose_goal_link_problems(path, goals=GOALS):
     """箇条書きにした「## 目的」の各箇条に、全体の目的（G）へのリンクがあるか（第 56 回。T-0035・T-0036）。
 
-    節に G へのリンクが一つでもあるときだけ検査する（G につなぐ前の節は、T-0036 で書き換えるまで対象外。
-    第 56 回の時点で、すでに箇条書きの節がある）。そのときは、節の最初の空でない行が箇条（「- 」で始まる行）で、
-    すべての箇条に G へのリンクがあること。字下げした続きの行は、その箇条に含める。
-    リンクは goals/G-NNNN.md を指し、そのファイルがあること。"""
+    節の最初の空でない行が箇条（「- 」で始まる行）で、すべての箇条に G へのリンクがあること。
+    字下げした続きの行（下位の箇条を含む）は、その箇条に含める。リンクは goals/G-NNNN.md を指し、そのファイルがあること。
+    第 56 回には、G のリンクのある節だけを検査した。第 57 回に、すべての項目を書き換えたので、すべての節を対象にした。"""
     lines = path.read_text(encoding="utf-8").split("\n")
     try:
         start = lines.index("## 目的") + 1
@@ -988,10 +987,8 @@ def purpose_goal_link_problems(path, goals=GOALS):
         return []
     end = next((i for i in range(start, len(lines)) if lines[i].startswith("## ")), len(lines))
     body = [line for line in lines[start:end] if line.strip()]
-    if not GOAL_LINK.search("\n".join(body)):
-        return []
-    if not body[0].startswith("- "):
-        return ["目的の節に G のリンクがあるのに、箇条書きでない"]
+    if not body or not body[0].startswith("- "):
+        return ["目的の節が箇条書きでない"]
     items, problems = [], []
     for line in body:
         if line.startswith("- "):
@@ -1014,7 +1011,7 @@ def purpose_goal_link_problems(path, goals=GOALS):
 
 def test_purpose_items_link_to_goals():
     files = [f for d in ("definitions", "assumptions", "conjectures", "results", "questions")
-             for f in sorted((ROOT / d).glob("*.md")) if f.name != "README.md"]
+             for f in sorted((ROOT / d).glob("[DACRQ]-*.md"))]
     problems = {f.relative_to(ROOT).as_posix(): p for f in files if (p := purpose_goal_link_problems(f))}
     assert problems == {}
 
@@ -1027,9 +1024,10 @@ def test_purpose_goal_link_problems_detects_missing_links(tmp_path):
     d.mkdir()
     f = d / "D-0001.md"
     f.write_text("# D-0001: d\n\n## 目的\n\n文章のままの節\n\n## 完了の条件\n\ny\n", encoding="utf-8")
-    assert purpose_goal_link_problems(f, goals) == []  # G につなぐ前の節は対象外
+    assert purpose_goal_link_problems(f, goals) == ["目的の節が箇条書きでない"]  # 第 57 回から、すべての節が対象
     f.write_text("# D-0001: d\n\n## 目的\n\n- a\n- b\n\n## 完了の条件\n\ny\n", encoding="utf-8")
-    assert purpose_goal_link_problems(f, goals) == []  # 箇条書きでも、G のリンクがなければ対象外
+    assert purpose_goal_link_problems(f, goals) == ["目的の 1 番目の箇条に G のリンクがない",
+                                                    "目的の 2 番目の箇条に G のリンクがない"]
     f.write_text("# D-0001: d\n\n## 目的\n\n- a（[G-0001](../goals/G-0001.md)）\n- b\n  続き（[G-0001](../goals/G-0001.md)）\n"
                  "\n## 完了の条件\n\ny\n", encoding="utf-8")
     assert purpose_goal_link_problems(f, goals) == []
@@ -1040,4 +1038,4 @@ def test_purpose_goal_link_problems_detects_missing_links(tmp_path):
                  "\n## 完了の条件\n\ny\n", encoding="utf-8")  # 「- 」の付け忘れ（PR #99 のレビュー）
     assert purpose_goal_link_problems(f, goals) == ["目的の節に、箇条でも字下げした続きの行でもない行がある（b（[G-0001](../goals/）"]
     f.write_text("# D-0001: d\n\n## 目的\n\n文章（[G-0001](../goals/G-0001.md)）\n\n## 完了の条件\n\ny\n", encoding="utf-8")
-    assert purpose_goal_link_problems(f, goals) == ["目的の節に G のリンクがあるのに、箇条書きでない"]
+    assert purpose_goal_link_problems(f, goals) == ["目的の節が箇条書きでない"]
