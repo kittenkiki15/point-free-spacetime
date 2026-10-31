@@ -71,6 +71,7 @@ def test_id_links_point_to_matching_files():
     targets = [deps_graph.FRAMEWORK, ROADMAP, *deps_graph.item_files().values()]
     targets += [ROOT / d / "README.md" for d in ["definitions", "assumptions", "conjectures", "results", "tasks", "questions"]]
     targets += [*task_files().values(), *sorted(QUESTIONS.glob("Q-[0-9][0-9][0-9][0-9].md"))]
+    targets += sorted((ROOT / "goals").glob("*.md"))  # 全体の目的（第 56 回）
     for md in targets:
         text = md.read_text(encoding="utf-8")
         assert deps_graph.link_mismatches(text, md.parent) == [], md
@@ -308,6 +309,7 @@ def test_links_exist():
     targets = [deps_graph.FRAMEWORK, ROADMAP, *deps_graph.item_files().values()]
     targets += [ROOT / d / "README.md" for d in ["definitions", "assumptions", "tasks", "questions"]]
     targets += [*task_files().values(), *sorted(QUESTIONS.glob("Q-[0-9][0-9][0-9][0-9].md"))]
+    targets += sorted((ROOT / "goals").glob("*.md"))  # 全体の目的（第 56 回）
     for md in targets:
         for target in re.findall(r"\]\(([^)\s]+)\)", md.read_text(encoding="utf-8")):
             if re.match(r"[a-z]+:", target) or target.startswith("#"):
@@ -877,3 +879,165 @@ def test_purpose_section_problems_detects_missing_or_empty(tmp_path):
     assert any("間に" in p for p in purpose_section_problems(f))
     f.write_text("# D-0001: d\n\n## 定義\n\n## 目的\n\nx\n\n## 完了の条件\n\ny\n", encoding="utf-8")
     assert purpose_section_problems(f)
+
+
+GOALS = ROOT / "goals"
+GOAL_STATES = {"合意", "候補", "廃止"}
+GOAL_KINDS = {"進め方", "研究テーマ"}
+GOAL_LINK = re.compile(r"\[(G-\d{4})\]\(([^)\s]*)\)")
+
+
+def goal_problems(directory=GOALS):
+    """全体の目的（goals/。第 56 回。T-0035）の検査。問題の一覧を返す。
+
+    各ファイルの表（種類・上位の目的・状態・追加した回）と、README の一覧との一致、
+    上位の目的が実在して循環しないこと。中身の妥当性は検査しない（ユーザーとの合意を正本とする）。"""
+    problems = []
+    files = sorted(f for f in directory.glob("G-*.md"))
+    fields, parents = {}, {}
+    for f in files:
+        gid = f.stem
+        if not heading_matches_file(f):
+            problems.append(f"{gid}: 1 行目の ID がファイル名と違う")
+        d = {k: v for k in ("種類", "上位の目的", "状態", "追加した回") if (v := deps_graph.table_row(f, k)) is not None}
+        fields[gid] = d
+        if d.get("種類") not in GOAL_KINDS:
+            problems.append(f"{gid}: 種類が {sorted(GOAL_KINDS)} のどれでもない")
+        if d.get("状態") not in GOAL_STATES:
+            problems.append(f"{gid}: 状態が {sorted(GOAL_STATES)} のどれでもない")
+        if "追加した回" not in d:
+            problems.append(f"{gid}: 「追加した回」の行がない")
+        parent = d.get("上位の目的", "")
+        links = GOAL_LINK.findall(parent)
+        if parent == "—":
+            parents[gid] = None
+        elif len(links) == 1 and links[0][1] == f"{links[0][0]}.md":
+            parents[gid] = links[0][0]
+        else:
+            problems.append(f"{gid}: 上位の目的が「—」か、G のファイルへのリンク一つでない")
+    for gid, parent in parents.items():
+        if parent is not None and parent not in fields:
+            problems.append(f"{gid}: 上位の目的 {parent} のファイルがない")
+    for gid in parents:
+        seen, cur = set(), gid
+        while cur is not None and cur in parents and cur not in seen:
+            seen.add(cur)
+            cur = parents[cur]
+        if cur in seen:
+            problems.append(f"{gid}: 上位の目的が循環する")
+    readme = directory / "README.md"
+    rows = {}
+    for line in table_data_rows(readme.read_text(encoding="utf-8"), "| ID | 目的 |"):
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        m = re.fullmatch(r"\[(G-\d{4})\]\(\1\.md\)", cells[0])
+        if not m or m.group(1) in rows:
+            problems.append(f"README: 一覧の ID の欄が不正か重複（{cells[0]}）")
+            continue
+        rows[m.group(1)] = cells
+    if set(rows) != set(fields):
+        problems.append(f"README: 一覧とファイルが一致しない（{sorted(set(rows) ^ set(fields))}）")
+    for gid in sorted(set(rows) & set(fields)):
+        f = directory / f"{gid}.md"
+        name = f.read_text(encoding="utf-8").split("\n")[0].split(": ", 1)[-1]
+        d = fields[gid]
+        expected = [name, d.get("種類"), d.get("上位の目的"), d.get("状態")]
+        if rows[gid][1:5] != expected:
+            problems.append(f"README: {gid} の行がファイルと一致しない")
+    return problems
+
+
+def test_goals_are_consistent():
+    assert goal_problems() == []
+
+
+def test_goal_problems_detects_errors(tmp_path):
+    def goal(gid, parent, state="合意", name="g"):
+        (tmp_path / f"{gid}.md").write_text(
+            f"# {gid}: {name}\n\n| 項目 | 内容 |\n| --- | --- |\n| 種類 | 進め方 |\n| 上位の目的 | {parent} |\n"
+            f"| 状態 | {state} |\n| 追加した回 | 第 56 回 |\n", encoding="utf-8")
+    goal("G-0001", "—")
+    goal("G-0002", "[G-0001](G-0001.md)")
+    head = "| ID | 目的 | 種類 | 上位の目的 | 状態 |\n| --- | --- | --- | --- | --- |\n"
+    row1 = "| [G-0001](G-0001.md) | g | 進め方 | — | 合意 |\n"
+    row2 = "| [G-0002](G-0002.md) | g | 進め方 | [G-0001](G-0001.md) | 合意 |\n"
+    (tmp_path / "README.md").write_text(head + row1 + row2, encoding="utf-8")
+    assert goal_problems(tmp_path) == []
+    goal("G-0001", "[G-0002](G-0002.md)")  # 循環
+    (tmp_path / "README.md").write_text(head + row1.replace("— ", "[G-0002](G-0002.md) ") + row2, encoding="utf-8")
+    assert any("循環" in p for p in goal_problems(tmp_path))
+    goal("G-0001", "—", state="採用")  # 状態の誤り
+    assert any("状態" in p for p in goal_problems(tmp_path))
+    goal("G-0001", "—")
+    (tmp_path / "README.md").write_text(head + row1, encoding="utf-8")  # 一覧の漏れ
+    assert any("一致しない" in p for p in goal_problems(tmp_path))
+    goal("G-0002", "[G-0009](G-0009.md)")
+    assert any("G-0009 のファイルがない" in p for p in goal_problems(tmp_path))
+
+
+def purpose_goal_link_problems(path, goals=GOALS):
+    """箇条書きにした「## 目的」の各箇条に、全体の目的（G）へのリンクがあるか（第 56 回。T-0035・T-0036）。
+
+    節に G へのリンクが一つでもあるときだけ検査する（G につなぐ前の節は、T-0036 で書き換えるまで対象外。
+    第 56 回の時点で、すでに箇条書きの節がある）。そのときは、節の最初の空でない行が箇条（「- 」で始まる行）で、
+    すべての箇条に G へのリンクがあること。字下げした続きの行は、その箇条に含める。
+    リンクは goals/G-NNNN.md を指し、そのファイルがあること。"""
+    lines = path.read_text(encoding="utf-8").split("\n")
+    try:
+        start = lines.index("## 目的") + 1
+    except ValueError:
+        return []
+    end = next((i for i in range(start, len(lines)) if lines[i].startswith("## ")), len(lines))
+    body = [line for line in lines[start:end] if line.strip()]
+    if not GOAL_LINK.search("\n".join(body)):
+        return []
+    if not body[0].startswith("- "):
+        return ["目的の節に G のリンクがあるのに、箇条書きでない"]
+    items, problems = [], []
+    for line in body:
+        if line.startswith("- "):
+            items.append(line)
+        elif line.startswith(" ") and items:
+            items[-1] += "\n" + line
+        else:
+            # 箇条書きへの変換で「- 」を付け忘れた行（PR #99 のレビュー）
+            problems.append(f"目的の節に、箇条でも字下げした続きの行でもない行がある（{line[:20]}）")
+    for n, item in enumerate(items, 1):
+        links = GOAL_LINK.findall(item)
+        if not links:
+            problems.append(f"目的の {n} 番目の箇条に G のリンクがない")
+        for gid, target in links:
+            resolved = (path.parent / target.split("#")[0]).resolve()
+            if resolved != (goals / f"{gid}.md").resolve() or not resolved.is_file():
+                problems.append(f"目的の {n} 番目の箇条の {gid} のリンク先が違うか、ファイルがない")
+    return problems
+
+
+def test_purpose_items_link_to_goals():
+    files = [f for d in ("definitions", "assumptions", "conjectures", "results", "questions")
+             for f in sorted((ROOT / d).glob("*.md")) if f.name != "README.md"]
+    problems = {f.relative_to(ROOT).as_posix(): p for f in files if (p := purpose_goal_link_problems(f))}
+    assert problems == {}
+
+
+def test_purpose_goal_link_problems_detects_missing_links(tmp_path):
+    goals = tmp_path / "goals"
+    goals.mkdir()
+    (goals / "G-0001.md").write_text("# G-0001: g\n", encoding="utf-8")
+    d = tmp_path / "definitions"
+    d.mkdir()
+    f = d / "D-0001.md"
+    f.write_text("# D-0001: d\n\n## 目的\n\n文章のままの節\n\n## 完了の条件\n\ny\n", encoding="utf-8")
+    assert purpose_goal_link_problems(f, goals) == []  # G につなぐ前の節は対象外
+    f.write_text("# D-0001: d\n\n## 目的\n\n- a\n- b\n\n## 完了の条件\n\ny\n", encoding="utf-8")
+    assert purpose_goal_link_problems(f, goals) == []  # 箇条書きでも、G のリンクがなければ対象外
+    f.write_text("# D-0001: d\n\n## 目的\n\n- a（[G-0001](../goals/G-0001.md)）\n- b\n  続き（[G-0001](../goals/G-0001.md)）\n"
+                 "\n## 完了の条件\n\ny\n", encoding="utf-8")
+    assert purpose_goal_link_problems(f, goals) == []
+    f.write_text("# D-0001: d\n\n## 目的\n\n- a\n- b（[G-0002](../goals/G-0002.md)）\n\n## 完了の条件\n\ny\n", encoding="utf-8")
+    assert purpose_goal_link_problems(f, goals) == ["目的の 1 番目の箇条に G のリンクがない",
+                                                    "目的の 2 番目の箇条の G-0002 のリンク先が違うか、ファイルがない"]
+    f.write_text("# D-0001: d\n\n## 目的\n\n- a（[G-0001](../goals/G-0001.md)）\nb（[G-0001](../goals/G-0001.md)）\n"
+                 "\n## 完了の条件\n\ny\n", encoding="utf-8")  # 「- 」の付け忘れ（PR #99 のレビュー）
+    assert purpose_goal_link_problems(f, goals) == ["目的の節に、箇条でも字下げした続きの行でもない行がある（b（[G-0001](../goals/）"]
+    f.write_text("# D-0001: d\n\n## 目的\n\n文章（[G-0001](../goals/G-0001.md)）\n\n## 完了の条件\n\ny\n", encoding="utf-8")
+    assert purpose_goal_link_problems(f, goals) == ["目的の節に G のリンクがあるのに、箇条書きでない"]
