@@ -1,6 +1,6 @@
 # ロードマップ
 
-最終更新: 2026-10-30（第 56 回。T-0035 を完了し、T-0036 を加えて T-0034 の前に置いた）
+最終更新: 2026-10-31（第 57 回。T-0036 で、すべての項目の目的を書き換えた。ユーザーの確認を待つ）
 
 このファイルは、[フレームワーク](framework.md) を完成させるための作業の最新版です。セッションの終わりごとに更新します（[`CLAUDE.md`](CLAUDE.md) の「セッションの終え方」）。
 
@@ -54,6 +54,8 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 
 第 56 回に、T-0035 を行い、完了した。プロジェクト全体の目的を [`goals/`](goals/README.md) に置き、今は進め方の目的（[G-0001](goals/G-0001.md)）が研究テーマの目的より優先すると決めた（ユーザーの判断）。各項目の目的を全体の目的につなぐ [T-0036](tasks/T-0036.md) を加え、T-0034 の前に置いた（ユーザーと決めた）。T-0034 を続けるか順序を見直すかは、T-0036 の後に決める。
 
+第 57 回に、T-0036 を行い、すべての項目（84 件）の目的を箇条書きにして全体の目的につないだ。ユーザーが結果を確認するまで、状態は進行中とする。候補の G-0007 にだけつながる項目（C-0019・Q-0013・Q-0014・Q-0019）があり、G-0007 の改め方とあわせて、T-0034 を続けるかを検討する。
+
 ## 3. タスク
 
 状態は、未着手・進行中・完了・保留のどれかです。
@@ -95,7 +97,7 @@ T-0015 は、番号は後から付けたが、順序は T-0001 の次である�
 | [T-0033](tasks/T-0033.md) | 物理学の形式化（装置・命題・推論規則） | B | T-0034 | [C-0010](conjectures/C-0010.md)、[C-0014](conjectures/C-0014.md)〜[C-0017](conjectures/C-0017.md) | 進行中 | [#75](https://github.com/kittenkiki15/point-free-spacetime/issues/75) |
 | [T-0034](tasks/T-0034.md) | 装置の構成的な定義 | B | なし | [D-0001](definitions/D-0001.md)、[D-0013](definitions/D-0013.md)、[D-0014](definitions/D-0014.md)、[A-0002](assumptions/A-0002.md)、[A-0006](assumptions/A-0006.md)、[A-0016](assumptions/A-0016.md)、[A-0018](assumptions/A-0018.md)、[C-0004](conjectures/C-0004.md)、[C-0018](conjectures/C-0018.md)、[C-0019](conjectures/C-0019.md)、[C-0020](conjectures/C-0020.md) | 進行中 | [#86](https://github.com/kittenkiki15/point-free-spacetime/issues/86) |
 | [T-0035](tasks/T-0035.md) | プロジェクトの目的の再確認と文書化 | 整理 | なし | 横断的なタスク（特定の ID はない。対象はプロジェクトの目的を述べた文書（`framework.md`・`README.md`・`roadmap.md`）と、各項目の「目的」） | 完了 | [#96](https://github.com/kittenkiki15/point-free-spacetime/issues/96) |
-| [T-0036](tasks/T-0036.md) | 各項目の目的の箇条書き化と、全体の目的との対応づけ | 整理 | T-0035 | 横断的なタスク（特定の ID はない。対象は定義・前提・予想・結果・未解決の点（D・A・C・R・Q）の「## 目的」と、全体の目的（`goals/`）） | 未着手 | [#98](https://github.com/kittenkiki15/point-free-spacetime/issues/98) |
+| [T-0036](tasks/T-0036.md) | 各項目の目的の箇条書き化と、全体の目的との対応づけ | 整理 | T-0035 | 横断的なタスク（特定の ID はない。対象は定義・前提・予想・結果・未解決の点（D・A・C・R・Q）の「## 目的」と、全体の目的（`goals/`）） | 進行中 | [#98](https://github.com/kittenkiki15/point-free-spacetime/issues/98) |
 
 ```mermaid
 flowchart LR
