@@ -883,7 +883,7 @@ def test_purpose_section_problems_detects_missing_or_empty(tmp_path):
 
 GOALS = ROOT / "goals"
 GOAL_STATES = {"合意", "候補", "廃止"}
-GOAL_KINDS = {"進め方", "研究テーマ"}
+GOAL_KINDS = {"一般", "進め方", "研究テーマ"}  # 「一般」は第 58 回（G-0000）
 GOAL_LINK = re.compile(r"\[(G-\d{4})\]\(([^)\s]*)\)")
 
 
