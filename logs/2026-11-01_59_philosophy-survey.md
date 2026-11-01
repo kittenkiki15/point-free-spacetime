@@ -206,3 +206,23 @@ Both open; consistent with 進行中. Creating PRs and an Issue progress comment
 ## ユーザー（2026-11-01 09:06:03 UTC、記録 2）
 
 非公開リポジトリに追加する PDF はありますか？ ご確認ください。
+
+## Claude（2026-11-01 09:06:34 UTC、記録 2）
+
+確認しました。今回の非公開側の PR（[kittenkiki15/point-free-spacetime-private#49](https://github.com/kittenkiki15/point-free-spacetime-private/pull/49)）には、PDF を追加していません。第 1 部の調査は、Web 検索で確かめた書誌・要旨・後続の文献での説明によるもので、原典の本文は読んでいません。
+
+無料で読める原典を、ここから取得しようとしましたが、できませんでした。Project Euclid・PNAS は PDF ではなく HTML のページが返り、著者のサイトは接続が拒否されました（403）。ユーザーに入手していただくなら、候補は次のとおりです。
+
+**無料で入手できるもの**（著者の版・オープンアクセス）
+- `aumann1976`（Project Euclid）、`genest1986`（Project Euclid）、`nosek2018`（PNAS・PMC）
+- `clark1991`（著者の Stanford のサイト）、`vanlamsweerde2001`（著者の UCLouvain のサイト）
+- `peirce1877`（パブリックドメイン）
+
+**有料のもの**：レビューの詳細化の論点にもかかわるので、優先度が高い順に並べました。
+1. `longino1990`（書籍。4 つの基準は 76〜81 ページとされる）：「加減した平等」の点検に必要です。
+2. `wray2001`（Synthese）・`gilbert1987`（Synthese）：合意を「受容」とする論点の根拠です。
+3. `list2011`（書籍。討議のジレンマと前提に基づく手続きの章）
+4. `andrews2023`（Theoretical Issues in Ergonomics Science）
+5. その他：`lakatos1970`、`kitcher1990`、`humphreys2009`、`steinle1997`、`douglas2009`、`hutchins1995`、`cannonbowers1993`
+
+**提案**：第 1 部の内容は、T-0037 の 3（G-0001 以下の見直し）の材料として使います。その前に、少なくとも 1 と 2 は本文で確かめたいと考えています。入手していただけるかと、時期のご判断をお願いします。今回の PR #49 に加えるか、マージ後の別の PR にするかもお任せします。届いたら、`papers/<引用キー>.pdf` に置き、`papers/README.md` の一覧を更新します。
