@@ -67,3 +67,79 @@
 ## ユーザー（2026-11-01 08:06:10 UTC）
 
 1, 2 ともご提案通りで問題ありません。
+
+## Claude（2026-11-01 08:06:37 UTC）
+
+ログは検査に通りました。調査に入ります。まず、既存の調査メモの書式を確認します。
+
+## Claude（2026-11-01 08:06:58 UTC）
+
+SEP は取得できないので、Web 検索で確かめます。
+
+## Claude（2026-11-01 08:07:44 UTC）
+
+調べた範囲で、調査メモを書きます。
+
+## Claude（2026-11-01 08:10:31 UTC）
+
+論点 1〜3 の調査メモを書いて push しました。結果をご報告します。
+
+#### 進め方の結果
+
+- `start` をやり直し、第 59 回の対話ログを始めました。第 58 回の URL の誤検出は承認済みです。私の前の応答で同じ URL を引用した箇所も同じ文字列なので、同じ扱いで承認しました。
+- 調査メモ：[surveys/2026-11-01_59_philosophy-of-research-process.md](surveys/2026-11-01_59_philosophy-of-research-process.md)（文献 21 件を `references.bib` に登録。テストは通過）
+- **制約**：この環境からは SEP（スタンフォード哲学百科事典）に接続できませんでした。そのため、内容は Web 検索で確かめた書誌・要旨・後続の文献の説明によるもので、原典の本文は未読です。メモにもその旨を書きました。SEP を使いたい場合は、環境のネットワーク設定で `plato.stanford.edu` を許可していただく必要があります。
+
+#### 立場の地図（要点。Claude の見立て）
+
+| 本プロジェクトの主張 | 近い既存の立場 | 違い・知見 |
+| --- | --- | --- |
+| 研究目的は仮説の検証（G-0001） | 仮説演繹法、Peirce の探究の理論 | 仮説を立てる前の**探索的な研究**（Steinle 1997）の置き場所がない |
+| 信念の更新（G-0001 の 3） | ベイズ主義 | Popper は、反証に耐えた度合い（験証）を、信念の度合いと区別した。予測と事後説明の区別（Nosek 2018、事前登録） |
+| チームとして信念を合意する | Gilbert の共同の受容、**Wray の「集団の信念は受容である」** | 今の運用（ユーザーの信念・Claude の見立て・合意を分けて書く）は、受容の見方に近い。不一致が残ったら、背景の仮定の違いか根拠の共有の不足かを確かめる（Aumann 1976） |
+| 人と AI は対等な研究者 | **Longino の「加減した平等」** | 判断の権限はユーザーにあるので、完全な平等ではない |
+| 批判とレビューの運用 | **Longino の 4 つの基準**（批判の場・受け入れ・共有された基準・加減した平等） | PR・レビューへの返信の規則・`CLAUDE.md` と、よく対応する |
+| リポジトリへの記録（G-0002） | 分散認知（Hutchins）、共有メンタルモデル、共通の基盤（Clark–Brennan） | 人と AI のチームでの形成と測定は未解決とされる（Andrews ほか 2023） |
+| 目的の木と各項目の対応づけ | **目標指向の要求工学**（van Lamsweerde 2001） | ほぼ対応する。目標の衝突の分析は、本プロジェクトにはまだない |
+
+#### T-0037 の 3 への材料（候補。合意前）
+
+メモの 5 節に 6 件を挙げました。主なものは次の 3 件です。
+
+1. G-0001 の 3「信念を合意する」を、「チームとして採る受容」と各人の信念に書き分けるか
+2. 「対等な研究者」を、研究の主体としての資格と判断の権限に書き分けるか
+3. 研究目的を仮説の検証とする定義の下で、仮説の前の探索（段階 A の調査など）をどこに置くか
+
+この内容で第 1 部を区切ってよいか、ご意見をお聞かせください。原典を本文で確かめたいもの（Longino、Wray など）があれば、その方針もご相談させてください。
+
+Sources:
+- [Longino の 4 つの基準（二次文献）](https://philarchive.org/archive/EIGOTS)
+- [Wray 2001](https://unpaywall.org/10.1023%2FA%3A1013148515033)
+- [Gilbert 1987](https://dx.doi.org/10.1007/BF00485446)
+- [Discursive dilemma](https://wikipedia.com/wiki/Discursive_dilemma)
+- [Lakatos（Research program）](https://en.wikipedia.org/wiki/Research_program)
+- [Peirce 1877](https://cspeirce.omeka.net/items/show/2)
+- [Steinle 1997](https://cambridge.org/core/journals/philosophy-of-science/article/entering-new-fields-exploratory-uses-of-experimentation/A1BF59B7198F4C380D3B5F1FAEFF9241)
+- [Nosek et al. 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC6233109)
+- [Aumann 1976](https://projecteuclid.org/euclid.aos/1176343654)
+- [Genest–Zidek 1986](https://projecteuclid.org/journals/statistical-science/volume-1/issue-1/Combining-Probability-Distributions-A-Critique-and-an-Annotated-Bibliography/10.1214/ss/1177013825.full)
+- [Kitcher 1990](https://core.ac.uk/download/219377287.pdf)
+- [Hutchins 1995](https://hci.ucsd.edu/hutchins/citw.html)
+- [Humphreys 2009](https://arxiv.org/pdf/1904.01052)
+- [Cannon-Bowers et al. 1993](https://www.proquest.com/docview/38428594)
+- [Andrews et al. 2023](https://cognitiveengineering.gatech.edu/2023/01/04/journal-paper-published-in-theoretical-issues-in-ergonomics-science)
+- [Clark–Brennan 1991](https://web.stanford.edu/%7Eclark/1990s/Clark,%20H.H.%20_%20Brennan,%20S.E.%20_Grounding%20in%20communication_%201991.pdf)
+- [van Lamsweerde 2001](https://webperso.info.ucl.ac.be/~avl/files/RE01.pdf)
+- [Douglas（inductive risk）](https://philsci-archive.pitt.edu/25196/3/Inductive_Risk.pdf)
+
+## Claude（2026-11-01 08:10:39 UTC）
+
+なお、最後の同期は、上の応答の末尾の出典の URL の一覧（2 件の URL の一部と、URL だけで日本語をほとんど含まない段落）が検査に当たったため、公開を保留しました。どれも引用ではない URL の一覧なので、承認して公開してよいかも、あわせてお知らせください。
+
+## ユーザー（2026-11-01 08:15:42 UTC）
+
+環境のネットワーク設定で `plato.stanford.edu` を許可しました。SEP の総説で各立場を確かめられるか、ご確認ください。
+
+URL の一覧の公開を承認します。
+
+この内容で第 1 部を区切って、セッション終了の手続きに入ってください。
