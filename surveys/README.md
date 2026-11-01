@@ -26,6 +26,7 @@
 | 逐次・適応的な実験と複合系（量子コム、一般化確率論） | [第 22 回](2026-10-01_22_combs-and-composites.md) | 量子コム・量子戦略・process tensor、適応的な方式、局所トモグラフィー | 層 1、D-0001・D-0002 |
 | 量子時計と量子参照系 | [第 23 回](2026-10-02_23_quantum-clocks-and-frames.md) | Page–Wootters、共変な時間 POVM、量子参照系の取り替え、相対量 | 層 1、D-0013（較正の段階） |
 | 量子の実験の比較と因果的非分離性 | [第 24 回](2026-10-02_24_quantum-comparison-and-causal-order.md) | 非可換の Blackwell–Sherman–Stein の定理、チャネルの不足度、量子 LAN、過程行列と因果不等式 | 層 1・2、D-0005・D-0013・A-0016 |
+| 研究の進め方の目的と科学哲学・社会認識論・チーム研究 | [第 59 回](2026-11-01_59_philosophy-of-research-process.md) | 仮説の検証と信念の更新（Popper・Lakatos・Peirce・ベイズ主義）、集団の信念と受容（Gilbert・Wray・List–Pettit）、Longino の 4 つの基準、共有メンタルモデル・共通の基盤、目標指向の要求工学 | G-0001・G-0002、T-0037・T-0038 |
 
 ## 論文メモの書式
 
