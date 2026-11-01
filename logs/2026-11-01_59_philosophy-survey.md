@@ -159,3 +159,7 @@ Summary, status paragraphs, and NEXT.md next.
 ## Claude（2026-11-01 08:16:45 UTC）
 
 Now NEXT.md.
+
+## Claude（2026-11-01 08:17:17 UTC）
+
+Both open; consistent with 進行中. Creating PRs and an Issue progress comment.
