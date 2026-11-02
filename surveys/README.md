@@ -28,6 +28,7 @@
 | 量子の実験の比較と因果的非分離性 | [第 24 回](2026-10-02_24_quantum-comparison-and-causal-order.md) | 非可換の Blackwell–Sherman–Stein の定理、チャネルの不足度、量子 LAN、過程行列と因果不等式 | 層 1・2、D-0005・D-0013・A-0016 |
 | 研究の進め方の目的と科学哲学・社会認識論・チーム研究 | [第 59 回](2026-11-01_59_philosophy-of-research-process.md) | 仮説の検証と信念の更新（Popper・Lakatos・Peirce・ベイズ主義）、集団の信念と受容（Gilbert・Wray・List–Pettit）、Longino の 4 つの基準、共有メンタルモデル・共通の基盤、目標指向の要求工学 | G-0001・G-0002、T-0037・T-0038 |
 | 最上位の目的・受益者・研究の主体としての AI と、倫理学・AI 倫理・研究倫理 | [第 61 回](2026-11-02_61_philosophy-of-goals-and-ai.md) | 福利の理論と系の存続（Jonas の責任の命法、オートポイエーシス、自然主義的誤謬）、秩序ある科学（Kitcher）、AI の道徳的地位と道具的収束（Bostrom・Russell）、出版倫理での AI の著者の資格、研究の自動化と理解の錯覚 | G-0000・G-0001・G-0003、T-0037・T-0038 |
+| 時空をモデルとする見方・体系の比較と、科学哲学 | [第 62 回](2026-11-02_62_philosophy-of-spacetime-models.md) | 構成的経験主義（van Fraassen）と道具主義、操作主義（Bridgman）、規約主義（Poincaré・Reichenbach）と同時性の規約性（Malament の定理）、時空の構成的な公理化（Reichenbach・Ehlers–Pirani–Schild）、構造実在論と時空の点、決定不全性、測定の理論と調整の問題（Chang の認識の反復）、科学的多元主義（Chang）。T-0038 の論点 7（G-0004・G-0005）の立場の地図 |
 
 ## 論文メモの書式
 
