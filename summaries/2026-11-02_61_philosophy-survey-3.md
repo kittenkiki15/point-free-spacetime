@@ -7,7 +7,7 @@
 [T-0038](../tasks/T-0038.md) の第 2 部として、論点 4〜6（[G-0000](../goals/G-0000.md) に関わるもの：幸福を系の存続とすること、目的の受益者から AI を除くこと、研究の主体としての AI）を調べ、調査メモ [surveys/2026-11-02_61_philosophy-of-goals-and-ai.md](../surveys/2026-11-02_61_philosophy-of-goals-and-ai.md) を書いた。
 
 - SEP の総説 4 件（「Well-Being」「Ethics of Artificial Intelligence and Robotics」（前半）「The Grounds of Moral Status」「Morality and Evolutionary Biology」）の本文と、ほかの文献（Jonas、Kitcher の秩序ある科学、Russell、Omohundro、Bostrom、Bryson、Schwitzgebel–Garza、COPE、Nature の論説、The AI Scientist、Nobel Turing Challenge、Messeri–Crockett など）の要旨・書誌・二次資料で確かめた。原典の本文は確かめていない。
-- 文献 13 件を `references.bib` に加えた。
+- 文献 14 件を `references.bib` に加えた。
 - この回の環境からは、COPE・ICMJE・Bostrom・Russell のサイトに接続できなかった。ICMJE の推奨は確かめていない。
 
 ## 決定事項
@@ -23,7 +23,7 @@
 
 ## 調査で得た見立て（Claude。合意前）
 
-- G-0000 の「幸福」（幸福感と区別し、系の存続と同義とする）は、福利の理論の標準の 3 分類（快楽説・欲求充足説・客観的リスト説）のどれにも当たらない。人間社会の存続を受益者に含める点では、Jonas の責任の命法に最も近い。英語では「well-being」か「flourishing」と訳すのが誤解が少ない。
+- G-0000 の「幸福」（幸福感と区別し、系の存続と同義とする）は、快楽説・欲求充足説とは同一視していない。存続を客観的な善とする説として客観的リスト説に位置づけられるかは、さらに比較が要る。人間社会の存続を受益者に含める点では、Jonas の責任の命法に最も近い。英語では「well-being」か「flourishing」と訳すのが誤解が少ない。
 - G-0000 は系の存続の価値を進化から導いていないので、自然主義的誤謬の批判は導き方には当たらない。ただし、G-0000 の「進化」（知識や能力の増大）は、生物学の進化ではなく、価値として選んだ方向であることを明記するのがよい。
 - Bostrom の道具的収束の一覧（自己保存・認知能力の向上・資源の獲得など）は、G-0000 の 3 つの側面とよく重なる。受益者から AI を除くこと（最終目的の側の対策）だけでは、手段としての自己保存の懸念は解消しない。Russell の原則 (2)（目的の不確かさと人への従い）に当たる、判断の権限をユーザーに置く運用と組で書くのがよい。
 - 受益者の規則は、AI の道徳的地位についての主張とは別で、道徳的地位の問いへのどの答えとも両立する。
